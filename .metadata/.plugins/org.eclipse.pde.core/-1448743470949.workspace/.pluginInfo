@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map>
+	<bundle bundleID="521" class="pizzeria_diddieffe.Activator" localization="OSGI-INF/l10n/bundle" name="Pizzeria_Diddieffe" project="Pizzeria Diddieffe"/>
+</map>
