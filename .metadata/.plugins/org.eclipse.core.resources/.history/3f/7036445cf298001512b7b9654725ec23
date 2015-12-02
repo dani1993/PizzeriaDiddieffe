@@ -1,0 +1,20 @@
+package pizzeriadiddieffe.core;
+
+import pizzeriadiddieffe.core.Pizza;
+
+public class BasicPizza extends Pizza {
+	private double price;
+	private String info;
+	
+	@Override
+	public double getPrice() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

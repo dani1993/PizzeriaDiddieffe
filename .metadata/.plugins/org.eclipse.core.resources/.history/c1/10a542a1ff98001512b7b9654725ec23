@@ -1,0 +1,17 @@
+package pizzeriadiddieffe.core.pizza;
+
+public class Anchovy extends PizzaDecorator {
+
+	@Override
+	public double getPrice() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

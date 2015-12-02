@@ -1,0 +1,23 @@
+package pizzeriadiddieffe.core.pizza;
+
+public class Mozzarella extends PizzaDecorator {
+//	public Mozzarella(Pizza newPizza){
+//		super(newPizza);
+//	}
+	
+	Pizza tempPizza;
+
+	public Mozzarella(Pizza myPizza){
+		tempPizza = myPizza; 
+		}
+
+	@Override
+	public String getInfo() {
+		return tempPizza.getInfo() + ", Mozzarella";
+	}
+
+	@Override
+	public BigDecimal price() {
+		return currentSandwich.price().add(new BigDecimal("0.50"));
+	}
+}

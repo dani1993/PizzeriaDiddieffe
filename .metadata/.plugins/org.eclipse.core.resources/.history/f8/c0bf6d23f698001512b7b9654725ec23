@@ -1,0 +1,14 @@
+package pizzeriadiddieffe.core.pizza;
+
+public class BasicWhitePizza extends Pizza {
+	private String info;
+
+	public BasicWhitePizza(String desc){ 
+		info = desc; 
+	}
+	
+	@Override
+	public BigDecimal price() {
+		return new BigDecimal("3.0");
+	}
+}

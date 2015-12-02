@@ -1,0 +1,22 @@
+package pizzeriadiddieffe.core.pizza;
+
+abstract class PizzaDecorator extends Pizza {
+
+//	protected Pizza myPizza;
+//	
+//	public PizzaDecorator(Pizza newPizza) {
+//		myPizza = newPizza;
+//	}
+//
+//	@Override
+//	public double getPrice() {
+//		return myPizza.getPrice();
+//	}
+//
+//	@Override
+//	public String getInfo() {
+//		return myPizza.getInfo();
+//	}
+	
+	public abstract double getPrice();
+}

@@ -1,0 +1,7 @@
+package pizzeriadiddieffe.core;
+
+import pizzeriadiddieffe.core.Item;
+
+public abstract class Pizza implements Item{
+	
+}

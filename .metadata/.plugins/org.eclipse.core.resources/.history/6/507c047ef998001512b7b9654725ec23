@@ -1,0 +1,14 @@
+package pizzeriadiddieffe.core.pizza;
+
+public class BasicBrownPizza extends Pizza {
+	private final static double PRICE = 3.75;
+	
+	public BasicBrownPizza(String description){ 
+		info += description;
+	}
+	
+	@Override
+	public double getPrice() {
+		return PRICE;
+	}
+}
