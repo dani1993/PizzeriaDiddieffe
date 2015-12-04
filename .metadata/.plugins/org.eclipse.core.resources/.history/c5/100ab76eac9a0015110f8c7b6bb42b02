@@ -1,0 +1,17 @@
+package pizzeriadiddieffe.core.focaccia;
+
+public class BasicWhiteFocaccia extends Focaccia {
+
+	@Override
+	public String getInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double getPrice() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
