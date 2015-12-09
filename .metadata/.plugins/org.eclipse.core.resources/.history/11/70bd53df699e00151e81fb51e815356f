@@ -1,0 +1,33 @@
+package pizzeriadiddieffe.core.beverage.topping;
+
+import pizzeriadiddieffe.core.Item;
+import pizzeriadiddieffe.core.beverage.Beverage;
+
+public class Beer extends Beverage{
+	Beverage tempBeverage;
+	private final static double PRICE = 3.00;
+	
+	public Beer(Beverage mybeverage){
+		tempBeverage=mybeverage;
+	}
+	
+	@Override
+	public String getInfo() {
+		return tempBeverage.getInfo() + ", Beer";
+	}
+	
+	@Override
+	public double getPrice() {
+		return tempBeverage.getPrice()+PRICE;
+	}
+
+	@Override
+	public void add(Item obj) throws Exception {
+		throw new Exception("It's a leaf");
+	}
+	
+	@Override
+	public void remove() throws Exception{
+		throw new Exception("It's a leaf");
+	}
+}

@@ -1,5 +1,7 @@
 package pizzeriadiddieffe.core.pizza;
 
+import pizzeriadiddieffe.core.Item;
+
 public class BasicWhitePizza extends Pizza {
 	private final static double PRICE = 3.5;
 	private final static String INFO = "White dough pizza";
@@ -12,5 +14,15 @@ public class BasicWhitePizza extends Pizza {
 	@Override
 	public double getPrice() {
 		return PRICE;
+	}
+	
+	@Override
+	public void add(Item obj) throws Exception {
+		throw new Exception("It's a leaf");
+	}
+	
+	@Override
+	public void remove() throws Exception{
+		throw new Exception("It's a leaf");
 	}
 }

@@ -1,8 +1,9 @@
 package pizzeriadiddieffe.core.beverage.topping;
 
 import pizzeriadiddieffe.core.beverage.Beverage;
+import pizzeriadiddieffe.core.beverage.BeverageDecorator;
 
-public class FizzyWater extends Beverage{
+public class FizzyWater extends BeverageDecorator{
 	Beverage tempBeverage;
 	private final static double PRICE = 1.00;
 	

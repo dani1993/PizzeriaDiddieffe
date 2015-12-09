@@ -1,5 +1,6 @@
 package pizzeriadiddieffe.core.focaccia;
 
+import pizzeriadiddieffe.core.Item;
 import pizzeriadiddieffe.core.focaccia.Focaccia;
 
 public class BasicBrownFocaccia extends Focaccia {
@@ -14,5 +15,15 @@ public class BasicBrownFocaccia extends Focaccia {
 	@Override
 	public double getPrice() {
 		return PRICE;
+	}
+	
+	@Override
+	public void add(Item obj) throws Exception {
+		throw new Exception("It's a leaf");
+	}
+	
+	@Override
+	public void remove() throws Exception{
+		throw new Exception("It's a leaf");
 	}
 }

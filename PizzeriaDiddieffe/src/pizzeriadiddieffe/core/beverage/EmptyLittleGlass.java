@@ -1,5 +1,7 @@
 package pizzeriadiddieffe.core.beverage;
 
+import pizzeriadiddieffe.core.Item;
+
 public class EmptyLittleGlass extends Beverage{
 	private final static double PRICE = 0.00;
 	private final static String INFO = "Empty little glass";
@@ -14,4 +16,13 @@ public class EmptyLittleGlass extends Beverage{
 		return PRICE;
 	}
 
+	@Override
+	public void add(Item obj) throws Exception {
+		throw new Exception("It's a leaf");
+	}
+	
+	@Override
+	public void remove() throws Exception{
+		throw new Exception("It's a leaf");
+	}
 }

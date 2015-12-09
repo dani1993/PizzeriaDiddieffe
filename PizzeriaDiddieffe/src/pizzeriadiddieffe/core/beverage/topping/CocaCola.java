@@ -1,4 +1,5 @@
 package pizzeriadiddieffe.core.beverage.topping;
+
 import pizzeriadiddieffe.core.beverage.*;
 
 public  class CocaCola extends BeverageDecorator{
@@ -18,5 +19,4 @@ public  class CocaCola extends BeverageDecorator{
 	public double getPrice() {
 		return tempBeverage.getPrice()+PRICE;
 	}
-
 }

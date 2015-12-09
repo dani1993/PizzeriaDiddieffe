@@ -1,8 +1,9 @@
 package pizzeriadiddieffe.core.beverage.topping;
 
 import pizzeriadiddieffe.core.beverage.Beverage;
+import pizzeriadiddieffe.core.beverage.BeverageDecorator;
 
-public class Beer extends Beverage{
+public class Beer extends BeverageDecorator{
 	Beverage tempBeverage;
 	private final static double PRICE = 3.00;
 	
@@ -19,5 +20,4 @@ public class Beer extends Beverage{
 	public double getPrice() {
 		return tempBeverage.getPrice()+PRICE;
 	}
-
 }
