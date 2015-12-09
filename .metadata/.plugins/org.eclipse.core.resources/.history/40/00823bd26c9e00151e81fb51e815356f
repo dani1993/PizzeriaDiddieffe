@@ -1,0 +1,29 @@
+package pizzeriadiddieffe.core;
+
+public class Order implements Item {
+
+	@Override
+	public double getPrice() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void add(Item obj) throws Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void remove() throws Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+}

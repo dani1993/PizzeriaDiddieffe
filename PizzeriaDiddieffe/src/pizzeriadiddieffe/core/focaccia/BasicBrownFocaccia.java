@@ -23,7 +23,7 @@ public class BasicBrownFocaccia extends Focaccia {
 	}
 	
 	@Override
-	public void remove() throws Exception{
-		throw new Exception("It's a leaf");
+	public int remove(Item obj) throws Exception{
+		return -1;
 	}
 }

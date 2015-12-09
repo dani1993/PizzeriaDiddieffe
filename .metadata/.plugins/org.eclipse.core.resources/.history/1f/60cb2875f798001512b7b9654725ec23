@@ -1,6 +1,0 @@
-package pizzeriadiddieffe.core;
-
-public interface Item {
-	double getPrice(double price);
-	String getInfo();
-}

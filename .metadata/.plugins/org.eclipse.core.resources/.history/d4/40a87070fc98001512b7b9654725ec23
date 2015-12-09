@@ -1,7 +1,0 @@
-package pizzeriadiddieffe.core.pizza;
-
-public class Mozzarella extends PizzaDecorator {
-	public Mozzarella(Pizza newPizza){
-		super(newPizza);
-	}
-}

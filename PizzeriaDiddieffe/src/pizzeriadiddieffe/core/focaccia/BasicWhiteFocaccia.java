@@ -16,14 +16,14 @@ public class BasicWhiteFocaccia extends Focaccia {
 	public double getPrice() {
 		return PRICE;
 	}
-	
+
 	@Override
 	public void add(Item obj) throws Exception {
 		throw new Exception("It's a leaf");
 	}
 	
 	@Override
-	public void remove() throws Exception{
-		throw new Exception("It's a leaf");
+	public int remove(Item obj) throws Exception{
+		return -1;
 	}
 }

@@ -1,8 +1,8 @@
 package pizzeriadiddieffe.core;
 
 public interface Item {
-	double getPrice();
-	String getInfo();
-	void add(Item obj) throws Exception;
-	void remove() throws Exception;
+	public double getPrice();
+	public String getInfo();
+	public void add(Item obj) throws Exception;
+	public int remove(Item obj) throws Exception;
 }

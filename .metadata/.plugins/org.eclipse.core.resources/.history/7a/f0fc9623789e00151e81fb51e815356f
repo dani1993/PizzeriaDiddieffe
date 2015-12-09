@@ -1,0 +1,12 @@
+package pizzeriadiddieffe.core.payment;
+
+public class CashPayment implements Payment {
+	@Override
+	public void paymentMethod(double price) {
+		change();
+	}
+
+	public double change(double pay) {
+		return pay-price;
+	}
+}

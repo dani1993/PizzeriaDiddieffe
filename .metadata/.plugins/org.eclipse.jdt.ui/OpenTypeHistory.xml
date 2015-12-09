@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
 <typeInfo handle="=PizzeriaDiddieffe/src&lt;pizzeriadiddieffe.core.pizza{Pizza.java[Pizza" modifiers="1025" timestamp="1449063833000"/>
-<typeInfo handle="=PizzeriaDiddieffe/src&lt;pizzeriadiddieffe.core.pizza{PizzaDecorator.java[PizzaDecorator" modifiers="1025" timestamp="1449066083000"/>
+<typeInfo handle="=PizzeriaDiddieffe/src&lt;pizzeriadiddieffe.core.pizza{PizzaDecorator.java[PizzaDecorator" modifiers="1025" timestamp="1449664621000"/>
 <typeInfo handle="=PizzeriaDiddieffe/src&lt;pizzeriadiddieffe.core.focaccia{Focaccia.java[Focaccia" modifiers="1025" timestamp="1449249566000"/>
+<typeInfo handle="=PizzeriaDiddieffe/src&lt;pizzeriadiddieffe.core{Item.java[Item" modifiers="513" timestamp="1449665229000"/>
 </typeInfoHistroy>

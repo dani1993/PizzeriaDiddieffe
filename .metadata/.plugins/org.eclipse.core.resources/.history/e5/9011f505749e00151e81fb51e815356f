@@ -1,0 +1,5 @@
+package pizzeriadiddieffe.core;
+
+public interface Payment {
+
+}
