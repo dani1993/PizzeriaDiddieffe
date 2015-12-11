@@ -113,9 +113,5 @@ public class PizzeriaDiddieffeUI {
 		chooseInsideOutside.setBackground(new Color(0, 0, 205));
 		mainPanel.add(chooseInsideOutside);
 		chooseInsideOutside.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(0, 0, 61, 16);
-		chooseInsideOutside.add(lblNewLabel);
 	}
 }
