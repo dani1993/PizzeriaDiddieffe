@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.Color;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -13,9 +16,12 @@ import javax.swing.SwingConstants;
 import java.awt.CardLayout;
 
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
+import java.awt.Image;
 
 
 public class PizzeriaDiddieffeUI {
@@ -28,6 +34,11 @@ public class PizzeriaDiddieffeUI {
 	
 	private JFrame frame;
 	private JLabel labelNumberOfTablesOutside;
+	
+	private JPanel chooseInsideOutside;
+	
+	private Inside insidePanel;
+	private Inside outsidePanel;
 
 	/**
 	 * Launch the application.
@@ -151,28 +162,68 @@ public class PizzeriaDiddieffeUI {
 		chooseNumberOfTables.add(btnPlusOutisde);
 		
 		JButton btnDone = new JButton("Done");
+		btnDone.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chooseNumberOfTables.setVisible(false);
+				chooseInsideOutside.setVisible(true);
+			}
+		});
 		btnDone.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		btnDone.setBounds(170, 617, 200, 60);
 		chooseNumberOfTables.add(btnDone);
 		
-		JPanel chooseInsideOutside = new JPanel();
+		chooseInsideOutside = new JPanel();
 		frame.getContentPane().add(chooseInsideOutside, "name_1233757414457");
 		chooseInsideOutside.setLayout(new GridLayout(2, 0, 0, 0));
 		
 		JButton btnInside = new JButton("Inside");
+		btnInside.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chooseInsideOutside.setVisible(false);
+				insidePanel.setVisible(true);
+			}
+		});
 		chooseInsideOutside.add(btnInside);
 		
 		JButton btnOutside = new JButton("Outside");
 		chooseInsideOutside.add(btnOutside);
+		btnOutside.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chooseInsideOutside.setVisible(false);
+				outsidePanel.setVisible(true);
+			}
+		});
 		
-		JPanel inside = new JPanel();
-		frame.getContentPane().add(inside, "name_6455395976526");
 		
-		JPanel outside = new JPanel();
-		frame.getContentPane().add(outside, "name_6466496075840");
-		
-		
-		
+		Image inside_bg = new ImageIcon ("res/parquetBG.jpg").getImage();
+		insidePanel = new Inside(inside_bg);
+		frame.getContentPane().add(insidePanel);
+
+		Image outside_bg = new ImageIcon ("res/outsideBG.jpg").getImage();
+		outsidePanel = new Inside(outside_bg);
+		frame.getContentPane().add(outsidePanel);
+	}
+	class Inside extends JPanel {
+		private Image img;
+		public Inside(String img) {
+			this(new ImageIcon(img).getImage());
+		}
+		public Inside(Image img) {
+			this.img = img;
+			Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+			setPreferredSize(size);
+			setMinimumSize(size);
+			setMaximumSize(size);
+			setSize(size);
+			setLayout(null);
+			
+		}
+		@Override
+		  protected void paintComponent(Graphics g) {
+
+		    super.paintComponent(g);
+		        g.drawImage(img, 0, 0, null);
+		}
 		
 		
 		
