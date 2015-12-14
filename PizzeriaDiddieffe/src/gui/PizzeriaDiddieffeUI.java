@@ -6,8 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.Color;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,10 +16,14 @@ import java.awt.CardLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Shape;
+import java.awt.Cursor;
+import javax.swing.UIManager;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 
 
 public class PizzeriaDiddieffeUI {
@@ -37,9 +39,9 @@ public class PizzeriaDiddieffeUI {
 	
 	private JPanel chooseInsideOutside;
 	
-	private Inside insidePanel;
-	private Inside outsidePanel;
-
+	private JPanelWithBackgroundImg insidePanel;
+	private JPanelWithBackgroundImg outsidePanel;
+	private JButton btnBackToInOutScreen;
 	/**
 	 * Launch the application.
 	 */
@@ -93,6 +95,7 @@ public class PizzeriaDiddieffeUI {
 		chooseNumberOfTables.add(labelNumberOfTablesInside);
 		
 		btnMinusInside = new JButton("-");
+		btnMinusInside.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnMinusInside.setEnabled(false);
 		btnMinusInside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -110,6 +113,7 @@ public class PizzeriaDiddieffeUI {
 		
 		
 		JButton btnPlusInside = new JButton("+");
+		btnPlusInside.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnPlusInside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numberOfTablesInside++;
@@ -129,6 +133,7 @@ public class PizzeriaDiddieffeUI {
 		chooseNumberOfTables.add(lblNumberOfTable);
 		
 		JButton btnMinusOutside = new JButton("-");
+		btnMinusOutside.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnMinusOutside.setEnabled(false);
 		btnMinusOutside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -150,6 +155,8 @@ public class PizzeriaDiddieffeUI {
 		chooseNumberOfTables.add(labelNumberOfTablesOutside);
 		
 		JButton btnPlusOutisde = new JButton("+");
+		btnPlusOutisde.setFocusPainted(false);
+		btnPlusOutisde.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnPlusOutisde.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numberOfTablesOutside++;
@@ -162,6 +169,8 @@ public class PizzeriaDiddieffeUI {
 		chooseNumberOfTables.add(btnPlusOutisde);
 		
 		JButton btnDone = new JButton("Done");
+		btnDone.setBackground(new Color(255, 255, 255));
+		btnDone.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnDone.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chooseNumberOfTables.setVisible(false);
@@ -169,7 +178,7 @@ public class PizzeriaDiddieffeUI {
 			}
 		});
 		btnDone.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		btnDone.setBounds(170, 617, 200, 60);
+		btnDone.setBounds(175, 617, 200, 60);
 		chooseNumberOfTables.add(btnDone);
 		
 		chooseInsideOutside = new JPanel();
@@ -177,6 +186,14 @@ public class PizzeriaDiddieffeUI {
 		chooseInsideOutside.setLayout(new GridLayout(2, 0, 0, 0));
 		
 		JButton btnInside = new JButton("Inside");
+		btnInside.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		btnInside.setForeground(new Color(0, 0, 0));
+		btnInside.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnInside.setIcon(new ImageIcon("res/insideButton.jpg"));
+		btnInside.setFont(new Font("Lucida Grande", Font.BOLD, 44));
+		btnInside.setText("Inside");
+		btnInside.setHorizontalTextPosition(JButton.CENTER);
+		btnInside.setVerticalTextPosition(JButton.CENTER);
 		btnInside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chooseInsideOutside.setVisible(false);
@@ -186,7 +203,15 @@ public class PizzeriaDiddieffeUI {
 		chooseInsideOutside.add(btnInside);
 		
 		JButton btnOutside = new JButton("Outside");
+		btnOutside.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		btnOutside.setForeground(new Color(0, 0, 0));
+		btnOutside.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnOutside.setIcon(new ImageIcon("res/outsideButton.jpg"));
 		chooseInsideOutside.add(btnOutside);
+		btnOutside.setFont(new Font("Lucida Grande", Font.BOLD, 44));
+		btnOutside.setText("Outside");
+		btnOutside.setHorizontalTextPosition(JButton.CENTER);
+		btnOutside.setVerticalTextPosition(JButton.CENTER);
 		btnOutside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chooseInsideOutside.setVisible(false);
@@ -196,19 +221,23 @@ public class PizzeriaDiddieffeUI {
 		
 		
 		Image inside_bg = new ImageIcon ("res/parquetBG.jpg").getImage();
-		insidePanel = new Inside(inside_bg);
+		insidePanel = new JPanelWithBackgroundImg(inside_bg);
 		frame.getContentPane().add(insidePanel);
 
 		Image outside_bg = new ImageIcon ("res/outsideBG.jpg").getImage();
-		outsidePanel = new Inside(outside_bg);
+		outsidePanel = new JPanelWithBackgroundImg(outside_bg);
 		frame.getContentPane().add(outsidePanel);
+
+		
 	}
-	class Inside extends JPanel {
+	
+	
+	class JPanelWithBackgroundImg extends JPanel {
 		private Image img;
-		public Inside(String img) {
+		public JPanelWithBackgroundImg(String img) {
 			this(new ImageIcon(img).getImage());
 		}
-		public Inside(Image img) {
+		public JPanelWithBackgroundImg(Image img) {
 			this.img = img;
 			Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
 			setPreferredSize(size);
@@ -217,7 +246,22 @@ public class PizzeriaDiddieffeUI {
 			setSize(size);
 			setLayout(null);
 			
+			//BACK BUTTON 
+			btnBackToInOutScreen = new JButton ("Back");
+			btnBackToInOutScreen.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+			btnBackToInOutScreen.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnBackToInOutScreen.setBounds(10, 10, 100, 50);
+			this.add(btnBackToInOutScreen);
+
+			btnBackToInOutScreen.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					insidePanel.setVisible(false);
+					outsidePanel.setVisible(false);
+					chooseInsideOutside.setVisible(true);
+				}
+			});
 		}
+		
 		@Override
 		  protected void paintComponent(Graphics g) {
 
