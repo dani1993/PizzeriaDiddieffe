@@ -1,0 +1,204 @@
+package gui;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.swing.JSplitPane;
+import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.CardLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+
+public class PizzeriaDiddieffeUI {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PizzeriaDiddieffeUI window = new PizzeriaDiddieffeUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public PizzeriaDiddieffeUI() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setMaximumSize(new Dimension(550, 750));
+		frame.setMinimumSize(new Dimension(550, 750));
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new CardLayout(0, 0));
+		
+		JPanel chooseNumberOfTables = new JPanel();
+		chooseNumberOfTables.setBackground(new Color(139, 69, 19));
+		frame.getContentPane().add(chooseNumberOfTables, "name_1230783104452");
+		GridBagLayout gbl_chooseNumberOfTables = new GridBagLayout();
+		gbl_chooseNumberOfTables.columnWidths = new int[]{110, 110, 110, 110, 110, 0};
+		gbl_chooseNumberOfTables.rowHeights = new int[]{182, 182, 182, 182, 0};
+		gbl_chooseNumberOfTables.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_chooseNumberOfTables.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		chooseNumberOfTables.setLayout(gbl_chooseNumberOfTables);
+		
+		JLabel label_2 = new JLabel("");
+		GridBagConstraints gbc_label_2 = new GridBagConstraints();
+		gbc_label_2.fill = GridBagConstraints.BOTH;
+		gbc_label_2.insets = new Insets(0, 0, 5, 5);
+		gbc_label_2.gridx = 0;
+		gbc_label_2.gridy = 0;
+		chooseNumberOfTables.add(label_2, gbc_label_2);
+		
+		JLabel label_3 = new JLabel("");
+		GridBagConstraints gbc_label_3 = new GridBagConstraints();
+		gbc_label_3.fill = GridBagConstraints.BOTH;
+		gbc_label_3.insets = new Insets(0, 0, 5, 5);
+		gbc_label_3.gridx = 1;
+		gbc_label_3.gridy = 0;
+		chooseNumberOfTables.add(label_3, gbc_label_3);
+		
+		JLabel lblNumberOfTables = new JLabel("Number of tables inside:");
+		lblNumberOfTables.setHorizontalTextPosition(SwingConstants.CENTER);
+		GridBagConstraints gbc_lblNumberOfTables = new GridBagConstraints();
+		gbc_lblNumberOfTables.fill = GridBagConstraints.BOTH;
+		gbc_lblNumberOfTables.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNumberOfTables.gridx = 2;
+		gbc_lblNumberOfTables.gridy = 0;
+		chooseNumberOfTables.add(lblNumberOfTables, gbc_lblNumberOfTables);
+		
+		JLabel label_4 = new JLabel("");
+		GridBagConstraints gbc_label_4 = new GridBagConstraints();
+		gbc_label_4.fill = GridBagConstraints.BOTH;
+		gbc_label_4.insets = new Insets(0, 0, 5, 5);
+		gbc_label_4.gridx = 3;
+		gbc_label_4.gridy = 0;
+		chooseNumberOfTables.add(label_4, gbc_label_4);
+		
+		JButton btnMinusInside = new JButton("-");
+		GridBagConstraints gbc_btnMinusInside = new GridBagConstraints();
+		gbc_btnMinusInside.fill = GridBagConstraints.BOTH;
+		gbc_btnMinusInside.insets = new Insets(0, 0, 5, 0);
+		gbc_btnMinusInside.gridx = 1;
+		gbc_btnMinusInside.gridy = 1;
+		chooseNumberOfTables.add(btnMinusInside, gbc_btnMinusInside);
+		
+		JLabel label_5 = new JLabel("");
+		GridBagConstraints gbc_label_5 = new GridBagConstraints();
+		gbc_label_5.fill = GridBagConstraints.BOTH;
+		gbc_label_5.insets = new Insets(0, 0, 5, 5);
+		gbc_label_5.gridx = 0;
+		gbc_label_5.gridy = 1;
+		chooseNumberOfTables.add(label_5, gbc_label_5);
+		
+		JLabel label = new JLabel("0");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setHorizontalTextPosition(SwingConstants.CENTER);
+		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.fill = GridBagConstraints.BOTH;
+		gbc_label.insets = new Insets(0, 0, 5, 5);
+		gbc_label.gridx = 1;
+		gbc_label.gridy = 1;
+		chooseNumberOfTables.add(label, gbc_label);
+		
+		JButton btnPlusInside = new JButton("+");
+		GridBagConstraints gbc_btnPlusInside = new GridBagConstraints();
+		gbc_btnPlusInside.fill = GridBagConstraints.BOTH;
+		gbc_btnPlusInside.insets = new Insets(0, 0, 5, 5);
+		gbc_btnPlusInside.gridx = 3;
+		gbc_btnPlusInside.gridy = 1;
+		chooseNumberOfTables.add(btnPlusInside, gbc_btnPlusInside);
+		
+		JLabel label_6 = new JLabel("");
+		GridBagConstraints gbc_label_6 = new GridBagConstraints();
+		gbc_label_6.fill = GridBagConstraints.BOTH;
+		gbc_label_6.insets = new Insets(0, 0, 5, 5);
+		gbc_label_6.gridx = 4;
+		gbc_label_6.gridy = 1;
+		chooseNumberOfTables.add(label_6, gbc_label_6);
+		
+		JLabel label_7 = new JLabel("");
+		GridBagConstraints gbc_label_7 = new GridBagConstraints();
+		gbc_label_7.fill = GridBagConstraints.BOTH;
+		gbc_label_7.insets = new Insets(0, 0, 5, 0);
+		gbc_label_7.gridx = 4;
+		gbc_label_7.gridy = 1;
+		chooseNumberOfTables.add(label_7, gbc_label_7);
+		
+		JLabel lblNumberOfTable = new JLabel("Number of table outside:");
+		GridBagConstraints gbc_lblNumberOfTable = new GridBagConstraints();
+		gbc_lblNumberOfTable.fill = GridBagConstraints.BOTH;
+		gbc_lblNumberOfTable.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNumberOfTable.gridx = 0;
+		gbc_lblNumberOfTable.gridy = 2;
+		chooseNumberOfTables.add(lblNumberOfTable, gbc_lblNumberOfTable);
+		
+		JLabel label_8 = new JLabel("");
+		GridBagConstraints gbc_label_8 = new GridBagConstraints();
+		gbc_label_8.fill = GridBagConstraints.BOTH;
+		gbc_label_8.insets = new Insets(0, 0, 5, 5);
+		gbc_label_8.gridx = 1;
+		gbc_label_8.gridy = 2;
+		chooseNumberOfTables.add(label_8, gbc_label_8);
+		
+		JButton btnMinusOutside = new JButton("-");
+		GridBagConstraints gbc_btnMinusOutside = new GridBagConstraints();
+		gbc_btnMinusOutside.fill = GridBagConstraints.BOTH;
+		gbc_btnMinusOutside.insets = new Insets(0, 0, 5, 5);
+		gbc_btnMinusOutside.gridx = 2;
+		gbc_btnMinusOutside.gridy = 2;
+		chooseNumberOfTables.add(btnMinusOutside, gbc_btnMinusOutside);
+		
+		JLabel label_1 = new JLabel("0");
+		GridBagConstraints gbc_label_1 = new GridBagConstraints();
+		gbc_label_1.fill = GridBagConstraints.BOTH;
+		gbc_label_1.insets = new Insets(0, 0, 5, 5);
+		gbc_label_1.gridx = 3;
+		gbc_label_1.gridy = 2;
+		chooseNumberOfTables.add(label_1, gbc_label_1);
+		
+		JLabel label_9 = new JLabel("");
+		GridBagConstraints gbc_label_9 = new GridBagConstraints();
+		gbc_label_9.fill = GridBagConstraints.BOTH;
+		gbc_label_9.insets = new Insets(0, 0, 5, 0);
+		gbc_label_9.gridx = 4;
+		gbc_label_9.gridy = 2;
+		chooseNumberOfTables.add(label_9, gbc_label_9);
+		
+		JButton btnPlusOutisde = new JButton("+");
+		GridBagConstraints gbc_btnPlusOutisde = new GridBagConstraints();
+		gbc_btnPlusOutisde.fill = GridBagConstraints.BOTH;
+		gbc_btnPlusOutisde.insets = new Insets(0, 0, 0, 5);
+		gbc_btnPlusOutisde.gridx = 0;
+		gbc_btnPlusOutisde.gridy = 3;
+		chooseNumberOfTables.add(btnPlusOutisde, gbc_btnPlusOutisde);
+		
+		JPanel chooseInsideOutside = new JPanel();
+		frame.getContentPane().add(chooseInsideOutside, "name_1233757414457");
+		chooseInsideOutside.setLayout(null);
+	}
+}

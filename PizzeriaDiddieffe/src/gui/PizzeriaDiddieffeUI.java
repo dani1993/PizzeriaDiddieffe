@@ -4,21 +4,30 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.JSplitPane;
 import java.awt.Dimension;
 import java.awt.Color;
-import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
+
+import java.awt.CardLayout;
+
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.GridLayout;
+
 
 public class PizzeriaDiddieffeUI {
-
+	
+	private int numberOfTablesInside = 0;
+	private int numberOfTablesOutside = 0;
+	
+	private JButton btnMinusInside;
+	private JButton btnMinusOutside;
+	
 	private JFrame frame;
+	private JLabel labelNumberOfTablesOutside;
 
 	/**
 	 * Launch the application.
@@ -50,72 +59,122 @@ public class PizzeriaDiddieffeUI {
 		frame = new JFrame();
 		frame.setMaximumSize(new Dimension(550, 750));
 		frame.setMinimumSize(new Dimension(550, 750));
-		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JPanel mainPanel = new JPanel();
-		mainPanel.setPreferredSize(new Dimension(0, 0));
-		mainPanel.setMinimumSize(new Dimension(0, 0));
-		mainPanel.setBackground(new Color(0, 128, 0));
-		frame.getContentPane().add(mainPanel, BorderLayout.CENTER);
+		frame.getContentPane().setLayout(new CardLayout(0, 0));
 		
 		JPanel chooseNumberOfTables = new JPanel();
-		chooseNumberOfTables.setVisible(false);
-		chooseNumberOfTables.setAlignmentY(Component.TOP_ALIGNMENT);
-		chooseNumberOfTables.setAlignmentX(Component.LEFT_ALIGNMENT);
-		chooseNumberOfTables.setPreferredSize(new Dimension(550, 750));
-		chooseNumberOfTables.setMinimumSize(new Dimension(550, 750));
-		mainPanel.add(chooseNumberOfTables);
-		chooseNumberOfTables.setBackground(new Color(160, 82, 45));
+		chooseNumberOfTables.setBackground(new Color(139, 69, 19));
+		frame.getContentPane().add(chooseNumberOfTables, "name_1230783104452");
 		chooseNumberOfTables.setLayout(null);
 		
-		JLabel labelOutsideNumberOfTables = new JLabel("Number of tables outside:");
-		labelOutsideNumberOfTables.setBounds(173, 102, 180, 16);
-		labelOutsideNumberOfTables.setHorizontalAlignment(SwingConstants.CENTER);
-		chooseNumberOfTables.add(labelOutsideNumberOfTables);
+		JLabel lblNumberOfTables = new JLabel("Number of tables inside:");
+		lblNumberOfTables.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumberOfTables.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		lblNumberOfTables.setBounds(155, 112, 240, 20);
+		lblNumberOfTables.setHorizontalTextPosition(SwingConstants.CENTER);
+		chooseNumberOfTables.add(lblNumberOfTables);
 		
-		JLabel labelOutSideNumber = new JLabel("0");
-		labelOutSideNumber.setHorizontalAlignment(SwingConstants.CENTER);
-		labelOutSideNumber.setBounds(242, 144, 61, 16);
-		chooseNumberOfTables.add(labelOutSideNumber);
+		JLabel labelNumberOfTablesInside = new JLabel("0");
+		labelNumberOfTablesInside.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		labelNumberOfTablesInside.setBounds(255, 166, 40, 20);
+		labelNumberOfTablesInside.setHorizontalAlignment(SwingConstants.CENTER);
+		labelNumberOfTablesInside.setHorizontalTextPosition(SwingConstants.CENTER);
+		chooseNumberOfTables.add(labelNumberOfTablesInside);
 		
-		JButton buttonMinusOutside = new JButton("-");
-		buttonMinusOutside.setBounds(132, 139, 117, 29);
-		chooseNumberOfTables.add(buttonMinusOutside);
+		btnMinusInside = new JButton("-");
+		btnMinusInside.setEnabled(false);
+		btnMinusInside.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				numberOfTablesInside--;
+				labelNumberOfTablesInside.setText(String.valueOf(numberOfTablesInside));
+				if (numberOfTablesInside == 0) {
+					btnMinusInside.setEnabled(false);
+				}
+			}
+		});
+		btnMinusInside.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		btnMinusInside.setBounds(165, 152, 50, 50);
+		chooseNumberOfTables.add(btnMinusInside);
 		
-		JButton buttonPlusOutside = new JButton("+");
-		buttonPlusOutside.setBounds(299, 139, 117, 29);
-		chooseNumberOfTables.add(buttonPlusOutside);
 		
-		JLabel labelInsideNumberOfTables = new JLabel("Number of tables inside:");
-		labelInsideNumberOfTables.setBounds(173, 228, 180, 16);
-		chooseNumberOfTables.add(labelInsideNumberOfTables);
 		
-		JLabel labelInsideNumber = new JLabel("0");
-		labelInsideNumber.setHorizontalAlignment(SwingConstants.CENTER);
-		labelInsideNumber.setBounds(242, 269, 61, 16);
-		chooseNumberOfTables.add(labelInsideNumber);
+		JButton btnPlusInside = new JButton("+");
+		btnPlusInside.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				numberOfTablesInside++;
+				labelNumberOfTablesInside.setText(String.valueOf(numberOfTablesInside));
+				btnMinusInside.setEnabled(true);
+			}
+		});
+		btnPlusInside.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		btnPlusInside.setBounds(335, 152, 50, 50);
+		chooseNumberOfTables.add(btnPlusInside);
 		
-		JButton buttonMinusInside = new JButton("-");
-		buttonMinusInside.setBounds(112, 264, 117, 29);
-		chooseNumberOfTables.add(buttonMinusInside);
+		JLabel lblNumberOfTable = new JLabel("Number of table outside:");
+		lblNumberOfTable.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumberOfTable.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNumberOfTable.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		lblNumberOfTable.setBounds(155, 298, 240, 20);
+		chooseNumberOfTables.add(lblNumberOfTable);
 		
-		JButton buttonPlusInside = new JButton("+");
-		buttonPlusInside.setBounds(299, 264, 117, 29);
-		chooseNumberOfTables.add(buttonPlusInside);
+		JButton btnMinusOutside = new JButton("-");
+		btnMinusOutside.setEnabled(false);
+		btnMinusOutside.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				numberOfTablesOutside--;
+				labelNumberOfTablesOutside.setText(String.valueOf(numberOfTablesOutside));
+				if (numberOfTablesOutside == 0) {
+					btnMinusOutside.setEnabled(false);
+				}			}
+		});
+		btnMinusOutside.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		btnMinusOutside.setBounds(165, 338, 50, 50);
+		chooseNumberOfTables.add(btnMinusOutside);
 		
-		JButton buttonDone = new JButton("Done");
-		buttonDone.setBounds(212, 614, 117, 29);
-		chooseNumberOfTables.add(buttonDone);
+		labelNumberOfTablesOutside = new JLabel("0");
+		labelNumberOfTablesOutside.setHorizontalAlignment(SwingConstants.CENTER);
+		labelNumberOfTablesOutside.setHorizontalTextPosition(SwingConstants.CENTER);
+		labelNumberOfTablesOutside.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		labelNumberOfTablesOutside.setBounds(255, 352, 40, 20);
+		chooseNumberOfTables.add(labelNumberOfTablesOutside);
+		
+		JButton btnPlusOutisde = new JButton("+");
+		btnPlusOutisde.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				numberOfTablesOutside++;
+				labelNumberOfTablesOutside.setText(String.valueOf(numberOfTablesOutside));
+				btnMinusOutside.setEnabled(true);
+			}
+		});
+		btnPlusOutisde.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		btnPlusOutisde.setBounds(335, 338, 50, 50);
+		chooseNumberOfTables.add(btnPlusOutisde);
+		
+		JButton btnDone = new JButton("Done");
+		btnDone.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		btnDone.setBounds(170, 617, 200, 60);
+		chooseNumberOfTables.add(btnDone);
 		
 		JPanel chooseInsideOutside = new JPanel();
-		chooseInsideOutside.setPreferredSize(new Dimension(550, 750));
-		chooseInsideOutside.setBackground(new Color(0, 0, 205));
-		mainPanel.add(chooseInsideOutside);
-		chooseInsideOutside.setLayout(null);
+		frame.getContentPane().add(chooseInsideOutside, "name_1233757414457");
+		chooseInsideOutside.setLayout(new GridLayout(2, 0, 0, 0));
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(0, 0, 61, 16);
-		chooseInsideOutside.add(lblNewLabel);
+		JButton btnInside = new JButton("Inside");
+		chooseInsideOutside.add(btnInside);
+		
+		JButton btnOutside = new JButton("Outside");
+		chooseInsideOutside.add(btnOutside);
+		
+		JPanel inside = new JPanel();
+		frame.getContentPane().add(inside, "name_6455395976526");
+		
+		JPanel outside = new JPanel();
+		frame.getContentPane().add(outside, "name_6466496075840");
+		
+		
+		
+		
+		
+		
 	}
 }
