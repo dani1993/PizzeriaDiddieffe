@@ -2,9 +2,10 @@ package pizzeriadiddieffe.core;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.concurrent.LinkedBlockingDeque;
 
 public class Order implements Item {
-	private LinkedList<Item> myOrder;
+	private LinkedList<Item> myOrder=new LinkedList<Item>();
 	
 	private Iterator<Item> getIterator(){
 		Iterator<Item> myIterator = myOrder.iterator();
@@ -47,7 +48,8 @@ public class Order implements Item {
 		}
 		catch(Exception e){
 			System.out.println("Your order is empty");
-			return -1;
+			throw  e;
+//			return -1;
 		}
 		return 0;
 	}
