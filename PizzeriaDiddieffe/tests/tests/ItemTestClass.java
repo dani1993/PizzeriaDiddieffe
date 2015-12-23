@@ -6,7 +6,9 @@ public class ItemTestClass implements Item{
 	private double price=-100.00;
 	private String info="fake item, fake info";
 	
-	public ItemTestClass(){}
+	public ItemTestClass(){
+		
+	}
 	
 	public ItemTestClass(double price,String info){
 		this.price=price;
@@ -31,9 +33,8 @@ public class ItemTestClass implements Item{
 	}
 
 	@Override
-	public int remove(Item obj) throws Exception {
+	public void remove(Item obj) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }

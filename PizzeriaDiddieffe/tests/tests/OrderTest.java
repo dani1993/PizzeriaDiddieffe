@@ -34,14 +34,30 @@ public class OrderTest {
 		assertTrue(my_list.isEmpty());
 	}
 	
-//	@Test(expected=Exception.class)
-//	public void removeItemFromList() throws Exception{
-//		my_order.remove(fake_item);
-//	}
+	@Test(expected=Exception.class)
+	public void removeItemFromList() throws Exception{
+		removeItemToOrderList();
+	}
+
 	
 	private void addItemToOrderList() throws Exception {
 		my_order.add(fake_item);
 	}
+	
+	
+	private void removeItemToOrderList() throws Exception {
+		my_order.remove(fake_item);
+	}
+	
+	
+	@Test
+	public void addAndremoveItemFromList() throws Exception{
+		addItemToOrderList();
+		removeItemToOrderList();
+		LinkedList<Item> my_list=my_order.getOrderList();
+		assertTrue(my_list.isEmpty());
+	}
+	
 	
 	@Test
 	public void addItemToList() throws Exception{
@@ -68,11 +84,32 @@ public class OrderTest {
 		assertEquals(base_order_info, my_order_info);
 	}
 	
-	@Test public void getCurrentOrderInfo() throws Exception{
+	@Test 
+	public void getCurrentOrderInfo() throws Exception{
 		addItemToOrderList();
 		String fake_item_info=fake_item.getInfo();
 		String current_order_info=my_order.getInfo();
 		assertEquals(fake_item_info, current_order_info);
 	}
+	
+	@Test
+	public void checkPriceAfterRemove() throws Exception{
+		double base_price=my_order.getPrice();
+		addItemToOrderList();
+		removeItemToOrderList();
+		double current_price=my_order.getPrice();
+		assertEquals(base_price,current_price,delta_factor);
+	}
+	
+	@Test
+	public void checkInfoAfterRemove() throws Exception{
+		String base_info=my_order.getInfo();
+		addItemToOrderList();
+		removeItemToOrderList();
+		String current_info=my_order.getInfo();
+		assertEquals(base_info,current_info);
+	}
+	
+	
 
 }

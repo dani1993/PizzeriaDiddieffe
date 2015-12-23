@@ -2,7 +2,6 @@ package pizzeriadiddieffe.core;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.concurrent.LinkedBlockingDeque;
 
 public class Order implements Item {
 	private LinkedList<Item> myOrder=new LinkedList<Item>();
@@ -42,15 +41,12 @@ public class Order implements Item {
 	}
 
 	@Override
-	public int remove(Item obj) throws Exception {
-		try {
-			myOrder.remove(obj);
+	public void remove(Item obj) throws Exception {
+		if(!myOrder.contains(obj)){
+			throw new Exception ("Order is empty!");
 		}
-		catch(Exception e){
-			System.out.println("Your order is empty");
-			throw  e;
-//			return -1;
-		}
-		return 0;
+		myOrder.remove(obj);
 	}
+	
+	
 }

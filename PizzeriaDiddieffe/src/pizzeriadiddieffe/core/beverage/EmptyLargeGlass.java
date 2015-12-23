@@ -22,7 +22,7 @@ public class EmptyLargeGlass extends Beverage{
 	}
 	
 	@Override
-	public int remove(Item obj) throws Exception{
-		return -1;
+	public void remove(Item obj) throws Exception{
+		throw new Exception("It's a leaf");
 	}
 }

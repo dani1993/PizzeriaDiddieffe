@@ -11,7 +11,7 @@ import pizzeriadiddieffe.core.beverage.topping.Beer;
 
 public class BeerTest {
 	
-	private String beer_info="Empty large glass, Beer";
+	private String beer_info="";
 	private double base_beer_price=3.00;
 	private double delta_factor=0.0;
 	private String actual_beverage_info="";
@@ -28,6 +28,7 @@ public class BeerTest {
 		this.my_base_beverage=my_empty_large_glass;
 		
 		actual_beverage_info=this.my_beer.getInfo();
+		beer_info=my_base_beverage.getInfo()+", Beer";
 	}
 	
 	
