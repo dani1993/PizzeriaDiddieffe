@@ -1,7 +1,0 @@
-package pizzeriadiddieffe.core.beverage;
-
-import pizzeriadiddieffe.core.Item;
-
-public abstract class BeverageDecorator extends Beverage {
-	public abstract double getPrice();
-}

@@ -1,8 +1,0 @@
-package pizzeriadiddieffe.core;
-
-public interface Item {
-	double getPrice();
-	String getInfo();
-	void add(Item obj) throws Exception;
-	int remove(Item obj) throws Exception;
-}

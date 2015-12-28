@@ -5,10 +5,18 @@ import java.util.LinkedList;
 
 public class Order implements Item {
 	private LinkedList<Item> myOrder=new LinkedList<Item>();
-	
+	private String id;
 	private Iterator<Item> getIterator(){
 		Iterator<Item> myIterator = myOrder.iterator();
 		return myIterator;
+	}
+	
+	public void setId(String id){
+		this.id=id;
+	}
+	
+	public String getId(){
+		return id;
 	}
 	
 	public LinkedList<Item> getOrderList(){

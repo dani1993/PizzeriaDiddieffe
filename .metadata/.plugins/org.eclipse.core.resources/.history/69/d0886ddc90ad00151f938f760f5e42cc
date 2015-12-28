@@ -1,0 +1,11 @@
+package gui;
+
+import pizzeriadiddieffe.core.Order;
+
+public class OrderManager {
+	
+	
+	public void checkOrder(String id) {
+		Order myOrder=new Order(id);
+	}
+}

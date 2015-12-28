@@ -1,0 +1,18 @@
+package gui;
+
+import java.util.LinkedList;
+
+import pizzeriadiddieffe.core.Order;
+
+public class OrderManager {
+	private LinkedList<Order> myOrderList=new LinkedList();
+	
+	public void checkOrder(String id) {
+		
+		
+		Order myOrder=new Order();
+		myOrder.setId(id);
+
+	
+	}
+}

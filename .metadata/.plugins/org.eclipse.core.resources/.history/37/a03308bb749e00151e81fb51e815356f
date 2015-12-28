@@ -1,5 +1,0 @@
-package pizzeriadiddieffe.core;
-
-public interface Payment {
-	public void paymentMethod(int price);
-}

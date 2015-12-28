@@ -179,7 +179,7 @@ public class PizzeriaDiddieffeUI {
 		btnInside.setForeground(new Color(0, 0, 0));
 		btnInside.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnInside.setIcon(new ImageIcon("res/insideButton.jpg"));
-		btnInside.setFont(new Font("Lucida Grande", Font.BOLD, 44));
+		btnInside.setFont(new Font("Lucida Grande", Font.BOLD, 60));
 		btnInside.setText("Inside");
 		btnInside.setHorizontalTextPosition(JButton.CENTER);
 		btnInside.setVerticalTextPosition(JButton.CENTER);
@@ -198,7 +198,7 @@ public class PizzeriaDiddieffeUI {
 		btnOutside.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnOutside.setIcon(new ImageIcon("res/outsideButton.jpg"));
 		chooseInsideOutside.add(btnOutside);
-		btnOutside.setFont(new Font("Lucida Grande", Font.BOLD, 44));
+		btnOutside.setFont(new Font("Lucida Grande", Font.BOLD, 60));
 		btnOutside.setText("Outside");
 		btnOutside.setHorizontalTextPosition(JButton.CENTER);
 		btnOutside.setVerticalTextPosition(JButton.CENTER);
@@ -228,23 +228,23 @@ public class PizzeriaDiddieffeUI {
 	
 	
 	
-	private void createPlacesPanels(int inside_tables,int outside_tables,JButton btn_inside,JButton btn_outside){
+	private void createPlacesPanels(int insideTables,int outsideTables,JButton btn_inside,JButton btn_outside){
 		
-		if(inside_tables<1){
+		if(insideTables<1){
 			btn_inside.setEnabled(false);
 		}
-		if(outside_tables<1){
+		if(outsideTables<1){
 			btn_outside.setEnabled(false);
 		}
 		
 			chooseInsideOutside.setVisible(true);
 			
 			Image inside_bg = new ImageIcon ("res/parquetBG.jpg").getImage();
-			insidePanel = new JPanelWithBackgroundImg(inside_bg);
+			insidePanel = new JPanelWithBackgroundImg(inside_bg, insideTables, "inside");
 			frame.getContentPane().add(insidePanel);
 				
 			Image outside_bg = new ImageIcon ("res/outsideBG.jpg").getImage();
-			outsidePanel = new JPanelWithBackgroundImg(outside_bg);
+			outsidePanel = new JPanelWithBackgroundImg(outside_bg, outsideTables, "outside");
 			frame.getContentPane().add(outsidePanel);
 			
 			setBackButtons();

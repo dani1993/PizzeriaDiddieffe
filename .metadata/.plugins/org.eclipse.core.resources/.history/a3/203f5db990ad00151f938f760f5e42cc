@@ -1,0 +1,7 @@
+package gui;
+
+public class OrderManager {
+	public void checkOrder(String id) {
+		
+	}
+}
