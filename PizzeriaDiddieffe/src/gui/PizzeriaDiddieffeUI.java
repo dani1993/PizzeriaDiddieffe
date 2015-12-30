@@ -10,19 +10,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-
 import java.awt.CardLayout;
-
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Shape;
 import java.awt.Cursor;
-import javax.swing.UIManager;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 
 
@@ -39,8 +33,12 @@ public class PizzeriaDiddieffeUI {
 	
 	private JPanel chooseInsideOutside;
 	
-	private JPanelWithBackgroundImg insidePanel;
-	private JPanelWithBackgroundImg outsidePanel;
+	private JPanelwithBackgroundTables insidePanel;
+	private JPanelwithBackgroundTables outsidePanel;
+	
+	private JPanelwithBackgroundOrder orderPanelOutside;
+	private JPanelwithBackgroundOrder orderPanelInside;
+	
 	private JButton btnBackToInOutScreen;
 	/**
 	 * Launch the application.
@@ -133,7 +131,7 @@ public class PizzeriaDiddieffeUI {
 		lblNumberOfTable.setBounds(155, 298, 240, 20);
 		chooseNumberOfTables.add(lblNumberOfTable);
 		
-		final JButton btnMinusOutside = new JButton("-");
+		btnMinusOutside = new JButton("-");
 		btnMinusOutside.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnMinusOutside.setEnabled(false);
 		btnMinusOutside.addActionListener(new ActionListener() {
@@ -169,10 +167,10 @@ public class PizzeriaDiddieffeUI {
 		btnPlusOutisde.setBounds(335, 338, 50, 50);
 		chooseNumberOfTables.add(btnPlusOutisde);
 		
-		chooseInsideOutside = new JPanel();
+		chooseInsideOutside = new JPanel();// potrebbe essere una classe 
 		frame.getContentPane().add(chooseInsideOutside, "name_1233757414457");
 		chooseInsideOutside.setLayout(new GridLayout(2, 0, 0, 0));
-		
+
 		
 		final JButton btnInside = new JButton("Inside");
 		btnInside.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
@@ -239,12 +237,22 @@ public class PizzeriaDiddieffeUI {
 		
 			chooseInsideOutside.setVisible(true);
 			
+		
+			Image orderOutside_bg=new ImageIcon("res/orderBG.jpg").getImage();//creo pannello per ordini interni 
+			orderPanelOutside=new JPanelwithBackgroundOrder(orderOutside_bg);
+			frame.getContentPane().add(orderPanelOutside);
+			
+			Image orderInside_bg=new ImageIcon("res/orderBG.jpg").getImage();//creo pannello per ordini esterni
+			orderPanelInside=new JPanelwithBackgroundOrder(orderInside_bg);
+			frame.getContentPane().add(orderPanelInside);
+			
+			
 			Image inside_bg = new ImageIcon ("res/parquetBG.jpg").getImage();
-			insidePanel = new JPanelWithBackgroundImg(inside_bg, insideTables, "inside");
+			insidePanel = new JPanelwithBackgroundTables(inside_bg, insideTables, "inside",orderPanelInside);
 			frame.getContentPane().add(insidePanel);
 				
 			Image outside_bg = new ImageIcon ("res/outsideBG.jpg").getImage();
-			outsidePanel = new JPanelWithBackgroundImg(outside_bg, outsideTables, "outside");
+			outsidePanel = new JPanelwithBackgroundTables(outside_bg, outsideTables, "outside",orderPanelOutside);
 			frame.getContentPane().add(outsidePanel);
 			
 			setBackButtons();
@@ -252,8 +260,10 @@ public class PizzeriaDiddieffeUI {
 	}
 	
 	private void setBackButtons(){
-		insidePanel.setVisiblePanel(chooseInsideOutside,insidePanel,outsidePanel);
-		outsidePanel.setVisiblePanel(chooseInsideOutside,outsidePanel,insidePanel);
+		insidePanel.setVisiblePanel(chooseInsideOutside,frame);
+		outsidePanel.setVisiblePanel(chooseInsideOutside,frame);
+		orderPanelInside.setVisiblePanel(insidePanel, frame); //setto il pannello che dovra essere lasciato visibile alla pressione del pulsante "back"
+		orderPanelOutside.setVisiblePanel(outsidePanel, frame);//setto il pannello che dovra essere lasciato visibile alla pressione del pulsante "back"
 	}
 	
 	

@@ -1,22 +1,33 @@
 package gui;
 
+
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import pizzeriadiddieffe.core.Order;
+
+import pizzeriadiddieffe.core.Order;//non puo essere inserito nel panel dei tavoli, altrimenti creo piu oggetti diversi
 
 public class OrderManager {
-	private LinkedList<Order> myOrderList=new LinkedList();
+	private LinkedList<Order> myOrderList=new LinkedList<Order>();
 	
 	public void checkOrder(String id) {
 		
 		if(!checkOrderList(id)){
-			createOrder();
+			createOrder(id);
 		}
-		else {
-		displayOrder();
+		displayOrder(id);
 
-		}
+	}
+
+	private void displayOrder(String id) {
+	
+
+	}
+
+	private void createOrder(String id) {
+		Order newOrder=new Order();
+		newOrder.setId(id);
+		myOrderList.add(newOrder);
 	}
 
 	private boolean checkOrderList(String id) {
