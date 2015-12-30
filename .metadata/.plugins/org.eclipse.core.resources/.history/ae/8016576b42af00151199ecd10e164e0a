@@ -1,0 +1,95 @@
+package gui;
+
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class JPanelwithBackgroundTables extends JPanelWithBackgroundImg{
+
+	
+	private String tableCode;
+	private JPanelwithBackgroundTables currentPanel;
+	private JPanelwithBackgroundOrder currentOrderPanel;
+	
+	private int imgWidth;
+	private int imgHeight;
+	private int imgXToMove;
+	private int imgYToMove;
+	private int numberOfTablesInRow;
+	
+	public JPanelwithBackgroundTables(Image image) {
+		super(image);
+		// TODO Auto-generated constructor stub
+	}
+	
+	public JPanelwithBackgroundTables(Image img, int numbers, String where,JPanelwithBackgroundOrder currentOrderPanel) {
+		super(img);
+		currentPanel=this;
+		this.currentOrderPanel=currentOrderPanel;
+		drawTables(numbers, where);
+	}
+	
+	
+	private void drawTables(int numbers, final String where) {
+		int x;
+		int y = 60;
+		System.out.println(numbers);
+		if (where == "inside") {
+			if (numbers > 8) {
+				imgWidth = 150;
+				imgHeight = 130;
+				imgXToMove = 170;
+				imgYToMove = 170;
+				numberOfTablesInRow = 3;
+			}
+			else {
+				if (numbers > 4) {
+					
+				}
+				else {
+					
+				}
+			}
+		}
+ else {
+
+		}
+		for (int i = 1; i <= numbers;) {
+			x = 30;
+			for (int j = 0; j < numberOfTablesInRow && i <= numbers; j++) {
+
+				// problema sempre uguale a fine ciclo
+				tableCode = where + Integer.toString(i);
+				JButton table = new JButton(Integer.toString(i));
+				table.setForeground(new Color(0, 0, 0));
+				table.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				table.setFont(new Font("Lucida Grande", Font.BOLD, 60));
+				table.setIcon(new ImageIcon("res/tavolo apparecchiato.jpg"));
+				table.setBounds(x, y, imgWidth, imgHeight);
+				this.add(table);
+				table.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						currentPanel.setVisible(false);
+						currentOrderPanel.setVisible(true);
+					}
+				});
+				x = x + imgXToMove;
+				i++;
+				System.out.println(i);
+			}
+			y = y + imgYToMove;
+		}
+	}
+
+	
+	
+	
+
+}
