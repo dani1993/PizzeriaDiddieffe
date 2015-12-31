@@ -24,8 +24,6 @@ public class PizzeriaDiddieffeUI {
 	
 	private int numberOfTablesInside = 0;
 	private int numberOfTablesOutside = 0;
-	private int maxNumberOfTablesInside = 12;
-	private int maxNumberOfTablesOutside = 8;
 	
 	private JButton btnMinusInside;
 	private JButton btnMinusOutside;
@@ -41,8 +39,7 @@ public class PizzeriaDiddieffeUI {
 	private JPanelwithBackgroundOrder orderPanelOutside;
 	private JPanelwithBackgroundOrder orderPanelInside;
 	
-	private JButton btnPlusOutisde;
-	private JButton btnPlusInside;
+	private JButton btnBackToInOutScreen;
 	/**
 	 * Launch the application.
 	 */
@@ -106,7 +103,6 @@ public class PizzeriaDiddieffeUI {
 				if (numberOfTablesInside == 0) {
 					btnMinusInside.setEnabled(false);
 				}
-				btnPlusInside.setEnabled(true);
 			}
 		});
 		btnMinusInside.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
@@ -115,15 +111,12 @@ public class PizzeriaDiddieffeUI {
 		
 		
 		
-		btnPlusInside = new JButton("+");
+		JButton btnPlusInside = new JButton("+");
 		btnPlusInside.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnPlusInside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numberOfTablesInside++;
 				labelNumberOfTablesInside.setText(String.valueOf(numberOfTablesInside));
-				if (numberOfTablesInside == maxNumberOfTablesInside) {
-					btnPlusInside.setEnabled(false);
-				}
 				btnMinusInside.setEnabled(true);
 			}
 		});
@@ -147,9 +140,7 @@ public class PizzeriaDiddieffeUI {
 				labelNumberOfTablesOutside.setText(String.valueOf(numberOfTablesOutside));
 				if (numberOfTablesOutside == 0) {
 					btnMinusOutside.setEnabled(false);
-				}
-				btnPlusOutisde.setEnabled(true);
-			}
+				}			}
 		});
 		btnMinusOutside.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		btnMinusOutside.setBounds(165, 338, 50, 50);
@@ -162,16 +153,13 @@ public class PizzeriaDiddieffeUI {
 		labelNumberOfTablesOutside.setBounds(255, 352, 40, 20);
 		chooseNumberOfTables.add(labelNumberOfTablesOutside);
 		
-		btnPlusOutisde = new JButton("+");
+		JButton btnPlusOutisde = new JButton("+");
 		btnPlusOutisde.setFocusPainted(false);
 		btnPlusOutisde.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnPlusOutisde.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numberOfTablesOutside++;
 				labelNumberOfTablesOutside.setText(String.valueOf(numberOfTablesOutside));
-				if (numberOfTablesOutside == maxNumberOfTablesOutside) {
-					btnPlusOutisde.setEnabled(false);
-				}
 				btnMinusOutside.setEnabled(true);
 			}
 		});
@@ -261,7 +249,6 @@ public class PizzeriaDiddieffeUI {
 			
 			Image inside_bg = new ImageIcon ("res/parquetBG.jpg").getImage();
 			insidePanel = new JPanelwithBackgroundTables(inside_bg, insideTables, "inside",orderPanelInside);
-			insidePanel.setLayout(null);
 			frame.getContentPane().add(insidePanel);
 				
 			Image outside_bg = new ImageIcon ("res/outsideBG.jpg").getImage();
