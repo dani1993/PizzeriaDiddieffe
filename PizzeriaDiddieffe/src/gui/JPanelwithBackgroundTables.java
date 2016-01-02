@@ -42,48 +42,20 @@ public class JPanelwithBackgroundTables extends JPanelWithBackgroundImg{
 		int y = 60;
 		imgHeight = 140;
 		imgYToMove = 170;
-		System.out.println(numbers);
-		if (where == "inside") {
-			if (numbers > 8) {
-				imgWidth = 150;
-				imgXToMove = 170;
-				numberOfTablesInRow = 3;
-				xToStart = 30;
-			}
-			else {
-				if (numbers > 4) {
-					imgWidth = 200;
-					imgXToMove = 220;
-					numberOfTablesInRow = 2;
-					xToStart = 60;
-				}
-				else {
-					xToStart = 140;
-					imgWidth = 280;
-					numberOfTablesInRow = 1;
-				}
-			}
-		}
- else {
-	 // TODO  parametri per tavoli fuori
-		}
-		for (int i = 1; i <= numbers;i++) {
+		//ritorna un array con "[x dove partire] [numero di tavoli per riga] [width] [x da muovere a destra]"
+		int [] coordinates = getCoordinates(numbers, where);
+		
+		xToStart = coordinates[0];
+		numberOfTablesInRow = coordinates[1];
+		imgWidth = coordinates[2];
+		imgXToMove = coordinates[3];
+		
+		int i = 1;
+		while (i <= numbers) {
 			x = xToStart;
 			for (int j = 0; j < numberOfTablesInRow && i <= numbers; j++) {
-				// problema sempre uguale a fine ciclo
 				tableCode = where + Integer.toString(i);
-				JButton table = new JButton();
-				table.setLayout(null);
-				table.setForeground(new Color(0, 0, 0));
-				table.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				table.setFont(new Font("Lucida Grande", Font.BOLD, 60));
-				table.setText(Integer.toString(i));
-				table.setHorizontalTextPosition(JButton.CENTER);
-				table.setVerticalTextPosition(JButton.CENTER);
-				Image tableImage = new ImageIcon("res/tavolo apparecchiato.jpg").getImage().getScaledInstance(imgWidth, imgHeight, java.awt.Image.SCALE_SMOOTH);
-				ImageIcon tableIcon = new ImageIcon(tableImage);
-				table.setIcon(tableIcon);
-				table.setBounds(x, y, imgWidth, imgHeight);
+				Table table = new Table(x, y, imgWidth, imgHeight, i);
 				this.add(table);
 				table.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -98,8 +70,30 @@ public class JPanelwithBackgroundTables extends JPanelWithBackgroundImg{
 		}
 	}
 
-	
-	
-	
+	private int[] getCoordinates(int numbers, String where) {
+		int[] coordinates = new int[4];
+		if (where == "inside") {
+			if (numbers > 8) {
+				coordinates[0] = 30;  //xToStart
+				coordinates[1] = 3;   //tablesPerRow
+				coordinates[2] = 150;  //width
+				coordinates[3] = 170;  //xToMove
+			} else {
+				if (numbers > 4) {
+					coordinates[0] = 60;  //xToStart
+					coordinates[1] = 2;  //tablesPerRow
+					coordinates[2] = 200;  //width
+					coordinates[3] = 220;  //xToMove
+				} else {
+					coordinates[0] = 140;  //xToStart
+					coordinates[1] = 1;    //tablesPerRow
+					coordinates[2] = 280;   //xToMove
+				}
+			}
+		} else {
+			// TODO parametri per tavoli fuori
+		}
+		return coordinates;
+	}
 
 }
