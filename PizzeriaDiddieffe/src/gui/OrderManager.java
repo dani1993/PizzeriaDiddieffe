@@ -12,16 +12,15 @@ public class OrderManager {
 	
 	public void checkOrder(String id) {
 		
-		if(!checkOrderList(id)){
+		if(!orderSearch(id).equals(null)){
 			createOrder(id);
 		}
 		displayOrder(id);
 
 	}
 
-	private void displayOrder(String id) {
-	
-
+	private Order displayOrder(String id) {
+		return orderSearch(id);
 	}
 
 	private void createOrder(String id) {
@@ -30,17 +29,17 @@ public class OrderManager {
 		myOrderList.add(newOrder);
 	}
 
-	private boolean checkOrderList(String id) {
+
+	private Order orderSearch(String id){
 		Iterator<Order> iteratore=getIterator();
 		while(iteratore.hasNext()){
 			Order order=new Order();
 			order=iteratore.next();
 			if(order.getId().equals(id)){
-				return true;
+				return order;
 			}
 		}
-		return false;
-		
+		return null;
 	}
 	
 	private Iterator<Order> getIterator(){

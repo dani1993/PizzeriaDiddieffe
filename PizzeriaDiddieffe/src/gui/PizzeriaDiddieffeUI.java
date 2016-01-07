@@ -252,10 +252,12 @@ public class PizzeriaDiddieffeUI {
 		
 			Image orderOutside_bg=new ImageIcon("res/orderBG.jpg").getImage();//creo pannello per ordini interni 
 			orderPanelOutside=new JPanelwithBackgroundOrder(orderOutside_bg);
+			
 			frame.getContentPane().add(orderPanelOutside);
 			
 			Image orderInside_bg=new ImageIcon("res/orderBG.jpg").getImage();//creo pannello per ordini esterni
 			orderPanelInside=new JPanelwithBackgroundOrder(orderInside_bg);
+			
 			frame.getContentPane().add(orderPanelInside);
 			
 			
@@ -275,8 +277,12 @@ public class PizzeriaDiddieffeUI {
 	private void setBackButtons(){
 		insidePanel.setVisiblePanel(chooseInsideOutside,frame);
 		outsidePanel.setVisiblePanel(chooseInsideOutside,frame);
-		orderPanelInside.setVisiblePanel(insidePanel, frame); //setto il pannello che dovra essere lasciato visibile alla pressione del pulsante "back"
 		orderPanelOutside.setVisiblePanel(outsidePanel, frame);//setto il pannello che dovra essere lasciato visibile alla pressione del pulsante "back"
+		orderPanelInside.setVisiblePanel(insidePanel, frame); //setto il pannello che dovra essere lasciato visibile alla pressione del pulsante "back"
+	
+		orderPanelInside.createOrderingPanels();
+		orderPanelOutside.createOrderingPanels();
+	
 	}
 	
 	

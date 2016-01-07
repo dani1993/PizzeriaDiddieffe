@@ -97,4 +97,7 @@ class JPanelWithBackgroundImg extends JPanel {
 	        
 	}
 	
+	public Frame getFrame(){
+		return myFrame;
+	}	
 }
