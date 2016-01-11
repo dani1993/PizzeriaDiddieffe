@@ -38,8 +38,7 @@ public class PizzeriaDiddieffeUI {
 	private JPanelwithBackgroundTables insidePanel;
 	private JPanelwithBackgroundTables outsidePanel;
 	
-	private JPanelwithBackgroundOrder orderPanelOutside;
-	private JPanelwithBackgroundOrder orderPanelInside;
+	private JPanelwithBackgroundOrder orderPanel;
 	
 	private JButton btnPlusOutisde;
 	private JButton btnPlusInside;
@@ -249,25 +248,17 @@ public class PizzeriaDiddieffeUI {
 		
 			chooseInsideOutside.setVisible(true);
 			
-		
 			Image orderOutside_bg=new ImageIcon("res/orderBG.jpg").getImage();//creo pannello per ordini interni 
-			orderPanelOutside=new JPanelwithBackgroundOrder(orderOutside_bg);
-			
-			frame.getContentPane().add(orderPanelOutside);
-			
-			Image orderInside_bg=new ImageIcon("res/orderBG.jpg").getImage();//creo pannello per ordini esterni
-			orderPanelInside=new JPanelwithBackgroundOrder(orderInside_bg);
-			
-			frame.getContentPane().add(orderPanelInside);
-			
-			
+			orderPanel=new JPanelwithBackgroundOrder(orderOutside_bg,frame);
+			frame.getContentPane().add(orderPanel);
+
 			Image inside_bg = new ImageIcon ("res/parquetBG.jpg").getImage();
-			insidePanel = new JPanelwithBackgroundTables(inside_bg, insideTables, "inside",orderPanelInside);
+			insidePanel = new JPanelwithBackgroundTables(inside_bg, insideTables, "inside",orderPanel);
 			insidePanel.setLayout(null);
 			frame.getContentPane().add(insidePanel);
 				
 			Image outside_bg = new ImageIcon ("res/outsideBG.jpg").getImage();
-			outsidePanel = new JPanelwithBackgroundTables(outside_bg, outsideTables, "outside",orderPanelOutside);
+			outsidePanel = new JPanelwithBackgroundTables(outside_bg, outsideTables, "outside",orderPanel);
 			frame.getContentPane().add(outsidePanel);
 			
 			setBackButtons();
@@ -275,13 +266,9 @@ public class PizzeriaDiddieffeUI {
 	}
 	
 	private void setBackButtons(){
+		
 		insidePanel.setVisiblePanel(chooseInsideOutside,frame);
 		outsidePanel.setVisiblePanel(chooseInsideOutside,frame);
-		orderPanelOutside.setVisiblePanel(outsidePanel, frame);//setto il pannello che dovra essere lasciato visibile alla pressione del pulsante "back"
-		orderPanelInside.setVisiblePanel(insidePanel, frame); //setto il pannello che dovra essere lasciato visibile alla pressione del pulsante "back"
-	
-		orderPanelInside.createOrderingPanels();
-		orderPanelOutside.createOrderingPanels();
 	
 	}
 	

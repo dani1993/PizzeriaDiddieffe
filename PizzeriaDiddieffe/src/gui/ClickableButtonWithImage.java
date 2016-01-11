@@ -11,9 +11,9 @@ import javax.swing.border.LineBorder;
 
 public class ClickableButtonWithImage extends JButton{
 
-	public ClickableButtonWithImage (int x, int y, int width, int height,String image,String clickedImage,String mouseOnImage) {
+	public ClickableButtonWithImage (int x, int y, int width, int height,int font,String image,String clickedImage,String mouseOnImage) {
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		this.setFont(new Font("Lucida Grande", Font.BOLD, 60));
+		this.setFont(new Font("Lucida Grande", Font.BOLD, font));
 		this.setBorder(new LineBorder(new Color(255, 255, 255), 3, true));
 		Image buttonImage = new ImageIcon(image).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon buttonIcon = new ImageIcon(buttonImage);

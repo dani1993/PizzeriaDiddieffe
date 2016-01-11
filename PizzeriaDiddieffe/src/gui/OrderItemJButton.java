@@ -1,14 +1,17 @@
 package gui;
 
+import javax.swing.JButton;
+
 public class OrderItemJButton extends ClickableButtonWithImage{
 
-	private static String image="res/pizzatest.jpg";
-	private static String clickedImage=image;
-	private static String mouseOnImage=image;
-	
-	public OrderItemJButton(int x, int y, int width, int height) {
-		super(x, y, width, height, image, clickedImage, mouseOnImage);
-		// TODO Auto-generated constructor stub
+	public OrderItemJButton(int x, int y, int width, int height,int font,String itemText) {
+		super(x, y, width, height,font, itemText, itemText, itemText);
+		String text=itemText.substring(4,itemText.length()-4);
+		this.setText(text);
+		System.out.println(text);
+		this.setHorizontalTextPosition(JButton.CENTER);
+		this.setVerticalTextPosition(JButton.CENTER);
 	}
 
+	
 }

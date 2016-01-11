@@ -30,18 +30,17 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	OrderingJPanel pizzaOrderingPanel;
 	
 	
-	public JPanelwithBackgroundOrder(Image image) {
+	public JPanelwithBackgroundOrder(Image image,Frame frame) {
 		super(image);
-		
 		drawChoiseButtons();
-		// TODO Auto-generated constructor stub
+		createOrderingPanels(frame);
+		
 	}
 
 	
-	public void createOrderingPanels() {
-		Image menuPizzaImage=new ImageIcon(menuBeverageImagePath).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
+	public void createOrderingPanels(Frame myFrame) {
+		Image menuPizzaImage=new ImageIcon(menuPizzaImagePath).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
 		pizzaOrderingPanel=new OrderingJPanel(menuPizzaImage,currentOrder,pizzalist);
-		Frame myFrame=currentJPanel.getFrame();
 		myFrame.add(pizzaOrderingPanel);
 		pizzaOrderingPanel.setVisiblePanel(currentJPanel, myFrame);
 		pizzaOrderingPanel.setVisible(false);
@@ -126,6 +125,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 			
 		});
 	}
+
 	
 	
 }

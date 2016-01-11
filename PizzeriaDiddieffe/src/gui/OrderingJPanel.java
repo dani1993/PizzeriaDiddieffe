@@ -3,15 +3,19 @@ package gui;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
+
 import pizzeriadiddieffe.core.Order;
 
 
 public class OrderingJPanel extends JPanelWithBackgroundImg{
 
 	private JButton AddToOrderButton;
+	private JPanelWithBackgroundImg currentJPanel=this;
 	private int addButtonWidth=300;
 	private int addButtonHeight=500;
 	
@@ -19,19 +23,33 @@ public class OrderingJPanel extends JPanelWithBackgroundImg{
 		super(img);
 		createOrderItems(items);
 		addOrderButton();
-		// TODO Auto-generated constructor stub
 	}
+	
+	
 	private void createOrderItems(String[] items){
 
-		int x=0;
-		int y=0;
+		int x=100;
+		int y=100;
 		int width=100;
-		int height=100;
-		// potrebbero essere posizionati come i tavoli
+		int height=70;
+		int font=15;
 		
 		for(int i=0;i<items.length;i++){
-			OrderItemJButton currentItemButton=new OrderItemJButton(x, y, width, height);
+			String currentItemText=items[i];
+			currentItemText="res/"+currentItemText+".jpg";
+			System.out.println(currentItemText);
+			final OrderItemJButton currentItemButton=new OrderItemJButton(x, y, width, height,font,currentItemText);
 			
+			currentItemButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					System.out.println(currentItemButton.getText()+" creato oggetto/inserito in List.");
+					
+				
+				}
+			});
+			
+			currentJPanel.add(currentItemButton);
 			
 		}
 	}
@@ -46,7 +64,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImg{
 
 		AddToOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				System.out.println("Aggiunti oggetti selezionati a ordine");
 			}
 		});
 	}

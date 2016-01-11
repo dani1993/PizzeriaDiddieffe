@@ -1,0 +1,3 @@
+Implementare Outside e metodi in JPanel..table,troppo lunghi.
+Alcuni metodi troppo lunghi e troppi parametri;
+fattorizzare in superclassi(table,clickable,orderitemjbutton);

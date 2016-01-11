@@ -60,6 +60,7 @@ public class JPanelwithBackgroundTables extends JPanelWithBackgroundImg{
 				table.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						currentPanel.setVisible(false);
+						currentOrderPanel.setVisiblePanel(currentPanel, getFrame());
 						currentOrderPanel.setVisible(true);
 					}
 				});
