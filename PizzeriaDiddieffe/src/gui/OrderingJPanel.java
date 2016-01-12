@@ -29,7 +29,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImg{
 	private void createOrderItems(String[] items){
 
 		int x=100;
-		int y=100;
+		int y=180;
 		int width=100;
 		int height=70;
 		int font=15;

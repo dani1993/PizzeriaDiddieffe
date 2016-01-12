@@ -24,13 +24,19 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	private String[] pizzalist={"pizzatest"};
 	private String[] focaccialist={"",""};
 	private String[] beveragelist={"",""};
-	private static String  menuPizzaImagePath="pizzaMenutest.jpeg";
+	private static String  menuPizzaImagePath="res/pizzaOrdering.jpg";
 	private static String  menuBeverageImagePath="";
 	private static String  menuFocacciaImagePath="";
 	private Order currentOrder;
+<<<<<<< Updated upstream
 	OrderingJPanel pizzaOrderingPanel;
 	private OrderViewer orderViewer;
 	private OrderManager myOrderManager = new OrderManager();
+=======
+	private OrderingJPanel pizzaOrderingPanel;
+	private OrderManager myOrderManager = new OrderManager();
+	private OrderViewer orderViewer;
+>>>>>>> Stashed changes
 	
 	public JPanelwithBackgroundOrder(Image image,Frame frame) {
 		super(image);
@@ -41,8 +47,15 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 
 	
 	public void createOrderingPanels(Frame myFrame) {
+<<<<<<< Updated upstream
 		Image menuPizzaImage=new ImageIcon(menuPizzaImagePath).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
 		pizzaOrderingPanel=new OrderingJPanel(menuPizzaImage,currentOrder,pizzalist);
+=======
+		int width = 550, height = 750;
+		Image menuPizzaImage=new ImageIcon(menuPizzaImagePath).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+		pizzaOrderingPanel=new OrderingJPanel(menuPizzaImage,pizzalist);
+		myFrame.add(pizzaOrderingPanel);
+>>>>>>> Stashed changes
 		pizzaOrderingPanel.setVisiblePanel(currentJPanel, myFrame);
 		pizzaOrderingPanel.setVisible(false);
 		myFrame.add(pizzaOrderingPanel);
