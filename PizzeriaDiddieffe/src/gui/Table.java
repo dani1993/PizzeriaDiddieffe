@@ -15,9 +15,9 @@ public class Table extends ClickableButtonWithImage {
 	private static String tableClickImg="res/tavolo apparecchiato darker.jpg";
 	private static int tableFont=60;
 	
-	public Table (int x, int y, int width, int height,int number) {
+	public Table (int x, int y, int width, int height,String tableCode) {
 		super(x,y,width,height,tableFont,tableImg,tableClickImg,tableMouseOnImg);
-		this.setText(Integer.toString(number));
+		this.setText(tableCode);
 		this.setHorizontalTextPosition(JButton.CENTER);
 		this.setVerticalTextPosition(JButton.CENTER);
 	}

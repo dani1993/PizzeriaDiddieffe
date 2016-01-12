@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import pizzeriadiddieffe.core.Order;
+import pizzeriadiddieffe.core.OrderManager;
 
 public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 
@@ -29,7 +30,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	private Order currentOrder;
 	OrderingJPanel pizzaOrderingPanel;
 	private OrderViewer orderViewer;
-	
+	private OrderManager myOrderManager = new OrderManager();
 	
 	public JPanelwithBackgroundOrder(Image image,Frame frame) {
 		super(image);
@@ -53,6 +54,10 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 		
 		
 		
+	}
+	
+	public void setTableId (String id) {
+		currentOrder=myOrderManager.checkOrder(id);
 	}
 
 
