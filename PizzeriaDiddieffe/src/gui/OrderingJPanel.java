@@ -28,18 +28,15 @@ public class OrderingJPanel extends JPanelWithBackgroundImg{
 	
 	private void createOrderItems(String[] items){
 
-		int x=100;
+		int x=80;
 		int y=180;
-		int width=100;
+		int width=120;
 		int height=70;
 		int font=15;
 		
 		for(int i=0;i<items.length;i++){
 			String currentItemText=items[i];
-			currentItemText="res/"+currentItemText+".jpg";
-			System.out.println(currentItemText);
 			final OrderItemJButton currentItemButton=new OrderItemJButton(x, y, width, height,font,currentItemText);
-			
 			currentItemButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
@@ -48,9 +45,8 @@ public class OrderingJPanel extends JPanelWithBackgroundImg{
 				
 				}
 			});
-			
 			currentJPanel.add(currentItemButton);
-			
+			x = x + 140;
 		}
 	}
 	

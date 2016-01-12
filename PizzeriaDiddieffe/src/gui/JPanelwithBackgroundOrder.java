@@ -21,22 +21,16 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	private JButton beverageButton;
 	private JButton focacciaButton;
 	private JButton orderButton;
-	private String[] pizzalist={"pizzatest"};
+	private String[] pizzalist={"Basic Pizza", "Double Dough", "Brown Dough"};
 	private String[] focaccialist={"",""};
 	private String[] beveragelist={"",""};
 	private static String  menuPizzaImagePath="res/pizzaOrdering.jpg";
 	private static String  menuBeverageImagePath="";
 	private static String  menuFocacciaImagePath="";
 	private Order currentOrder;
-<<<<<<< Updated upstream
-	OrderingJPanel pizzaOrderingPanel;
 	private OrderViewer orderViewer;
 	private OrderManager myOrderManager = new OrderManager();
-=======
 	private OrderingJPanel pizzaOrderingPanel;
-	private OrderManager myOrderManager = new OrderManager();
-	private OrderViewer orderViewer;
->>>>>>> Stashed changes
 	
 	public JPanelwithBackgroundOrder(Image image,Frame frame) {
 		super(image);
@@ -47,15 +41,10 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 
 	
 	public void createOrderingPanels(Frame myFrame) {
-<<<<<<< Updated upstream
-		Image menuPizzaImage=new ImageIcon(menuPizzaImagePath).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
-		pizzaOrderingPanel=new OrderingJPanel(menuPizzaImage,currentOrder,pizzalist);
-=======
 		int width = 550, height = 750;
 		Image menuPizzaImage=new ImageIcon(menuPizzaImagePath).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
-		pizzaOrderingPanel=new OrderingJPanel(menuPizzaImage,pizzalist);
+		pizzaOrderingPanel=new OrderingJPanel(menuPizzaImage,currentOrder, pizzalist);
 		myFrame.add(pizzaOrderingPanel);
->>>>>>> Stashed changes
 		pizzaOrderingPanel.setVisiblePanel(currentJPanel, myFrame);
 		pizzaOrderingPanel.setVisible(false);
 		myFrame.add(pizzaOrderingPanel);
@@ -75,7 +64,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 
 
 	private void drawChoiseButtons(){// creo i quattro pulsanti per ordinare i cibi o visionare il conto ed eventualmente pagare
-		pizzaButton = new OrderItemJButton(70, 500, 100, 50, 16, "res/pizzatest.jpg");
+		pizzaButton = new OrderItemJButton(70, 500, 100, 50, 16, "pizzatest");
 		
 		this.add(pizzaButton);
 

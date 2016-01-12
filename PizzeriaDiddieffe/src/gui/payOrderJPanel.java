@@ -41,7 +41,7 @@ public class payOrderJPanel extends JPanelWithBackgroundImg{
 	}
 
 	private void createPayButton(JButton payMode,int x,int y,String standardImage,String pressedImage, String mouseImage,String text) {
-		payMode = new ClickableButtonWithImage(x, y, buttonsWidth, buttonsHeight, buttonsFont, standardImage, pressedImage, mouseImage);
+		payMode = new ClickableButtonWithImage(x, y, buttonsWidth, buttonsHeight, buttonsFont, standardImage);
 		payMode.setText(text);
 		this.add(payMode);
 		
