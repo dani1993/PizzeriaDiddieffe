@@ -19,6 +19,7 @@ import java.awt.Image;
 import java.awt.Cursor;
 import javax.swing.border.LineBorder;
 
+
 public class PizzeriaDiddieffeUI {
 	
 	private int numberOfTablesInside = 0;

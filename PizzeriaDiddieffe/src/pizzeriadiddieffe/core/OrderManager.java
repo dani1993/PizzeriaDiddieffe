@@ -8,27 +8,15 @@ public class OrderManager {
 	private LinkedList<Order> myOrderList=new LinkedList<Order>();
 	
 	public Order checkOrder(String id) {
-		if (orderSearch(id)==null){
-			createOrder(id);
-			System.out.println("creato ordine "+id);
-		}
-//		if(!(orderSearch(id).equals(null))){
-//			createOrder(id);
-//		}
-		return displayOrder(id);
-
-	}
-
-	private Order displayOrder(String id) {
-		System.out.println("visualizo ordine");
 		return orderSearch(id);
-		
 	}
 
-	private void createOrder(String id) {
+
+	private Order createOrder(String id) {
 		Order newOrder=new Order();
 		newOrder.setId(id);
 		myOrderList.add(newOrder);
+		return newOrder;
 	}
 
 
@@ -41,7 +29,7 @@ public class OrderManager {
 				return order;
 			}
 		}
-		return null;
+		return createOrder(id);
 	}
 	
 	private Iterator<Order> getIterator(){

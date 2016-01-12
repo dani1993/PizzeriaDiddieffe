@@ -43,29 +43,22 @@ public class JPanelwithBackgroundTables extends JPanelWithBackgroundImg{
 		imgHeight = 140;
 		imgYToMove = 170;
 		//ritorna un array con "[x dove partire] [numero di tavoli per riga] [width] [x da muovere a destra]"
-		int [] coordinates = getCoordinates(numbers);
+		int [] coordinates = getCoordinates(numbers, where);
 		
 		xToStart = coordinates[0];
 		numberOfTablesInRow = coordinates[1];
 		imgWidth = coordinates[2];
 		imgXToMove = coordinates[3];
-		y = coordinates[4];
 		
 		int i = 1;
 		while (i <= numbers) {
 			x = xToStart;
 			for (int j = 0; j < numberOfTablesInRow && i <= numbers; j++) {
-				if (where == "inside") {
-				tableCode = Integer.toString(i) +"i";
-				}
-				else {
-					tableCode = (Integer.toString(i) + "f");
-				}
-				Table table = new Table(x, y, imgWidth, imgHeight, tableCode);
+				tableCode = where + Integer.toString(i);
+				Table table = new Table(x, y, imgWidth, imgHeight, i);
 				this.add(table);
 				table.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						currentOrderPanel.setTableId(tableCode);
 						currentPanel.setVisible(false);
 						currentOrderPanel.setVisiblePanel(currentPanel, getFrame());
 						currentOrderPanel.setVisible(true);
@@ -78,32 +71,29 @@ public class JPanelwithBackgroundTables extends JPanelWithBackgroundImg{
 		}
 	}
 
-	private int[] getCoordinates(int numbers) {
-		int[] coordinates = new int[5];
-		
+	private int[] getCoordinates(int numbers, String where) {
+		int[] coordinates = new int[4];
+		if (where == "inside") {
 			if (numbers > 8) {
 				coordinates[0] = 30;  //xToStart
-				coordinates[1] = 3; // tablesPerRow
-				coordinates[2] = 150; // width
-				coordinates[3] = 170; // xToMove
-				coordinates[4] = 60; //y
-
+				coordinates[1] = 3;   //tablesPerRow
+				coordinates[2] = 150;  //width
+				coordinates[3] = 170;  //xToMove
 			} else {
 				if (numbers > 4) {
-					coordinates[0] = 60; // xToStart
-					coordinates[1] = 2; // tablesPerRow
-					coordinates[2] = 200; // width
-					coordinates[3] = 220; // xToMove
-					coordinates[4] = 60; //y
-
+					coordinates[0] = 60;  //xToStart
+					coordinates[1] = 2;  //tablesPerRow
+					coordinates[2] = 200;  //width
+					coordinates[3] = 220;  //xToMove
 				} else {
-					coordinates[0] = 60; // xToStart
-					coordinates[1] = 2; // tablesPerRow
-					coordinates[2] = 200; // width
-					coordinates[3] = 220; // xToMove
-					coordinates[4] = 160; //y
+					coordinates[0] = 140;  //xToStart
+					coordinates[1] = 1;    //tablesPerRow
+					coordinates[2] = 280;   //xToMove
 				}
 			}
+		} else {
+			// TODO parametri per tavoli fuori
+		}
 		return coordinates;
 	}
 

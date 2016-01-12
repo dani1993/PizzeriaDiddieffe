@@ -18,16 +18,13 @@ public class OrderingJPanel extends JPanelWithBackgroundImg{
 	private JPanelWithBackgroundImg currentJPanel=this;
 	private int addButtonWidth=300;
 	private int addButtonHeight=500;
-	private Order myOrder;
 	
-	public OrderingJPanel(Image img,String[] items) {
+	public OrderingJPanel(Image img,Order currentOrder,String[] items) {
 		super(img);
 		createOrderItems(items);
 		addOrderButton();
 	}
-	public void setOrder(Order myOrder) {
-		this.myOrder=myOrder;
-	}
+	
 	
 	private void createOrderItems(String[] items){
 
@@ -46,7 +43,8 @@ public class OrderingJPanel extends JPanelWithBackgroundImg{
 			currentItemButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-					System.out.println(myOrder.getId());
+					System.out.println(currentItemButton.getText()+" creato oggetto/inserito in List.");
+					
 				
 				}
 			});
