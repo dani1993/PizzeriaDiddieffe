@@ -9,9 +9,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
 import pizzeriadiddieffe.core.Order;
+import pizzeriadiddieffe.core.OrderManager;
 
 public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 
@@ -20,14 +20,15 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	private JButton beverageButton;
 	private JButton focacciaButton;
 	private JButton orderButton;
-	private String[] pizzalist={"pizzatest"};
+	private String[] pizzalist={"pizzatrancio","tavolo2"};
 	private String[] focaccialist={"",""};
 	private String[] beveragelist={"",""};
 	private static String  menuPizzaImagePath="pizzaMenutest.jpeg";
 	private static String  menuBeverageImagePath="";
 	private static String  menuFocacciaImagePath="";
 	private Order currentOrder;
-	OrderingJPanel pizzaOrderingPanel;
+	private OrderingJPanel pizzaOrderingPanel;
+	private OrderManager myOrderManager = new OrderManager();
 	
 	
 	public JPanelwithBackgroundOrder(Image image,Frame frame) {
@@ -36,11 +37,14 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 		createOrderingPanels(frame);
 		
 	}
-
+	
+	public void setTableId (String id) {
+		currentOrder=myOrderManager.checkOrder(id);
+	}
 	
 	public void createOrderingPanels(Frame myFrame) {
 		Image menuPizzaImage=new ImageIcon(menuPizzaImagePath).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
-		pizzaOrderingPanel=new OrderingJPanel(menuPizzaImage,currentOrder,pizzalist);
+		pizzaOrderingPanel=new OrderingJPanel(menuPizzaImage,pizzalist);
 		myFrame.add(pizzaOrderingPanel);
 		pizzaOrderingPanel.setVisiblePanel(currentJPanel, myFrame);
 		pizzaOrderingPanel.setVisible(false);
@@ -61,6 +65,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 			}
 
 			private void setPizzaMenuVisible() {
+				pizzaOrderingPanel.setOrder(currentOrder);
 				currentJPanel.setVisible(false);
 				pizzaOrderingPanel.setVisible(true);
 				
