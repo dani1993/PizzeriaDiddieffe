@@ -1,3 +1,13 @@
-Implementare Outside e metodi in JPanel..table,troppo lunghi.
-Alcuni metodi troppo lunghi e troppi parametri;
-fattorizzare in superclassi(table,clickable,orderitemjbutton);
+creare pannello order che rappresenta lo scontrino,con descrizione prodotti e costoTot
+
+creare pannelli orderingPizza/bev/foc, Jscrollable in modo da poter aggiungere altri topping
+
+creare pannelli strategy per pagamento: bancomat, contanti, ticket(?) 
+
+refactoring vario di metodi e astrazioni(possibilmente)
+test ordermanager e verificare test precedenti(farne di nuovi?)
+
+creare tutti i topping necessari(come?)
+scaricare immagini topping e sistemare pulsanti dei vari pannelli,aggiornare Uml
+
+

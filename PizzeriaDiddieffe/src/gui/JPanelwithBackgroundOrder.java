@@ -27,8 +27,13 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	private static String  menuBeverageImagePath="";
 	private static String  menuFocacciaImagePath="";
 	private Order currentOrder;
+<<<<<<< HEAD
 	private OrderingJPanel pizzaOrderingPanel;
 	private OrderManager myOrderManager = new OrderManager();
+=======
+	OrderingJPanel pizzaOrderingPanel;
+	private OrderViewer orderViewer;
+>>>>>>> origin/master
 	
 	
 	public JPanelwithBackgroundOrder(Image image,Frame frame) {
@@ -53,10 +58,8 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 
 
 	private void drawChoiseButtons(){// creo i quattro pulsanti per ordinare i cibi o visionare il conto ed eventualmente pagare
-		pizzaButton = new JButton ("pizza");
-		pizzaButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		pizzaButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		pizzaButton.setBounds(70, 500, 100, 50);
+		pizzaButton = new OrderItemJButton(70, 500, 100, 50, 16, "res/pizzatest.jpg");
+		
 		this.add(pizzaButton);
 
 		pizzaButton.addActionListener(new ActionListener() {
