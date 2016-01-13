@@ -53,7 +53,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 	}
 
 	private void createPizzaToppingsItems(String[] pizzaToppingsItems) {
-		int x = 75, y = 260, width = 90, height = 60;
+		int x = 35, y = 260, width = 90, height = 60;
 		int fontSize = 14;
 
 		// create buttons for the toppings
