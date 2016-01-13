@@ -10,7 +10,7 @@ public class OrderItemJButton extends ClickableButtonWithImage{
 		super(x, y, width, height,font, itemText);
 		System.out.println(itemText);
 		this.setText(itemText);
-		this.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		this.setFont(new Font("Lucida Grande", Font.PLAIN, font));
 		this.setHorizontalTextPosition(JButton.CENTER);
 		this.setVerticalTextPosition(JButton.CENTER);
 	}

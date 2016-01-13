@@ -22,6 +22,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	private JButton focacciaButton;
 	private JButton orderButton;
 	private String[] pizzalist={"Basic Pizza", "Double Dough", "Brown Dough"};
+	private String[] pizzaToppingList = {"Anchovy","Bufala","Ham"};
 	private String[] focaccialist={"",""};
 	private String[] beveragelist={"",""};
 	private static String  menuPizzaImagePath="res/pizzaOrdering.jpg";
@@ -43,7 +44,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	public void createOrderingPanels(Frame myFrame) {
 		int width = 550, height = 750;
 		Image menuPizzaImage=new ImageIcon(menuPizzaImagePath).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
-		pizzaOrderingPanel=new OrderingJPanel(menuPizzaImage,currentOrder, pizzalist);
+		pizzaOrderingPanel=new OrderingJPanel(menuPizzaImage,currentOrder, pizzalist, pizzaToppingList);
 		myFrame.add(pizzaOrderingPanel);
 		pizzaOrderingPanel.setVisiblePanel(currentJPanel, myFrame);
 		pizzaOrderingPanel.setVisible(false);
