@@ -53,7 +53,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 	}
 
 	private void createPizzaToppingsItems(String[] pizzaToppingsItems) {
-		int x = 35, y = 270, width = 90, height = 60;
+		int x = 40, y = 270, width = 90, height = 60;
 		int fontSize = 14;
 		int toppingsForColumn = 4;
 
@@ -82,7 +82,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 
 	private void addOrderButton() {
 		addToOrderButton = new JButton("Add To Order");
-		addToOrderButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		addToOrderButton.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		addToOrderButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		addToOrderButton.setBounds(400, 600, 100, 50);
 		this.add(addToOrderButton);
