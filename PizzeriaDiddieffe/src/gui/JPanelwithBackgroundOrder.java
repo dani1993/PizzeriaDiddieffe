@@ -23,6 +23,8 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	private JButton orderButton;
 	private String[] pizzalist={"Basic Pizza", "Double Dough", "Brown Dough"};
 	private String[] pizzaToppingList = {"Anchovy","Bufala","Ham"};
+	private String[] focacciaToppingList={""};
+	private String[] beverageToppingList={""};
 	private String[] focaccialist={"",""};
 	private String[] beveragelist={"",""};
 	private static String  menuPizzaImagePath="res/pizzaOrdering.jpg";
@@ -32,12 +34,13 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	private OrderViewer orderViewer;
 	private OrderManager myOrderManager = new OrderManager();
 	private OrderingJPanel pizzaOrderingPanel;
+	private OrderingJPanel beverageOrderingPanel;
+	private OrderingJPanel focacciaOrderingPanel;
 	
 	public JPanelwithBackgroundOrder(Image image,Frame frame) {
 		super(image);
 		drawChoiseButtons();
 		createOrderingPanels(frame);
-		
 	}
 
 	
@@ -50,13 +53,24 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 		pizzaOrderingPanel.setVisible(false);
 		myFrame.add(pizzaOrderingPanel);
 		
+		Image menuBeverageImage=new ImageIcon(menuBeverageImagePath).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+		beverageOrderingPanel=new OrderingJPanel(menuBeverageImage,currentOrder, beveragelist, beverageToppingList);
+		myFrame.add(beverageOrderingPanel);
+		beverageOrderingPanel.setVisiblePanel(currentJPanel, myFrame);
+		beverageOrderingPanel.setVisible(false);
+		myFrame.add(beverageOrderingPanel);
+		
+		Image menuFocacciaImage=new ImageIcon(menuFocacciaImagePath).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+		focacciaOrderingPanel=new OrderingJPanel(menuFocacciaImage,currentOrder, focaccialist, focacciaToppingList);
+		myFrame.add(focacciaOrderingPanel);
+		focacciaOrderingPanel.setVisiblePanel(currentJPanel, myFrame);
+		focacciaOrderingPanel.setVisible(false);
+		myFrame.add(focacciaOrderingPanel);
+		
 		orderViewer=new OrderViewer(menuPizzaImage,myFrame);
 		orderViewer.setVisiblePanel(currentJPanel, myFrame);
 		orderViewer.setVisible(false);
 		myFrame.add(orderViewer);
-		
-		
-		
 	}
 	
 	public void setTableId (String id) {
@@ -77,16 +91,13 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 			private void setPizzaMenuVisible() {
 				currentJPanel.setVisible(false);
 				pizzaOrderingPanel.setVisible(true);
-				
 			}
 
 			
 		});
 		
-		beverageButton = new JButton ("beverage");
-		beverageButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		beverageButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		beverageButton.setBounds(150, 40, 100, 50);
+		beverageButton = new OrderItemJButton(200, 500, 100, 50, 16, "beveragetest");
+		
 		this.add(beverageButton);
 
 		beverageButton.addActionListener(new ActionListener() {
@@ -95,17 +106,15 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 			}
 
 			private void setBeverageMenuVisible() {
-				// TODO Auto-generated method stub
-				
+				currentJPanel.setVisible(false);
+				beverageOrderingPanel.setVisible(true);
 			}
 
 			
 		});
 		
-		focacciaButton = new JButton ("focaccia");
-		focacciaButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		focacciaButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		focacciaButton.setBounds(70, 100, 100, 50);
+		focacciaButton = new OrderItemJButton(330, 500, 100, 50, 16, "focacciatest");
+	
 		this.add(focacciaButton);
 
 		focacciaButton.addActionListener(new ActionListener() {
@@ -114,8 +123,8 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 			}
 
 			private void setFocacciaMenuVisible() {
-				// TODO Auto-generated method stub
-				
+				currentJPanel.setVisible(false);
+				focacciaOrderingPanel.setVisible(true);
 			}
 
 			
