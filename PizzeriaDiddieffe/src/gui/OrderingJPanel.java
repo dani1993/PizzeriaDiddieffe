@@ -16,7 +16,7 @@ import pizzeriadiddieffe.core.Order;
 
 public class OrderingJPanel extends JPanelWithBackgroundImg {
 
-	private JButton AddToOrderButton;
+	private JButton addToOrderButton;
 	private JPanelWithBackgroundImg currentJPanel = this;
 	private int addButtonWidth = 300;
 	private int addButtonHeight = 500;
@@ -53,11 +53,17 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 	}
 
 	private void createPizzaToppingsItems(String[] pizzaToppingsItems) {
-		int x = 35, y = 260, width = 90, height = 60;
+		int x = 35, y = 270, width = 90, height = 60;
 		int fontSize = 14;
+		int toppingsForColumn = 4;
 
 		// create buttons for the toppings
 		for (int i = 0; i < pizzaToppingsItems.length; i++) {
+			//se ho già 4 toppings per colonna vado alla colonna dopo
+			if (i % toppingsForColumn == 0 && i != 0) {
+				x = x + 110;
+				y = 270;
+			}
 			String currentItemText = pizzaToppingsItems[i];
 			final OrderItemJButton currentItemButton = new OrderItemJButton(x, y, width, height, fontSize,
 					currentItemText);
@@ -75,13 +81,13 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 	}
 
 	private void addOrderButton() {
-		AddToOrderButton = new JButton("Add To Order");
-		AddToOrderButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		AddToOrderButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		AddToOrderButton.setBounds(addButtonWidth, addButtonHeight, 100, 50);
-		this.add(AddToOrderButton);
+		addToOrderButton = new JButton("Add To Order");
+		addToOrderButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		addToOrderButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		addToOrderButton.setBounds(400, 600, 100, 50);
+		this.add(addToOrderButton);
 
-		AddToOrderButton.addActionListener(new ActionListener() {
+		addToOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Aggiunti oggetti selezionati a ordine");
 			}
