@@ -22,7 +22,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	private JButton focacciaButton;
 	private JButton orderButton;
 	private String[] pizzalist={"Basic Pizza", "Double Dough", "Brown Dough"};
-	private String[] pizzaToppingList = {"Anchovy","Bufala","Ham"};
+	private String[] pizzaToppingList = {"Anchovy","Bufala","Ham","Mozzarella","Onions","Olives","Mushrooms","Pepperoni"};
 	private String[] focacciaToppingList={""};
 	private String[] beverageToppingList={""};
 	private String[] focaccialist={"",""};
