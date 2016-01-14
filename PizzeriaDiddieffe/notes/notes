@@ -2,12 +2,15 @@ finire pannello order che rappresenta lo scontrino,con descrizione prodotti e co
 
 creare pannelli orderingPizza/bev/foc, Jscrollable in modo da poter aggiungere altri topping
 
-creare pannelli strategy per pagamento: bancomat, contanti, ticket(?) 
+creare pannelli strategy per pagamento: bancomat, ticket
 
 refactoring vario di metodi e astrazioni(possibilmente)
-completare test ordermanager(farne di nuovi?)
 
-creare tutti i topping necessari(come?)
+completare test per le classi nel core
+
+trovare modo per eliminare topping non richiesti
+
+
 scaricare immagini topping e sistemare pulsanti dei vari pannelli,aggiornare Uml
 
 

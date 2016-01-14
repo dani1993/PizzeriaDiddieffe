@@ -1,27 +1,21 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
 import pizzeriadiddieffe.core.Item;
 import pizzeriadiddieffe.core.Order;
 import pizzeriadiddieffe.core.beverage.Beverage;
 import pizzeriadiddieffe.core.focaccia.Focaccia;
-import pizzeriadiddieffe.core.pizza.BasicWhite;
 import pizzeriadiddieffe.core.pizza.Pizza;
 
 
@@ -39,12 +33,14 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 	private Item currentItem;
 	private String currentClass;
 	private ItemRemoverFromOrder myRemover;
+	private LinkedList<JButton> buttonList;
 	
 	
 	public OrderingJPanel(Image img,String currentBasePackage, String[] pizzaItems, String[] pizzaToppingList,String currentClass) {
 		super(img);
 		myCreator=new CreateBaseCaseByName();
 		myRemover=new ItemRemoverFromOrder(); 
+		buttonList=new LinkedList<JButton>();
 		
 		this.currentClass=currentBasePackage;
 		String currentToppingPackage=currentBasePackage+".topping";
@@ -77,7 +73,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 					
 					System.out.println(currentItemButton.getText() + " creato oggetto/inserito in List.");
 					changeBorderColor(currentItemButton);
-		
+					buttonList.add(currentItemButton);
 					try{
 					object=myCreator.createObjectByName(fullPackagePath+currentItemButton.getText());
 					}catch(Exception exception){
@@ -119,6 +115,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 			currentItemButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					changeBorderColor(currentItemButton);
+					buttonList.add(currentItemButton);
 					if(getBorderColor(currentItemButton).equals(Color.green)){
 					
 					try{
@@ -172,12 +169,24 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 		});
 	}
 	
+	private Iterator getIterator(){
+		return buttonList.iterator();
+	}
+	
 	private void resetButtons() {
-		
-		
+		Iterator<JButton> iteratore=getIterator();
+		while(iteratore.hasNext()){
+		JButton currentButton=iteratore.next();
+		resetBorderColor(currentButton);
+		}
 	}
 	
 	
+	private void resetBorderColor(JButton currentButton) {
+		currentButton.setBorder(new LineBorder(Color.white, 3, true));
+		
+	}
+
 	private void changeBorderColor (OrderItemJButton currentItemButton) {
 		Color currentBorder=getBorderColor(currentItemButton);
 		if (currentBorder == Color.white) {
