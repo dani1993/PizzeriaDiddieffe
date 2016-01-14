@@ -32,7 +32,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	private int fontButtons=24;
 	
 	private String[] pizzaBasicClasses={"BasicWhite", "DoubleDough", "BrownDough"};
-	private String[] pizzaToppingImages = {"Tomato Sauce","Bufala","Mozzarella", "Anchovy","Bufala","Ham","Onions","Olives","Mushrooms","Pepperoni","Porcini","Tuna","Sausages"};
+	private String[] pizzaToppingImages = {"Tomato Sauce","Mozzarella", "Anchovy","Bufala","Ham","Onions","Olives","Mushrooms","Pepperoni","Porcini","Tuna","Sausages"};
 	
 	private static String  menuPizzaImagePath="res/pizzaOrdering.jpg";
 	private String pizzaPackage="pizza";

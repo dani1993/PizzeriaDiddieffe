@@ -3,13 +3,17 @@ package gui;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -37,13 +41,27 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 	private String currentClass;
 	private ItemRemoverFromOrder myRemover;
 	private LinkedList<JButton> buttonList;
-	private int scrollPanex=20;
+	private int scrollPanex=10;
 	private int scrollPaney=180;
-	private int scrollPaneWidth=500;
+	private int scrollPaneWidth=530;
 	private int scrollPaneHeight=420;
 	
 	private JPanel panel;
 	
+	private int baseFontSize = 15;
+	private int baseCasesx = 75; //75
+	private int baseCasesy = 120; //180
+	private int baseCasesWidth = 170;
+	private int baseCasesHeight = 100;
+	
+	private int toppingx = 35;//35
+	private int toppingy = 270;//270
+	private int toppingwidth = 170;
+	private int toppingheight = 100;
+	private int toppingsForColumn = 4;
+	private int toppingfontSize = 14;
+	
+	private GridBagConstraints gdc;
 	
 	public OrderingJPanel(Image img,String currentBasePackage, String[] pizzaItems, String[] pizzaToppingList,String currentClass) {
 		super(img);
@@ -54,15 +72,18 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 		
 		
 		panel = new JPanel();
-//		panel.setLayout(new GridLayout(4,4));
 		
-        JScrollPane scrollPane = new JScrollPane(panel);
-       
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setBounds(scrollPanex, scrollPaney, scrollPaneWidth, scrollPaneHeight);
-        scrollPane.setBorder(new LineBorder(Color.white,0));
-        currentJPanel.add(scrollPane);
+		panel.setLayout(new GridLayout(6,6));
+//		gdc = new GridBagConstraints(
+//		panel.setLayout(currentJPanel.getLayout());
+		
+		 JScrollPane scrollPane = new JScrollPane(panel);
+	     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	     scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+	     scrollPane.setBounds(scrollPanex, scrollPaney, scrollPaneWidth, scrollPaneHeight);
+	     scrollPane.setBorder(new LineBorder(Color.white,0));
+	     scrollPane.setWheelScrollingEnabled(true);
+	     currentJPanel.add(scrollPane);
        
         
         
@@ -73,6 +94,8 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 		createPizzaToppingsItems(pizzaToppingList,currentToppingPackage);
 		
 		addOrderButton();
+		
+		
 	}
 
 	public void setOrder(Order currentOrder){
@@ -80,17 +103,12 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 	}
 	
 	private void createPizzaItems(String[] pizzaItems,String currentPackage) {
-		int x = 75;
-		int y = 180;
-		int width = 120;
-		int height = 70;
-		int fontSize = 15;
 		final String fullPackagePath="pizzeriadiddieffe.core."+currentPackage+".";
 		
 		// create buttons for the 3 doughs
 		for (int i = 0; i < pizzaItems.length; i++) {
 			String currentItemText = pizzaItems[i];
-			final OrderItemJButton currentItemButton = new OrderItemJButton(x, y, width, height, fontSize,
+			final OrderItemJButton currentItemButton = new OrderItemJButton(baseCasesx, baseCasesy, baseCasesWidth, baseCasesHeight, baseFontSize,
 					currentItemText);
 			currentItemButton.addActionListener(new ActionListener() {
 				
@@ -108,8 +126,14 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 					currentItem=((Item) object);
 				}
 			});
+//			gdc.gridx=baseCasesx;
+//			gdc.gridy=baseCasesy;
+//			
+//			gdc.anchor = GridBagConstraints.FIRST_LINE_START;
+//			panel.add(currentItemButton,gdc);
 			panel.add(currentItemButton);
-			x = x + 140;
+	
+			baseCasesx = baseCasesx + 140;
 		}
 		
 			
@@ -119,30 +143,26 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 
 	
 	private void createPizzaToppingsItems(String[] pizzaToppingsItems,String currentPackage) {
-		int x = 35, y = 270, width = 90, height = 60;
-		int toppingsForColumn=4;
-		int fontSize = 14;
-
-	for (int i = 0; i < pizzaToppingsItems.length; i++) {
+		for (int i = 0; i < pizzaToppingsItems.length; i++) {
 			//se ho già 4 toppings per colonna vado alla colonna dopo
 			if (i % toppingsForColumn == 0 && i != 0) {
-				x = x + 110;
-				y = 270;
+				toppingx = toppingx + 110;
+				toppingy = 270;
 			}
 
 		final String fullPackagePath="pizzeriadiddieffe.core."+currentPackage+".";
 		// create buttons for the toppings
 		
 			final String currentItemText = pizzaToppingsItems[i];
-			final OrderItemJButton currentItemButton = new OrderItemJButton(x, y, width, height, fontSize,
+			final OrderItemJButton currentItemButton = new OrderItemJButton(toppingx, toppingy, toppingwidth, toppingheight, toppingfontSize,
 					currentItemText);
 //			currentItemButton.setEnabled(false);
 			currentItemButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					changeBorderColor(currentItemButton);
-					buttonList.add(currentItemButton);
-					if(getBorderColor(currentItemButton).equals(Color.green)){
 					
+					if(getBorderColor(currentItemButton).equals(Color.green)){
+						buttonList.add(currentItemButton);
 					try{
 						object=myCreator.createToppingByName(fullPackagePath+currentItemButton.getText(),currentItem,currentClass);
 						}catch(Exception exception){
@@ -164,7 +184,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 			});
 			
 			panel.add(currentItemButton);
-			y = y + 70;
+			toppingy = toppingy + 70;
 		}
 	}
 	
