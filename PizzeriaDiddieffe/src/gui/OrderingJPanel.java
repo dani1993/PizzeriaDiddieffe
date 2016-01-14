@@ -84,22 +84,22 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 				}
 			});
 			currentJPanel.add(currentItemButton);
-			x = x + 145;
+			x = x + 140;
 		}
 	}
 	
 	
 
 	private void createPizzaToppingsItems(String[] pizzaToppingsItems,String currentPackage) {
-		int x = 38, y = 290, width = 105, height = 60;
+		int x = 35, y = 270, width = 90, height = 60;
 		int toppingsForColumn=4;
 		int fontSize = 14;
 
 	for (int i = 0; i < pizzaToppingsItems.length; i++) {
 			//se ho già 4 toppings per colonna vado alla colonna dopo
 			if (i % toppingsForColumn == 0 && i != 0) {
-				x = x + 120;
-				y = 290;
+				x = x + 110;
+				y = 270;
 			}
 
 		final String fullPackagePath="pizzeriadiddieffe.core."+currentPackage+".";
@@ -138,7 +138,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 		AddToOrderButton = new JButton("Add To Order");
 		AddToOrderButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		AddToOrderButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		AddToOrderButton.setBounds(400, 600, 140, 50);
+		AddToOrderButton.setBounds(addButtonWidth, addButtonHeight, 100, 50);
 		this.add(AddToOrderButton);
 
 		AddToOrderButton.addActionListener(new ActionListener() {
@@ -162,11 +162,9 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 		Color currentBorder =  ((LineBorder)currentItemButton.getBorder()).getLineColor();
 		if (currentBorder == Color.white) {
 			currentItemButton.setBorder((new LineBorder(Color.green, 3, true)));
-			currentItemButton.setForeground(Color.black);
 		}
 		else {
 			currentItemButton.setBorder(new LineBorder(Color.white, 3, true));
-			currentItemButton.setForeground(Color.white);
 		}
 	}
 }

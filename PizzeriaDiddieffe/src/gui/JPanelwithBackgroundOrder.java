@@ -22,8 +22,8 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	private JButton focacciaButton;
 	private JButton orderButton;
 	
-	private String[] pizzalist={"Basic Pizza", "Double Dough", "Brown Dough"};
-	private String[] pizzaToppingList = {"Tomato Sauce","Bufala","Mozzarella", "Anchovy","Bufala","Ham","Onions","Olives","Mushrooms","Pepperoni","Porcini","Tuna","Sausages"};
+	private String[] pizzalist={"BasicWhitePizza", "Double Dough", "Brown Dough"};
+	private String[] pizzaToppingList = {"Anchovy","Bufala","Ham","Mozzarella","Onions","Olives","Mushrooms","Pepperoni"};
 	private static String  menuPizzaImagePath="res/pizzaOrdering.jpg";
 	private String pizzaPackage="pizza";
 	private String currentDecorator;
