@@ -15,6 +15,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
@@ -23,7 +24,7 @@ class JPanelWithBackgroundImg extends JPanel {
 	private Image img;
 	private JButton btnBackToInOutScreen;
 	private JPanel visible_panel;//pannello visibile
-	private Frame myFrame;
+	private JFrame myFrame;
 	
 	
 	
@@ -82,7 +83,7 @@ class JPanelWithBackgroundImg extends JPanel {
 		    return componentsList;
 	}
 	
-	public void setVisiblePanel(JPanel visible_panel,Frame frame){
+	public void setVisiblePanel(JPanel visible_panel,JFrame frame){
 		this.visible_panel=visible_panel;  
 		this.myFrame=frame;
 	}
@@ -97,7 +98,7 @@ class JPanelWithBackgroundImg extends JPanel {
 	        
 	}
 	
-	public Frame getFrame(){
+	public JFrame getFrame(){
 		return myFrame;
 	}	
 }

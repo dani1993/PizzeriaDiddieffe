@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -8,6 +9,8 @@ import java.awt.Frame;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -16,6 +19,9 @@ import javax.swing.border.LineBorder;
 
 import pizzeriadiddieffe.core.Item;
 import pizzeriadiddieffe.core.Order;
+import pizzeriadiddieffe.core.beverage.Beverage;
+import pizzeriadiddieffe.core.focaccia.Focaccia;
+import pizzeriadiddieffe.core.pizza.BasicWhite;
 import pizzeriadiddieffe.core.pizza.Pizza;
 
 
@@ -23,19 +29,24 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 
 	private JButton AddToOrderButton;
 	private JPanelWithBackgroundImg currentJPanel = this;
-	private int addButtonWidth = 300;
-	private int addButtonHeight = 500;
-	private CreateBaseCaseByName myCreator=new CreateBaseCaseByName();
+	private int addButtonWidth = 60;
+	private int addButtonHeight = 200;
+	private int addButtonx=150;
+	private int addButtony=640;
+	private CreateBaseCaseByName myCreator;
 	private Object object;
 	private Order currentOrder;
 	private Item currentItem;
-	private Object currentClass;
+	private String currentClass;
+	private ItemRemoverFromOrder myRemover;
 	
 	
 	public OrderingJPanel(Image img,String currentBasePackage, String[] pizzaItems, String[] pizzaToppingList,String currentClass) {
 		super(img);
+		myCreator=new CreateBaseCaseByName();
+		myRemover=new ItemRemoverFromOrder(); 
 		
-		
+		this.currentClass=currentBasePackage;
 		String currentToppingPackage=currentBasePackage+".topping";
 		createPizzaItems(pizzaItems,currentBasePackage);
 		createPizzaToppingsItems(pizzaToppingList,currentToppingPackage);
@@ -66,30 +77,26 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 					
 					System.out.println(currentItemButton.getText() + " creato oggetto/inserito in List.");
 					changeBorderColor(currentItemButton);
-					
-					//creo oggetto relativo alla classe con nome currentItemButton.getText()
+		
 					try{
 					object=myCreator.createObjectByName(fullPackagePath+currentItemButton.getText());
 					}catch(Exception exception){
 						System.out.println(exception.getMessage());
 					}
 					
-					
-//					System.out.println(((Pizza) object).getInfo());
-//					System.out.println(((currentClass.getClass()) object).getPrice());
-//					
-//				currentPizza=((currentClass.getClass()) object);
-					
-					
+					currentItem=((Item) object);
 				}
 			});
 			currentJPanel.add(currentItemButton);
 			x = x + 140;
 		}
+		
+			
 	}
 	
 	
 
+	
 	private void createPizzaToppingsItems(String[] pizzaToppingsItems,String currentPackage) {
 		int x = 35, y = 270, width = 90, height = 60;
 		int toppingsForColumn=4;
@@ -105,27 +112,33 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 		final String fullPackagePath="pizzeriadiddieffe.core."+currentPackage+".";
 		// create buttons for the toppings
 		
-			String currentItemText = pizzaToppingsItems[i];
+			final String currentItemText = pizzaToppingsItems[i];
 			final OrderItemJButton currentItemButton = new OrderItemJButton(x, y, width, height, fontSize,
 					currentItemText);
 //			currentItemButton.setEnabled(false);
 			currentItemButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					changeBorderColor(currentItemButton);
-					System.out.println(currentItemButton.getText() + " creato oggetto/inserito in List.");
+					if(getBorderColor(currentItemButton).equals(Color.green)){
 					
 					try{
-//						object=myCreator.createToppingByName(fullPackagePath+currentItemButton.getText(),myPizza);
+						object=myCreator.createToppingByName(fullPackagePath+currentItemButton.getText(),currentItem,currentClass);
 						}catch(Exception exception){
 							System.out.println(exception.getMessage());
+							System.out.println(currentItem.getPrice());
+							System.out.println("errore");
 						}
 					
-//				System.out.println(((currentClass) object).getInfo());
-//				System.out.println(((currentClass) object).getPrice());
-				
-					
-					
+					System.out.println("Id ordine "+currentOrder.getId());
+					castToCurrentClass(currentClass);
 				}
+					else{
+						myRemover.removeItem(currentItem,currentItemText,currentClass);
+					}
+				}
+
+				
+				
 			});
 			
 			currentJPanel.add(currentItemButton);
@@ -134,37 +147,65 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 	}
 	
 
+	
 	private void addOrderButton() {
 		AddToOrderButton = new JButton("Add To Order");
-		AddToOrderButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		AddToOrderButton.setFont(new Font("Lucida Grande", Font.BOLD, 16));
 		AddToOrderButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		AddToOrderButton.setBounds(addButtonWidth, addButtonHeight, 100, 50);
+		AddToOrderButton.setBounds(addButtonx, addButtony,addButtonHeight, addButtonWidth);
 		this.add(AddToOrderButton);
 
 		AddToOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Aggiunti oggetti selezionati a ordine");
-				
 				if(currentItem!=null){
 				try {
 					currentOrder.add(currentItem);
+					resetButtons();
 					System.out.println(currentItem.getInfo());
 				} catch (Exception e1) {
 					System.out.println(e1);
 				}
 			}
 			}
+
+			
 		});
+	}
+	
+	private void resetButtons() {
+		
+		
 	}
 	
 	
 	private void changeBorderColor (OrderItemJButton currentItemButton) {
-		Color currentBorder =  ((LineBorder)currentItemButton.getBorder()).getLineColor();
+		Color currentBorder=getBorderColor(currentItemButton);
 		if (currentBorder == Color.white) {
 			currentItemButton.setBorder((new LineBorder(Color.green, 3, true)));
 		}
 		else {
 			currentItemButton.setBorder(new LineBorder(Color.white, 3, true));
 		}
+	}
+	
+	private Color getBorderColor(OrderItemJButton currentItemButton) {
+		Color currentBorder =  ((LineBorder)currentItemButton.getBorder()).getLineColor();
+		return currentBorder;
+	}
+	
+	
+	
+	private void castToCurrentClass(String currentClass) {
+		if(currentClass.equals("pizza")){
+			currentItem=(Pizza)object;
+			return;
+		}
+		else if(currentClass.equals("beverage")){
+			 currentItem=(Beverage)object;
+			 return;
+		}
+		
+		 currentItem=(Focaccia)object;
+		 return;
 	}
 }

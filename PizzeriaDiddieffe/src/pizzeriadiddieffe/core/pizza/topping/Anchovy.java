@@ -12,11 +12,12 @@ public class Anchovy extends PizzaDecorator {
 
 	@Override
 	public String getInfo() {
-		return tempPizza.getInfo() + ", Anchovies";
+		return tempPizza.getInfo() + ", Anchovy";
 	}
 
 	@Override
 	public double getPrice() {
 		return tempPizza.getPrice()+PRICE;
 	}
+	
 }

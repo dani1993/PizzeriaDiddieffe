@@ -1,8 +1,10 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JButton;
+import javax.swing.border.LineBorder;
 
 public class OrderItemJButton extends ClickableButtonWithImage{
 
@@ -10,7 +12,8 @@ public class OrderItemJButton extends ClickableButtonWithImage{
 		super(x, y, width, height,font, itemText);
 		System.out.println(itemText);
 		this.setText(itemText);
-		this.setFont(new Font("Lucida Grande", Font.PLAIN, font));
+		this.setFont(new Font("Lucida Grande", Font.BOLD, font));
+		this.setForeground(Color.white);
 		this.setHorizontalTextPosition(JButton.CENTER);
 		this.setVerticalTextPosition(JButton.CENTER);
 	}

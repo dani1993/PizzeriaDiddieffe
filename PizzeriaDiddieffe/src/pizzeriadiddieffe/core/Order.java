@@ -55,6 +55,11 @@ public class Order implements Item {
 		}
 		myOrder.remove(obj);
 	}
+
+	public void deleteAll() {
+		myOrder.removeAll(getOrderList());
+		
+	}
 	
 	
 }

@@ -223,9 +223,11 @@ public class PizzeriaDiddieffeUI {
 		btnDone.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnDone.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(numberOfTablesInside>0 || numberOfTablesOutside>0){
 				chooseNumberOfTables.setVisible(false);
 				createPlacesPanels(numberOfTablesInside, numberOfTablesOutside,btnInside,btnOutside);
 			}
+				}
 		});
 		btnDone.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		btnDone.setBounds(175, 617, 200, 60);
@@ -248,7 +250,7 @@ public class PizzeriaDiddieffeUI {
 		
 			chooseInsideOutside.setVisible(true);
 			
-			Image orderOutside_bg=new ImageIcon("res/orderBG.jpg").getImage();//creo pannello per ordini interni 
+			Image orderOutside_bg=new ImageIcon("").getImage();//creo pannello per ordini interni 
 			orderPanel=new JPanelwithBackgroundOrder(orderOutside_bg,frame);
 			frame.getContentPane().add(orderPanel);
 

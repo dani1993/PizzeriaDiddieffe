@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.SynchronousQueue;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -61,11 +62,11 @@ public class JPanelwithBackgroundTables extends JPanelWithBackgroundImg{
 				else {
 					tableCode = (Integer.toString(i) + "f");
 				}
-				Table table = new Table(x, y, imgWidth, imgHeight, tableCode);
+				final Table table = new Table(x, y, imgWidth, imgHeight, tableCode);
 				this.add(table);
 				table.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						currentOrderPanel.setTableId(tableCode);
+						currentOrderPanel.setTableId(table.getText());
 						currentPanel.setVisible(false);
 						currentOrderPanel.setVisiblePanel(currentPanel, getFrame());
 						currentOrderPanel.setVisible(true);
