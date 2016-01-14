@@ -14,6 +14,7 @@ import java.util.LinkedList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
@@ -28,31 +29,49 @@ public class OrderViewer extends JPanelWithBackgroundImg{
 	private Order myOrder;
 	private LinkedList<Item> myItemslist;
 	private JButton payOrderButton;
-	private int payButtonx=400;
-	private int payButtony=500;
+	private int payButtonx=200;
+	private int payButtony=650;
 	private int payButtonHeight = 50;
 	private int payButtonWight = 150;
 	private String payOrderImagePath="res/payOrderBackground.jpg";
 	private Item currentItem;
+	private int scrollPanex=50;
+	private int scrollPaney=220;
+	private int scrollPaneWidth=400;
+	private int scrollPaneHeight=400;
+	
+	private JLabel descriptionLabel;
+	private int labelx=10;
+	private int labely=5;
+	private int labelHeight=200;
+	private int labelWidth=200;
+	private int labelFont=10;
 		
-	public OrderViewer(Image img,JFrame myFrame) {
+	public OrderViewer(Image img,JFrame myFrame,JPanelWithBackgroundImg payOrderVisiblePanel) {
 		super(img);
 		
-//		JScrollPane scrollPane = new JScrollPane(currentJPanel);
-//        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-//        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-//        scrollPane.setBounds(60, 270, 450, 450);
-//        scrollPane.setBorder(new LineBorder(Color.white,0));
-//        JPanel contentPane = new JPanel(null);
-//        contentPane.setPreferredSize(new Dimension(500, 400));
-//        contentPane.add(scrollPane);
-//        scrollPane.setVisible(false);
-//        myFrame.setContentPane(contentPane);
+		JPanel panel = new JPanel();
+        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBounds(scrollPanex, scrollPaney, scrollPaneWidth, scrollPaneHeight);
+        scrollPane.setBorder(new LineBorder(Color.white,0));
+        
+       
+        currentJPanel.add(scrollPane);
 	
+		
+        descriptionLabel=new JLabel();
+        descriptionLabel.setBounds(labelx, labely, labelWidth, labelHeight);
+        descriptionLabel.setFont(new Font("Lucida Grande", Font.PLAIN, labelFont));
+		
+		
+        panel.add(descriptionLabel);
+		
         
 		Image payOrderImage=new ImageIcon(payOrderImagePath).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
 		myPayJPanel=new payOrderJPanel(payOrderImage,myFrame);
-		myPayJPanel.setVisiblePanel(currentJPanel, myFrame);
+		myPayJPanel.setVisiblePanel(payOrderVisiblePanel, myFrame);
 		myPayJPanel.setVisible(false);
 		myFrame.add(myPayJPanel);
 	     
@@ -83,15 +102,24 @@ public class OrderViewer extends JPanelWithBackgroundImg{
 	private void drawOrder() {
 		myItemslist=myOrder.getOrderList();
 		Iterator <Item> iteratore=getIterator();
+		String baseCase="";
+		String comma =",";
+		String newLine=" <br> ";
+		String tabSpace="&#09";
+		String price="Price : ";
+		
 		
 		while (iteratore.hasNext()){
 			currentItem=iteratore.next();
 			System.out.println(currentItem.getInfo());
+			baseCase=baseCase+tabSpace+currentItem.getInfo();
+			baseCase=baseCase.replaceAll(comma, newLine);
+			baseCase=baseCase+tabSpace+price+currentItem.getPrice()+newLine;
+			
 		}
 		
-        for (int i = 0; i < 10; i++) {
-            currentJPanel.add(new JButton("Hello-" + i));
-        }
+		descriptionLabel.setText("<html>"+baseCase+"<html>");
+		
         
 		
 	}

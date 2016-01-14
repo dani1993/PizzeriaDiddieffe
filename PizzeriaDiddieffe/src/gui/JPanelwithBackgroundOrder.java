@@ -86,7 +86,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 		focacciaOrderingPanel.setVisible(false);
 		myFrame.add(focacciaOrderingPanel);
 		
-		orderViewer=new OrderViewer(menuPizzaImage,myFrame);
+		orderViewer=new OrderViewer(menuPizzaImage,myFrame,currentJPanel);
 		orderViewer.setVisiblePanel(currentJPanel, myFrame);
 		orderViewer.setVisible(false);
 		myFrame.add(orderViewer);

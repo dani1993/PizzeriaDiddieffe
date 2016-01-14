@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +11,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
 import pizzeriadiddieffe.core.Item;
@@ -34,6 +37,12 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 	private String currentClass;
 	private ItemRemoverFromOrder myRemover;
 	private LinkedList<JButton> buttonList;
+	private int scrollPanex=20;
+	private int scrollPaney=180;
+	private int scrollPaneWidth=500;
+	private int scrollPaneHeight=420;
+	
+	private JPanel panel;
 	
 	
 	public OrderingJPanel(Image img,String currentBasePackage, String[] pizzaItems, String[] pizzaToppingList,String currentClass) {
@@ -41,6 +50,22 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 		myCreator=new CreateBaseCaseByName();
 		myRemover=new ItemRemoverFromOrder(); 
 		buttonList=new LinkedList<JButton>();
+		
+		
+		
+		panel = new JPanel();
+//		panel.setLayout(new GridLayout(4,4));
+		
+        JScrollPane scrollPane = new JScrollPane(panel);
+       
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBounds(scrollPanex, scrollPaney, scrollPaneWidth, scrollPaneHeight);
+        scrollPane.setBorder(new LineBorder(Color.white,0));
+        currentJPanel.add(scrollPane);
+       
+        
+        
 		
 		this.currentClass=currentBasePackage;
 		String currentToppingPackage=currentBasePackage+".topping";
@@ -83,7 +108,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 					currentItem=((Item) object);
 				}
 			});
-			currentJPanel.add(currentItemButton);
+			panel.add(currentItemButton);
 			x = x + 140;
 		}
 		
@@ -138,7 +163,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 				
 			});
 			
-			currentJPanel.add(currentItemButton);
+			panel.add(currentItemButton);
 			y = y + 70;
 		}
 	}
