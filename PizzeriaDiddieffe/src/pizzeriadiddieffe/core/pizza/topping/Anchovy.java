@@ -6,9 +6,9 @@ public class Anchovy extends PizzaDecorator {
 	Pizza tempPizza;
 	private final static double PRICE = 1.5;
 
-	public Anchovy(Pizza myPizza){
-		tempPizza = myPizza; 
-		}
+	public Anchovy(Pizza myPizza) {
+		tempPizza = myPizza;
+	}
 
 	@Override
 	public String getInfo() {
@@ -17,7 +17,11 @@ public class Anchovy extends PizzaDecorator {
 
 	@Override
 	public double getPrice() {
-		return tempPizza.getPrice()+PRICE;
+		return tempPizza.getPrice() + PRICE;
 	}
 	
+	public Pizza removeTopping () {
+		return tempPizza;
+		}
+
 }

@@ -178,7 +178,8 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 						System.out.println("Id ordine " + currentOrder.getId());
 						castToCurrentClass(currentClass);
 					} else {
-						myRemover.removeItem(currentItem, currentItemText, currentClass);
+//						(Pizza)object.remove
+//						myRemover.removeItem(currentItem, currentItemText, currentClass);
 					}
 				}
 

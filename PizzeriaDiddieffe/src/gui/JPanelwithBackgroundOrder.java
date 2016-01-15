@@ -35,7 +35,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	
 	private String[] pizzaClasses = {"BasicWhitePizza","BasicBrownPizza","BasicDoubleWhitePizza","TomatoSauce","Mozzarella","Anchovy","BufalaMozzarella","Ham","Onion","Olive","Mushrooms","Pepperoni","Porcini","Tuna","Sausage","Cream","Artichokes","Shrimps"};
 	private String[] beverageClasses = {"EmptyLittleGlass","EmptyMediumGlass","EmptyLargeGlass", "Water","FizzyWater","CocaCola","Fanta","Beer"};
-	private String[] focacciaClasses = {"BasicWhiteFocaccia", "BasicBrownFocaccia", "Basic5CerealsFocaccia", "Mortadella","CookedHam","FreshBufalaMozzarella","FreshMozzarella","FreshTomatoe","Lettuce","Nutella","Olive","Pecorino","RawHam","Rosemary","Sausage","Stracchino"};
+	private String[] focacciaClasses = {"BasicWhiteFocaccia", "BasicBrownFocaccia", "Basic5CerealsFocaccia", "Mortadella","CookedHam","FreshBufalaMozzarella","FreshMozzarella","FreshTomato","Lettuce","Nutella","Olive","Pecorino","RawHam","Rosemary","Sausage","Stracchino"};
 	
 	
 	private String[] pizzaBasicClasses={"Basic Pizza", "Double Dough", "Brown Dough"};

@@ -20,7 +20,7 @@ import javax.swing.border.LineBorder;
 import pizzeriadiddieffe.core.Item;
 import pizzeriadiddieffe.core.Order;
 
-public class OrderViewer extends JPanelWithBackgroundImg{
+public class OrderViewer extends JPanelWithBackgroundImg {
 
 	private JPanelWithBackgroundImg currentJPanel = this;
 	private payOrderJPanel myPayJPanel;
@@ -30,33 +30,28 @@ public class OrderViewer extends JPanelWithBackgroundImg{
 	private int payButtonx = 200;
 	private int payButtony = 650;
 	private int payButtonHeight = 50;
-	private int payButtonWight = 150;
+	private int payButtonWight = 155;
 	private String payOrderImagePath = "res/payOrderBackground.jpg";
 	private Item currentItem;
-	private int scrollPanex = 50;
-	private int scrollPaney = 220;
-	private int scrollPaneWidth = 400;
-	private int scrollPaneHeight = 400;
+	private int scrollPanex = 15;
+	private int scrollPaney = 200;
+	private int scrollPaneWidth = 510;
+	private int scrollPaneHeight = 420;
 
 	private JLabel descriptionLabel;
-	private int labelx = 10;
-	private int labely = 5;
+	private int labelx = -10;
+	private int labely = -5;
 	private int labelHeight = 200;
 	private int labelWidth = 200;
-	private int labelFont = 20;
+	private int labelFont = 25;
 
-	public OrderViewer(Image img,JFrame myFrame,JPanelWithBackgroundImg payOrderVisiblePanel) {
+	public OrderViewer(Image img, JFrame myFrame, JPanelWithBackgroundImg payOrderVisiblePanel) {
 		super(img);
-		
+
 		JPanel panel = new JPanel();
-        JScrollPane scrollPane = new JScrollPane(panel);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setBounds(scrollPanex, scrollPaney, scrollPaneWidth, scrollPaneHeight);
-        scrollPane.setBorder(new LineBorder(Color.white,0));
         
        
-        currentJPanel.add(scrollPane);
+        
 	
 		
         descriptionLabel=new JLabel();
@@ -66,6 +61,16 @@ public class OrderViewer extends JPanelWithBackgroundImg{
 		
         panel.add(descriptionLabel);
 		
+        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPane.setBounds(scrollPanex, scrollPaney, scrollPaneWidth, scrollPaneHeight);
+        scrollPane.setBorder(new LineBorder(Color.white,0));
+        currentJPanel.add(scrollPane);
+        
+        
+        
         
 		Image payOrderImage=new ImageIcon(payOrderImagePath).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
 		myPayJPanel=new payOrderJPanel(payOrderImage,myFrame);
@@ -102,17 +107,19 @@ public class OrderViewer extends JPanelWithBackgroundImg{
 		Iterator <Item> iteratore=getIterator();
 		String baseCase="";
 		String comma =",";
+		String tabSpace="<br> &nbsp;&nbsp;&nbsp;";
 		String newLine=" <br> ";
-		String tabSpace="&#09";
+		String startBold = " <b> ";
+		String endBold = " <\b ";
 		String price="Price : ";
 		
 		
 		while (iteratore.hasNext()){
 			currentItem=iteratore.next();
 			System.out.println(currentItem.getInfo());
-			baseCase=baseCase+tabSpace+currentItem.getInfo();
-			baseCase=baseCase.replaceAll(comma, newLine);
-			baseCase=baseCase+tabSpace+price+currentItem.getPrice()+newLine;
+			baseCase=baseCase+newLine+currentItem.getInfo();
+			baseCase=baseCase.replaceAll(comma, tabSpace);
+			baseCase=baseCase+newLine+startBold+price+currentItem.getPrice()+endBold+newLine;
 			
 		}
 		

@@ -5,4 +5,10 @@ import pizzeriadiddieffe.core.Item;
 public abstract class Pizza implements Item{
 	public abstract String getInfo();	
 	public abstract double getPrice();
+	
+	public Pizza removeTopping () {
+		return this;
+		}
 }
+
+

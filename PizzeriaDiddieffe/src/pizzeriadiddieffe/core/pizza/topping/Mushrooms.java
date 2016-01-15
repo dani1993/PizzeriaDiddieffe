@@ -3,11 +3,11 @@ package pizzeriadiddieffe.core.pizza.topping;
 import pizzeriadiddieffe.core.pizza.Pizza;
 import pizzeriadiddieffe.core.pizza.PizzaDecorator;
 
-public class Mushroms extends PizzaDecorator {
+public class Mushrooms extends PizzaDecorator {
 	Pizza tempPizza;
 	private final static double PRICE = 1.5;
 
-	public Mushroms(Pizza myPizza){
+	public Mushrooms(Pizza myPizza){
 		tempPizza = myPizza; 
 		}
 
