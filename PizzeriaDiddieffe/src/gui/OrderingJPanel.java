@@ -38,12 +38,14 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 	private Order currentOrder;
 	private Item currentItem;
 	private String currentClass;
+	private String[] currentClassName;
 	private ItemRemoverFromOrder myRemover;
 	private LinkedList<JButton> buttonList;
 	private int scrollPanex = 10;
 	private int scrollPaney = 180;
 	private int scrollPaneWidth = 530;
 	private int scrollPaneHeight = 420;
+	
 
 	private JPanel panel;
 
@@ -66,15 +68,15 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 
 	private GridBagConstraints gdc;
 
-	public OrderingJPanel(Image img, String currentBasePackage, String[] pizzaItems, String[] pizzaToppingList,
-			String currentClass) {
+	public OrderingJPanel(Image img, String currentBasePackage, String[] pizzaItems, String[] pizzaToppingList, String[] classNameList) {
 		super(img);
 		myCreator = new CreateBaseCaseByName();
 		myRemover = new ItemRemoverFromOrder();
 		buttonList = new LinkedList<JButton>();
-
+		
 		panel = new JPanel();
 
+		currentClassName = classNameList;
 		// panel.setLayout(new GridLayout(6,6));
 		// gdc = new GridBagConstraints(
 		// panel.setLayout(currentJPanel.getLayout());
@@ -87,12 +89,13 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 		// scrollPane.setBorder(new LineBorder(Color.white,0));
 		// scrollPane.setWheelScrollingEnabled(true);
 		// currentJPanel.add(scrollPane);
-
+		System.out.println(currentBasePackage);
 		this.currentClass = currentBasePackage;
 		String currentToppingPackage = currentBasePackage + ".topping";
 		createPizzaItems(pizzaItems, currentBasePackage);
-		createPizzaToppingsItems(pizzaToppingList, currentToppingPackage);
-
+		createPizzaToppingsItems(pizzaToppingList, currentToppingPackage, (pizzaItems.length));
+		
+		
 		addOrderButton();
 
 	}
@@ -103,9 +106,10 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 
 	private void createPizzaItems(String[] pizzaItems, String currentPackage) {
 		final String fullPackagePath = "pizzeriadiddieffe.core." + currentPackage + ".";
-
+		
 		// create buttons for the 3 doughs
 		for (int i = 0; i < pizzaItems.length; i++) {
+			String className = currentClassName[i];
 			String currentItemText = pizzaItems[i];
 			final OrderItemJButton currentItemButton = new OrderItemJButton(baseCasesx, baseCasesy, baseCasesWidth,
 					baseCasesHeight, baseFontSize, currentItemText);
@@ -117,7 +121,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 					changeBorderColor(currentItemButton);
 					buttonList.add(currentItemButton);
 					try {
-						object = myCreator.createObjectByName(fullPackagePath + currentItemButton.getText());
+						object = myCreator.createObjectByName(fullPackagePath + className);
 					} catch (Exception exception) {
 						System.out.println(exception.getMessage());
 					}
@@ -137,8 +141,10 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 
 	}
 
-	private void createPizzaToppingsItems(String[] pizzaToppingsItems, String currentPackage) {
-		for (int i = 0; i < pizzaToppingsItems.length; i++) {
+	private void createPizzaToppingsItems(String[] toppingsItems, String currentPackage, int pizzaBasicItems) {
+		for (int i = 0; i < toppingsItems.length; i++) {
+			String className = currentClassName[i+pizzaBasicItems];
+
 			// se ho già 4 toppings per colonna vado alla colonna dopo
 			if (i % toppingsForColumn == 0 && i != 0) {
 				toppingX = toppingX + toppingXToMove;
@@ -148,7 +154,8 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 			final String fullPackagePath = "pizzeriadiddieffe.core." + currentPackage + ".";
 			// create buttons for the toppings
 
-			final String currentItemText = pizzaToppingsItems[i];
+			final String currentItemText = toppingsItems[i];
+			
 			final OrderItemJButton currentItemButton = new OrderItemJButton(toppingX, toppingY, toppingWidth,
 					toppingHeight, toppingFontSize, currentItemText);
 			currentItemButton.addActionListener(new ActionListener() {
@@ -158,10 +165,12 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 					if (getBorderColor(currentItemButton).equals(Color.green)) {
 						buttonList.add(currentItemButton);
 						try {
-							object = myCreator.createToppingByName(fullPackagePath + currentItemButton.getText(),
+							System.out.println(fullPackagePath + currentItemButton.getText() + currentItem + currentClass);
+
+							object = myCreator.createToppingByName(fullPackagePath + className,
 									currentItem, currentClass);
 						} catch (Exception exception) {
-							System.out.println(exception.getMessage());
+//							System.out.println(exception.getMessage());
 							System.out.println(currentItem.getPrice());
 							System.out.println("errore");
 						}
@@ -242,7 +251,6 @@ public class OrderingJPanel extends JPanelWithBackgroundImg {
 			currentItem = (Beverage) object;
 			return;
 		}
-
 		currentItem = (Focaccia) object;
 		return;
 	}

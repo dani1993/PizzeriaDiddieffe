@@ -12,31 +12,33 @@ public  class CreateBaseCaseByName{
 	public Object createObjectByName (String className) throws Exception{
 		Class<?> clazz = Class.forName(className);
 		Constructor<?> ctor = clazz.getConstructor();
-		Object object = ctor.newInstance(new Object[] {  });
-		
-		return object;
-	}
-	
-	public  Object createToppingByName (String className,Item baseItem,String type)throws Exception{
-		baseItem=getType(type,baseItem);
-		baseItem=(Pizza)baseItem;
-		Class<?> clazz = Class.forName(className);
-		Constructor<?> ctor = clazz.getConstructor(Pizza.class);
-		Object object = ctor.newInstance(new Object[] { baseItem });
-		
+		Object object = ctor.newInstance(new Object[] {});
+
 		return object;
 	}
 
-	private Item getType(String type,Item myItem) {
-		if(type.equals("pizza")){
-			return myItem=(Pizza)myItem;
+	public Object createToppingByName(String className, Item baseItem, String type) throws Exception {
+		if (type.equals("pizza")) {
+			baseItem = (Pizza) baseItem;
+			Class<?> clazz = Class.forName(className);
+			Constructor<?> ctor = clazz.getConstructor(Pizza.class);
+			Object object = ctor.newInstance(new Object[] { baseItem });
+
+			return object;
+		} else if (type.equals("beverage")) {
+			baseItem = (Beverage) baseItem;
+			Class<?> clazz = Class.forName(className);
+			Constructor<?> ctor = clazz.getConstructor(Beverage.class);
+			Object object = ctor.newInstance(new Object[] { baseItem });
+
+			return object;
 		}
-		else if(type.equals("beverage")){
-			return myItem=(Beverage)myItem;
-		}
-		
-		return myItem=(Focaccia)myItem;
+
+		baseItem = (Focaccia) baseItem;
+		Class<?> clazz = Class.forName(className);
+		Constructor<?> ctor = clazz.getConstructor(Focaccia.class);
+		Object object = ctor.newInstance(new Object[] { baseItem });
+
+		return object;
 	}
-		
-	
 }

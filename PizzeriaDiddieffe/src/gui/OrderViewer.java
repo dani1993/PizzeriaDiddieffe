@@ -21,30 +21,30 @@ import pizzeriadiddieffe.core.Item;
 import pizzeriadiddieffe.core.Order;
 
 public class OrderViewer extends JPanelWithBackgroundImg{
- 
-	private  JPanelWithBackgroundImg currentJPanel=this;
+
+	private JPanelWithBackgroundImg currentJPanel = this;
 	private payOrderJPanel myPayJPanel;
 	private Order myOrder;
 	private LinkedList<Item> myItemslist;
 	private JButton payOrderButton;
-	private int payButtonx=200;
-	private int payButtony=650;
+	private int payButtonx = 200;
+	private int payButtony = 650;
 	private int payButtonHeight = 50;
 	private int payButtonWight = 150;
-	private String payOrderImagePath="res/payOrderBackground.jpg";
+	private String payOrderImagePath = "res/payOrderBackground.jpg";
 	private Item currentItem;
-	private int scrollPanex=50;
-	private int scrollPaney=220;
-	private int scrollPaneWidth=400;
-	private int scrollPaneHeight=400;
-	
+	private int scrollPanex = 50;
+	private int scrollPaney = 220;
+	private int scrollPaneWidth = 400;
+	private int scrollPaneHeight = 400;
+
 	private JLabel descriptionLabel;
-	private int labelx=10;
-	private int labely=5;
-	private int labelHeight=200;
-	private int labelWidth=200;
-	private int labelFont=10;
-		
+	private int labelx = 10;
+	private int labely = 5;
+	private int labelHeight = 200;
+	private int labelWidth = 200;
+	private int labelFont = 20;
+
 	public OrderViewer(Image img,JFrame myFrame,JPanelWithBackgroundImg payOrderVisiblePanel) {
 		super(img);
 		

@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 
 import pizzeriadiddieffe.core.Order;
 import pizzeriadiddieffe.core.OrderManager;
+import pizzeriadiddieffe.core.focaccia.Basic5CerealsFocaccia;
+import pizzeriadiddieffe.core.focaccia.BasicBrownFocaccia;
 
 public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 
@@ -30,6 +32,11 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	private int spacex=(buttonWidth)+space;
 	private int spacey=(buttonHeight)+space;
 	private int fontButtons=24;
+	
+	private String[] pizzaClasses = {"BasicWhitePizza","BasicBrownPizza","BasicDoubleWhitePizza","TomatoSauce","Mozzarella","Anchovy","BufalaMozzarella","Ham","Onion","Olive","Mushrooms","Pepperoni","Porcini","Tuna","Sausage","Cream","Artichokes","Shrimps"};
+	private String[] beverageClasses = {"EmptyLittleGlass","EmptyMediumGlass","EmptyLargeGlass", "Water","FizzyWater","CocaCola","Fanta","Beer"};
+	private String[] focacciaClasses = {"BasicWhiteFocaccia", "BasicBrownFocaccia", "Basic5CerealsFocaccia", "Mortadella","CookedHam","FreshBufalaMozzarella","FreshMozzarella","FreshTomatoe","Lettuce","Nutella","Olive","Pecorino","RawHam","Rosemary","Sausage","Stracchino"};
+	
 	
 	private String[] pizzaBasicClasses={"Basic Pizza", "Double Dough", "Brown Dough"};
 	private String[] pizzaToppingImages = {"Tomato Sauce","Mozzarella", "Anchovy","Bufala","Ham","Onions","Olives","Mushrooms","Pepperoni","Porcini","Tuna","Sausages","Cream","Artichokes","Shrimps"};
@@ -66,21 +73,21 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	public void createOrderingPanels(JFrame myFrame) {
 		int width = 550, height = 750;
 		Image menuPizzaImage=new ImageIcon(menuPizzaImagePath).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
-		pizzaOrderingPanel=new OrderingJPanel(menuPizzaImage,pizzaPackage,pizzaBasicClasses, pizzaToppingImages,currentDecorator);
+		pizzaOrderingPanel=new OrderingJPanel(menuPizzaImage,pizzaPackage,pizzaBasicClasses, pizzaToppingImages, pizzaClasses);
 		myFrame.add(pizzaOrderingPanel);
 		pizzaOrderingPanel.setVisiblePanel(currentJPanel, myFrame);
 		pizzaOrderingPanel.setVisible(false);
 		myFrame.add(pizzaOrderingPanel);
 		
 		Image menuBeverageImage=new ImageIcon(menuBeverageImagePath).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
-		beverageOrderingPanel=new OrderingJPanel(menuBeverageImage,beveragePackage,beveragelist, beverageToppingList,currentDecorator);
+		beverageOrderingPanel=new OrderingJPanel(menuBeverageImage,beveragePackage,beveragelist, beverageToppingList, beverageClasses);
 		myFrame.add(beverageOrderingPanel);
 		beverageOrderingPanel.setVisiblePanel(currentJPanel, myFrame);
 		beverageOrderingPanel.setVisible(false);
 		myFrame.add(beverageOrderingPanel);
 		
 		Image menuFocacciaImage=new ImageIcon(menuFocacciaImagePath).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
-		focacciaOrderingPanel=new OrderingJPanel(menuFocacciaImage, focacciaPackage,focaccialist, focacciaToppingList,currentDecorator);
+		focacciaOrderingPanel=new OrderingJPanel(menuFocacciaImage, focacciaPackage,focaccialist, focacciaToppingList, focacciaClasses);
 		myFrame.add(focacciaOrderingPanel);
 		focacciaOrderingPanel.setVisiblePanel(currentJPanel, myFrame);
 		focacciaOrderingPanel.setVisible(false);
