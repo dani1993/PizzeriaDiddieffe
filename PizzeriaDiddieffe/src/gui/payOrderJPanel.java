@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 import pizzeriadiddieffe.core.Order;
 
-public class payOrderJPanel extends JPanelWithBackgroundImg{
+public class payOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 	
 	private int buttonsWidth=200;
 	private int buttonsHeight=100;
@@ -34,9 +34,9 @@ public class payOrderJPanel extends JPanelWithBackgroundImg{
 	
 	private payMethodInterface payStrategy; 
 	private payChooser myPayChooser; 
-	private JPanelWithBackgroundImg payPanel;
+	private JPanelWithBackgroundImgAndBackBtn payPanel;
 	private String payPanelImagePath="res/payPanel.jpg";
-	private JPanelWithBackgroundImg currentJPanel=this;
+	private JPanelWithBackgroundImgAndBackBtn currentJPanel=this;
 	private JFrame myFrame;
 	
 	
@@ -59,7 +59,7 @@ public class payOrderJPanel extends JPanelWithBackgroundImg{
 	
 	private void createPayPanel(JFrame myFrame) {
 		Image payOrderImage=new ImageIcon(payPanelImagePath).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
-		payPanel=new JPanelWithBackgroundImg(payOrderImage);
+		payPanel=new JPanelWithBackgroundImgAndBackBtn(payOrderImage);
 		payPanel.setVisiblePanel(currentJPanel, myFrame);
 		payPanel.setVisible(false);
 		myFrame.add(payPanel);	

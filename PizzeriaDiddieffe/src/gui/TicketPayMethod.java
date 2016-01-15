@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 
 import pizzeriadiddieffe.core.Order;
 
-public class TicketPayMethod extends JPanelWithBackgroundImg implements payMethodInterface {
+public class TicketPayMethod extends JPanelWithBackgroundImgAndBackBtn implements payMethodInterface {
 
 	public TicketPayMethod(Image img) {
 		super(img);
@@ -19,7 +19,7 @@ public class TicketPayMethod extends JPanelWithBackgroundImg implements payMetho
 	}
 
 	private double totprice;
-	private JPanelWithBackgroundImg myPanel;
+	private JPanelWithBackgroundImgAndBackBtn myPanel;
 	private JButton payButton;
 	private Order currentOrder;
 	private JComboBox<Integer> numberOfTickets;
@@ -47,7 +47,7 @@ public class TicketPayMethod extends JPanelWithBackgroundImg implements payMetho
 	private int buttonPayHeight=250;
 	
 	@Override
-	public void paymethod(Order totprice,JPanelWithBackgroundImg myPanel) {
+	public void paymethod(Order totprice,JPanelWithBackgroundImgAndBackBtn myPanel) {
 		this.totprice = totprice.getPrice();
 		this.currentOrder=totprice;
 		this.myPanel=myPanel;

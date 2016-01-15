@@ -19,7 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
-class JPanelWithBackgroundImg extends JPanel {
+class JPanelWithBackgroundImgAndBackBtn extends JPanel {
 	
 	private Image img;
 	private JButton btnBackToInOutScreen;
@@ -28,11 +28,11 @@ class JPanelWithBackgroundImg extends JPanel {
 	
 	
 	
-	public JPanelWithBackgroundImg(String img) {
+	public JPanelWithBackgroundImgAndBackBtn(String img) {
 		this(new ImageIcon(img).getImage());
 	}
 	
-	public JPanelWithBackgroundImg(Image img) {
+	public JPanelWithBackgroundImgAndBackBtn(Image img) {
 		this.img = img;
 		Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
 		setPreferredSize(size);

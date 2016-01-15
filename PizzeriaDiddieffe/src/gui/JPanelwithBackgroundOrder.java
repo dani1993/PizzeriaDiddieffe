@@ -17,9 +17,9 @@ import pizzeriadiddieffe.core.OrderManager;
 import pizzeriadiddieffe.core.focaccia.Basic5CerealsFocaccia;
 import pizzeriadiddieffe.core.focaccia.BasicBrownFocaccia;
 
-public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
+public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn{
 
-	private JPanelWithBackgroundImg currentJPanel=this;
+	private JPanelWithBackgroundImgAndBackBtn currentJPanel=this;
 	private JButton pizzaButton;
 	private JButton beverageButton;
 	private JButton focacciaButton;

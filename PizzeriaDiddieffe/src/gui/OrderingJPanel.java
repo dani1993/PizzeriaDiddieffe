@@ -25,10 +25,10 @@ import pizzeriadiddieffe.core.beverage.Beverage;
 import pizzeriadiddieffe.core.focaccia.Focaccia;
 import pizzeriadiddieffe.core.pizza.Pizza;
 
-public class OrderingJPanel extends JPanelWithBackgroundImg {
+public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 
 	private JButton AddToOrderButton;
-	private JPanelWithBackgroundImg currentJPanel = this;
+	private JPanelWithBackgroundImgAndBackBtn currentJPanel = this;
 	private int addButtonWidth = 60;
 	private int addButtonHeight = 200;
 	private int addButtonx = 150;

@@ -20,9 +20,9 @@ import javax.swing.border.LineBorder;
 import pizzeriadiddieffe.core.Item;
 import pizzeriadiddieffe.core.Order;
 
-public class OrderViewer extends JPanelWithBackgroundImg {
+public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 
-	private JPanelWithBackgroundImg currentJPanel = this;
+	private JPanelWithBackgroundImgAndBackBtn currentJPanel = this;
 	private payOrderJPanel myPayJPanel;
 	private Order myOrder;
 	private LinkedList<Item> myItemslist;
@@ -45,7 +45,7 @@ public class OrderViewer extends JPanelWithBackgroundImg {
 	private int labelWidth = 200;
 	private int labelFont = 25;
 
-	public OrderViewer(Image img, JFrame myFrame, JPanelWithBackgroundImg payOrderVisiblePanel) {
+	public OrderViewer(Image img, JFrame myFrame, JPanelWithBackgroundImgAndBackBtn payOrderVisiblePanel) {
 		super(img);
 
 		JPanel panel = new JPanel();

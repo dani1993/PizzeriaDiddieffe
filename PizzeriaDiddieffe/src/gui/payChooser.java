@@ -10,7 +10,7 @@ public class payChooser {
 		this.myPaymentStrategy=choosenStrategy;
 	}
 	
-	public void createPanel(Order totPrice,JPanelWithBackgroundImg myPanel){
+	public void createPanel(Order totPrice,JPanelWithBackgroundImgAndBackBtn myPanel){
 	      myPaymentStrategy.paymethod(totPrice, myPanel);
 	   }
 

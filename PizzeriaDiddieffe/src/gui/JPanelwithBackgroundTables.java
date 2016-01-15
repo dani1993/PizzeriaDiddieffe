@@ -11,7 +11,7 @@ import java.util.concurrent.SynchronousQueue;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class JPanelwithBackgroundTables extends JPanelWithBackgroundImg{
+public class JPanelwithBackgroundTables extends JPanelWithBackgroundImgAndBackBtn{
 
 	
 	private String tableCode;
