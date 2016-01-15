@@ -38,8 +38,8 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	private String pizzaPackage="pizza";
 	private String currentDecorator;
 	
-	private String[] focaccialist={"",""};
-	private String[] focacciaToppingList = {"","",""};
+	private String[] focaccialist={"Basic Focaccia","Brown Focaccia","Five Cereals"};
+	private String[] focacciaToppingList = {"Mortadella","Cooked Ham","Bufala"};
 	private static String  menuFocacciaImagePath="res/pizzaOrdering.jpg";
 	private String focacciaPackage="focaccia";
 	
