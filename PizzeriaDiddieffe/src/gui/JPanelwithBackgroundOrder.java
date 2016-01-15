@@ -31,21 +31,21 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImg{
 	private int spacey=(buttonHeight)+space;
 	private int fontButtons=24;
 	
-	private String[] pizzaBasicClasses={"BasicWhite", "DoubleDough", "BrownDough"};
-	private String[] pizzaToppingImages = {"Tomato Sauce","Mozzarella", "Anchovy","Bufala","Ham","Onions","Olives","Mushrooms","Pepperoni","Porcini","Tuna","Sausages"};
+	private String[] pizzaBasicClasses={"Basic Pizza", "Double Dough", "Brown Dough"};
+	private String[] pizzaToppingImages = {"Tomato Sauce","Mozzarella", "Anchovy","Bufala","Ham","Onions","Olives","Mushrooms","Pepperoni","Porcini","Tuna","Sausages","Cream","Artichokes","Shrimps"};
 	
 	private static String  menuPizzaImagePath="res/pizzaOrdering.jpg";
 	private String pizzaPackage="pizza";
 	private String currentDecorator;
 	
 	private String[] focaccialist={"Basic Focaccia","Brown Focaccia","Five Cereals"};
-	private String[] focacciaToppingList = {"Mortadella","Cooked Ham","Bufala"};
-	private static String  menuFocacciaImagePath="res/pizzaOrdering.jpg";
+	private String[] focacciaToppingList = {"Mortadella","Cooked Ham","Bufala","Mozzarella","Tomatoes","Lettuce","Nutella","Olives","Pecorino","Raw Ham","Rosemary","Sausages","Stracchino"};
+	private static String  menuFocacciaImagePath="res/FocacciaOrdering.jpg";
 	private String focacciaPackage="focaccia";
 	
 	private String[] beveragelist={"",""};
 	private String[] beverageToppingList = {"","",""};
-	private static String  menuBeverageImagePath="res/pizzaOrdering.jpg";
+	private static String  menuBeverageImagePath="res/drinksOrdering.jpg";
 	private String beveragePackage="beverage";
 	
 	private static String orderViewerImagePath="res/bill.jpg";
