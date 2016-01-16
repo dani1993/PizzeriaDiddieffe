@@ -17,22 +17,22 @@ import pizzeriadiddieffe.core.OrderManager;
 import pizzeriadiddieffe.core.focaccia.Basic5CerealsFocaccia;
 import pizzeriadiddieffe.core.focaccia.BasicBrownFocaccia;
 
-public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn{
+public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn {
 
-	private JPanelWithBackgroundImgAndBackBtn currentJPanel=this;
+	private JPanelWithBackgroundImgAndBackBtn currentJPanel = this;
 	private JButton pizzaButton;
 	private JButton beverageButton;
 	private JButton focacciaButton;
 	private JButton orderButton;
-	private int buttonHeight=230;
-	private int buttonWidth=230;
-	private int startX=35;
-	private int startY=150;
-	private int space=20;
-	private int spacex=(buttonWidth)+space;
-	private int spacey=(buttonHeight)+space;
-	private int fontButtons=24;
-	
+	private int buttonHeight = 230;
+	private int buttonWidth = 230;
+	private int startX = 35;
+	private int startY = 165;
+	private int space = 20;
+	private int spacex = (buttonWidth) + space;
+	private int spacey = (buttonHeight) + space;
+	private int fontButtons = 24;
+
 	private String[] pizzaClasses = {"BasicWhitePizza","BasicBrownPizza","BasicDoubleWhitePizza","TomatoSauce","Mozzarella","Anchovy","BufalaMozzarella","Ham","Onion","Olive","Mushrooms","Pepperoni","Porcini","Tuna","Sausage","Cream","Artichokes","Shrimps"};
 	private String[] beverageClasses = {"EmptyLittleGlass","EmptyMediumGlass","EmptyLargeGlass", "Water","FizzyWater","CocaCola","Fanta","Beer"};
 	private String[] focacciaClasses = {"BasicWhiteFocaccia", "BasicBrownFocaccia", "Basic5CerealsFocaccia", "Mortadella","CookedHam","FreshBufalaMozzarella","FreshMozzarella","FreshTomato","Lettuce","Nutella","Olive","Pecorino","RawHam","Rosemary","Sausage","Stracchino"};
@@ -109,7 +109,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 
 
 	private void drawChoiseButtons(){// creo i quattro pulsanti per ordinare i cibi o visionare il conto ed eventualmente pagare
-		pizzaButton = new OrderItemJButton(startX, startY,buttonWidth, buttonHeight, fontButtons, "pizzatest");
+		pizzaButton = new OrderItemJButton(startX, startY,buttonWidth, buttonHeight, fontButtons, "Pizza");
 		
 		this.add(pizzaButton);
 
@@ -127,7 +127,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 			
 		});
 		
-		beverageButton = new OrderItemJButton(startX+spacex, startY, buttonWidth, buttonHeight, fontButtons, "beveragetest");
+		beverageButton = new OrderItemJButton(startX+spacex, startY, buttonWidth, buttonHeight, fontButtons, "Beverage");
 		
 		this.add(beverageButton);
 
@@ -145,7 +145,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 			
 		});
 		
-		focacciaButton = new OrderItemJButton(startX, startY+spacey, buttonWidth, buttonHeight, fontButtons, "focacciatest");
+		focacciaButton = new OrderItemJButton(startX, startY+spacey, buttonWidth, buttonHeight, fontButtons, "Focaccia");
 	
 		this.add(focacciaButton);
 

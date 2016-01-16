@@ -45,7 +45,7 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	private JButton btnPlusOutisde;
 	private JButton btnPlusInside;
 	
-	public static JProgressBar progressBar = new JProgressBar();
+	static JProgressBar progressBar;
 
 	/**
 	 * Launch the application.
@@ -101,6 +101,8 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		progressBar = new JProgressBar();
+		
 		frame = new JFrame();
 		frame.setMaximumSize(new Dimension(550, 750));
 		frame.setMinimumSize(new Dimension(550, 750));
@@ -257,7 +259,7 @@ public class PizzeriaDiddieffeUI extends JPanel {
 				outsidePanel.setVisible(true);
 			}
 		});
-		
+		setProgressBarValue(10);
 		JButton btnDone = new JButton("Done");
 		btnDone.setBackground(new Color(255, 255, 255));
 		btnDone.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -289,7 +291,7 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		}
 			chooseInsideOutside.setVisible(true);
 			
-			Image orderOutside_bg=new ImageIcon("").getImage();//creo pannello per ordini interni 
+			Image orderOutside_bg=new ImageIcon("res/OrderManager.jpg").getImage();//creo pannello per ordini interni 
 			orderPanel=new JPanelwithBackgroundOrder(orderOutside_bg,frame);
 			frame.getContentPane().add(orderPanel);
 			Image inside_bg = new ImageIcon ("res/parquetBG.jpg").getImage();
@@ -312,5 +314,9 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	
 	}
 	
+	static void setProgressBarValue (int value) {
+		System.out.println("in" + value);
+		progressBar.setValue(value);
+	}
 	
 }
