@@ -183,7 +183,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 					try {
 						createChoseenBaseCase(currentCaseBase);
 						
-						Iterator iteratore=getListIterator(currentTopping);
+						Iterator<String> iteratore=getListIterator(currentTopping);
 						while(iteratore.hasNext()){
 							String currentToppingName=(String)iteratore.next();
 							createChoosenToppings(currentToppingName);
@@ -201,6 +201,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 					
 					buttonSound.playSound();
 					resetAllButtons();
+					currentTopping=new LinkedList<>();
 					currentCaseBase=null;
 					currentItem=null;
 			}
@@ -219,7 +220,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 		return list.iterator();
 	}
 	
-	private Iterator getListIterator(LinkedList list) {
+	private Iterator<String> getListIterator(LinkedList<String> list) {
 		return list.iterator();
 	}
 

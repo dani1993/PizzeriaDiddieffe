@@ -1,9 +1,16 @@
+package gui;
 
+public class prova {
+
+}
 package gui;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -12,10 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-class JPanelWithBackgroundImgAndBackBtn extends JPanel{
+class JPanelWithBackgroundImgAndBackBtn extends JPanelWithBackgroundImg {
 
 	private Image img;
 	private ClickableButtonWithImage btnBackToInOutScreen;
