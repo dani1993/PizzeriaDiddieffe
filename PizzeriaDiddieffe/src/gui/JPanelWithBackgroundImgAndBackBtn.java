@@ -1,6 +1,7 @@
 
 package gui;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -14,6 +15,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 
@@ -42,6 +44,9 @@ class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 	private void paintBackButton() {
 //		Image image = new ImageIcon("res/Back.jpg").getImage().getScaledInstance(100, 50, java.awt.Image.SCALE_SMOOTH);
 		btnBackToInOutScreen = new ClickableButtonWithImage(10, 10, 100, 50, 0, "Back");
+//		btnBackToInOutScreen.setOpaque(false);
+//		btnBackToInOutScreen.setContentAreaFilled(false);
+		btnBackToInOutScreen.setBorderPainted(false);
 		// btnBackToInOutScreen.setFont(new Font("Lucida Grande", Font.PLAIN,
 		// 16));
 		// btnBackToInOutScreen.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
