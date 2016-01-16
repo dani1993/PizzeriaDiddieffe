@@ -46,6 +46,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 	private int scrollPaneWidth = 530;
 	private int scrollPaneHeight = 420;
 	
+	private int progressBarValue = 0;
 
 	private JPanel panel;
 
@@ -144,7 +145,10 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 	private void createPizzaToppingsItems(String[] toppingsItems, String currentPackage, int pizzaBasicItems) {
 		for (int i = 0; i < toppingsItems.length; i++) {
 			String className = currentClassName[i+pizzaBasicItems];
+			progressBarValue = progressBarValue + 5;
+			PizzeriaDiddieffeUI.progressBar.setValue(progressBarValue);
 
+			System.out.println(progressBarValue);
 			// se ho già 4 toppings per colonna vado alla colonna dopo
 			if (i % toppingsForColumn == 0 && i != 0) {
 				toppingX = toppingX + toppingXToMove;

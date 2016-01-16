@@ -22,7 +22,6 @@ import java.awt.Image;
 import java.awt.Cursor;
 import javax.swing.border.LineBorder;
 
-
 public class PizzeriaDiddieffeUI extends JPanel {
 	
 	private  int numberOfTablesInside = 0;
@@ -46,7 +45,8 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	private JButton btnPlusOutisde;
 	private JButton btnPlusInside;
 	
-	private JProgressBar progressBar = new JProgressBar();
+	public static JProgressBar progressBar = new JProgressBar();
+
 	/**
 	 * Launch the application.
 	 */
@@ -113,7 +113,7 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		frame.getContentPane().add(chooseNumberOfTables, "name_1230783104452");
 		chooseNumberOfTables.setLayout(null);
 		//my progress bar
-		progressBar.setBounds(200, 500, 300, 50);
+		progressBar.setBounds(150, 500, 300, 50);
 		chooseNumberOfTables.add(progressBar);
 	    progressBar.setStringPainted(true);
 
@@ -223,7 +223,6 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		frame.getContentPane().add(chooseInsideOutside, "name_1233757414457");
 		chooseInsideOutside.setLayout(new GridLayout(2, 0, 0, 0));
 
-		progressBar.setValue(2);
 
 		final JButton btnInside = new JButton("Inside");
 		btnInside.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
@@ -242,7 +241,6 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		});
 		chooseInsideOutside.add(btnInside);
 		
-		progressBar.setValue(5);
 		final JButton btnOutside = new JButton("Outside");
 		btnOutside.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		btnOutside.setForeground(new Color(0, 0, 0));
@@ -289,28 +287,20 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		if(outsideTables<1){
 			btn_outside.setEnabled(false);
 		}
-			progressBar.setValue(10);
-			System.out.println("now");
 			chooseInsideOutside.setVisible(true);
 			
 			Image orderOutside_bg=new ImageIcon("").getImage();//creo pannello per ordini interni 
-			System.out.println("aaaa");
 			orderPanel=new JPanelwithBackgroundOrder(orderOutside_bg,frame);
-			System.out.println("sss");
 			frame.getContentPane().add(orderPanel);
-			System.out.println("after");
 			Image inside_bg = new ImageIcon ("res/parquetBG.jpg").getImage();
 			insidePanel = new JPanelwithBackgroundTables(inside_bg, insideTables, "inside",orderPanel);
 			insidePanel.setLayout(null);
 			frame.getContentPane().add(insidePanel);
 			
-			progressBar.setValue(20);
 			
 			Image outside_bg = new ImageIcon ("res/outsideBG.jpg").getImage();
 			outsidePanel = new JPanelwithBackgroundTables(outside_bg, outsideTables, "outside",orderPanel);
 			frame.getContentPane().add(outsidePanel);
-			progressBar.setValue(30);
-			System.out.println("don");
 			setBackButtons();
 		
 	}
