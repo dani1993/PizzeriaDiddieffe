@@ -29,15 +29,8 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 	private int width=550;
 	private int height=750;
 
-	private String[] pizzaClasses = {"BasicWhitePizza","BasicBrownPizza","BasicDoubleWhitePizza","TomatoSauce","Mozzarella","Anchovy"
+	private String[] pizzaClasses = {"BasicWhitePizza","BasicDoubleWhitePizza","BasicBrownPizza","TomatoSauce","Mozzarella","Anchovy"
 			,"BufalaMozzarella","Ham","Onion","Olive","Mushrooms","Pepperoni","Porcini","Tuna","Sausage","Cream","Artichokes","Shrimps"};
-	
-	private String[] beverageClasses = {"EmptyLittleGlass","EmptyMediumGlass","EmptyLargeGlass", "Water","FizzyWater","CocaCola","Fanta","Beer"};
-	
-	private String[] focacciaClasses = {"BasicWhiteFocaccia", "BasicBrownFocaccia", "Basic5CerealsFocaccia", "Mortadella","CookedHam"
-			,"FreshBufalaMozzarella","FreshMozzarella","FreshTomato","Lettuce","Nutella","Olive","Pecorino","RawHam","Rosemary","Sausage"
-			,"Stracchino"};
-	
 	
 	private String[] pizzaBasicClasses={"Basic Pizza", "Double Dough", "Brown Dough"};
 	private String[] pizzaToppingImages = {"Tomato Sauce","Mozzarella", "Anchovy","Bufala","Ham","Onions","Olives","Mushrooms","Pepperoni"
@@ -46,12 +39,16 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 	private static String  menuPizzaImagePath="res/pizzaOrdering.jpg";
 	private String pizzaPackage="pizza";
 	
+	private String[] focacciaClasses = {"BasicWhiteFocaccia", "BasicBrownFocaccia", "Basic5CerealsFocaccia", "Mortadella","CookedHam"
+			,"FreshBufalaMozzarella","FreshMozzarella","FreshTomato","Lettuce","Nutella","Olive","Pecorino","RawHam","Rosemary","Sausage"
+			,"Stracchino"};
 	private String[] focaccialist={"Basic Focaccia","Brown Focaccia","Five Cereals"};
 	private String[] focacciaToppingList = {"Mortadella","Cooked Ham","Bufala","Mozzarella","Tomatoes","Lettuce","Nutella","Olives","Pecorino"
 			,"Raw Ham","Rosemary","Sausages","Stracchino"};
 	private static String  menuFocacciaImagePath="res/FocacciaOrdering.jpg";
 	private String focacciaPackage="focaccia";
 	
+	private String[] beverageClasses = {"EmptyLittleGlass","EmptyMediumGlass","EmptyLargeGlass", "Water","FizzyWater","CocaCola","Fanta","Beer"};
 	private String[] beveragelist={"Small","Medium","Large"};
 	private String[] beverageToppingList = {"Water","Fizzy Water","Coke","Fanta","Beer"};
 	private static String  menuBeverageImagePath="res/DrinksOrdering.jpg";

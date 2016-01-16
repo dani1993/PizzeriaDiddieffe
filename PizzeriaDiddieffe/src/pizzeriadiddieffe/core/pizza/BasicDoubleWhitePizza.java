@@ -4,7 +4,7 @@ import pizzeriadiddieffe.core.Item;
 
 public class BasicDoubleWhitePizza extends Pizza {
 	private final static double PRICE = 4;
-	private final static String INFO = "Double white dough pizza";
+	private final static String INFO = "Double dough pizza";
 	
 	@Override
 	public String getInfo(){
