@@ -32,6 +32,7 @@ public class Order implements Item {
 		}
 		return totPrice;
 	}
+	
 
 	@Override
 	public String getInfo() {

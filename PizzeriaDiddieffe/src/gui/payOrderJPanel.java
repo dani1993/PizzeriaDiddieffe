@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.hamcrest.core.IsInstanceOf;
+
 import pizzeriadiddieffe.core.Order;
 
 public class payOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
@@ -30,7 +32,7 @@ public class payOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 	
 	private JButton ticketPay;
 	private String ticketImage="res/ticketImage.jpg";
-	private String ticketText="Ticket";
+	private String ticketText="Mobile Pay";
 	
 	private payMethodInterface payStrategy; 
 	private payChooser myPayChooser; 
@@ -97,9 +99,9 @@ public class payOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 			Image cashImageBG=new ImageIcon(cashImage).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
 			return new CashPayment(cashImageBG);
 		}
-		else if(text.equals("Ticket")){
+		else if(text.equals("Mobile Pay")){
 			Image ticketImageBG=new ImageIcon(ticketImage).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
-			return new TicketPayMethod(ticketImageBG);
+			return new MobilePayMethod(ticketImageBG);
 		}
 		Image bancomatImageBG=new ImageIcon(bancomatImage).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
 		return new BancomatPayMethod(bancomatImageBG);
