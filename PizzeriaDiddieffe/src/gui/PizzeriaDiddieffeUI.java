@@ -33,6 +33,7 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	private JButton btnMinusOutside;
 	
 	private JFrame frame;
+	private PizzeriaDiddieffeUI chooseNumberOfTables;
 	private JLabel labelNumberOfTablesOutside;
 	
 	private JPanel chooseInsideOutside;
@@ -45,7 +46,14 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	private JButton btnPlusOutisde;
 	private JButton btnPlusInside;
 	
-//	static JProgressBar progressBar;
+	private Image img;
+	private FormattedLabel myLabelSetter=new FormattedLabel();
+	private String currentFont="Lucida Grande";
+	private int fontSize=18;
+	private Color labelTextColor=Color.white;
+	private Color buttonTextColor=Color.black;
+	
+	private SignFormattedButton myButtonSetter=new SignFormattedButton();
 
 	/**
 	 * Launch the application.
@@ -67,10 +75,6 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	 * Create the application.
 	 */
 	
-	private Image img;
-	
-	
-	
 	public PizzeriaDiddieffeUI(String img) {
 		this(new ImageIcon(img).getImage());
 	}
@@ -89,7 +93,6 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	  protected void paintComponent(Graphics g) {
 
 	    super.paintComponent(g);
-	    	//draw background image
 	        g.drawImage(img, 0, 0, null);
 	}
 	
@@ -101,7 +104,6 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-//		progressBar = new JProgressBar();
 		
 		frame = new JFrame();
 		frame.setMaximumSize(new Dimension(550, 750));
@@ -110,35 +112,15 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 		
-		final PizzeriaDiddieffeUI chooseNumberOfTables = new PizzeriaDiddieffeUI("res/mainBG.jpg");
+		chooseNumberOfTables = new PizzeriaDiddieffeUI("res/mainBG.jpg");
 //		chooseNumberOfTables.setBackground(new Color(139, 69, 19));
 		frame.getContentPane().add(chooseNumberOfTables, "name_1230783104452");
 		chooseNumberOfTables.setLayout(null);
-		//my progress bar
-//		progressBar.setBounds(150, 500, 300, 50);
-//		chooseNumberOfTables.add(progressBar);
-//	    progressBar.setStringPainted(true);
-
-		
-		JLabel lblNumberOfTables = new JLabel("Number of tables inside:");
-		lblNumberOfTables.setForeground(Color.white);
-		lblNumberOfTables.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNumberOfTables.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblNumberOfTables.setBounds(155, 162, 240, 20);
-		lblNumberOfTables.setHorizontalTextPosition(SwingConstants.CENTER);
-		chooseNumberOfTables.add(lblNumberOfTables);
-		
-		final JLabel labelNumberOfTablesInside = new JLabel("0");
-		labelNumberOfTablesInside.setForeground(Color.white);
-		labelNumberOfTablesInside.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		labelNumberOfTablesInside.setBounds(255, 226, 40, 20);
-		labelNumberOfTablesInside.setHorizontalAlignment(SwingConstants.CENTER);
-		labelNumberOfTablesInside.setHorizontalTextPosition(SwingConstants.CENTER);
-		chooseNumberOfTables.add(labelNumberOfTablesInside);
-		
-		btnMinusInside = new JButton("-");
-		btnMinusInside.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnMinusInside.setEnabled(false);
+	
+		JLabel lblNumberOfTableInside=createLabel(155, 162, 240, 20,"Number of tables inside:");
+		final JLabel labelNumberOfTablesInside=createLabel(255, 226, 40, 20,"0");
+	
+		btnMinusInside=createButtons(165, 212, 50, 50,"-",false);
 		btnMinusInside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numberOfTablesInside--;
@@ -149,14 +131,9 @@ public class PizzeriaDiddieffeUI extends JPanel {
 				btnPlusInside.setEnabled(true);
 			}
 		});
-		btnMinusInside.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		btnMinusInside.setBounds(165, 212, 50, 50);
-		chooseNumberOfTables.add(btnMinusInside);
 		
-		
-		
-		btnPlusInside = new JButton("+");
-		btnPlusInside.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	
+		btnPlusInside=createButtons(335, 212, 50, 50,"+",true);
 		btnPlusInside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numberOfTablesInside++;
@@ -167,21 +144,11 @@ public class PizzeriaDiddieffeUI extends JPanel {
 				btnMinusInside.setEnabled(true);
 			}
 		});
-		btnPlusInside.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		btnPlusInside.setBounds(335, 212, 50, 50);
-		chooseNumberOfTables.add(btnPlusInside);
 		
-		JLabel lblNumberOfTable = new JLabel("Number of table outside:");
-		lblNumberOfTable.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNumberOfTable.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNumberOfTable.setForeground(Color.white);
-		lblNumberOfTable.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblNumberOfTable.setBounds(155, 358, 240, 20);
-		chooseNumberOfTables.add(lblNumberOfTable);
 		
-		btnMinusOutside = new JButton("-");
-		btnMinusOutside.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnMinusOutside.setEnabled(false);
+		JLabel lblNumberOfTableOutside=createLabel(155, 358, 240, 20,"Number of tables outside:");
+		
+		btnMinusOutside=createButtons(165, 398, 50, 50,"-",false);
 		btnMinusOutside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numberOfTablesOutside--;
@@ -192,21 +159,12 @@ public class PizzeriaDiddieffeUI extends JPanel {
 				btnPlusOutisde.setEnabled(true);
 			}
 		});
-		btnMinusOutside.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		btnMinusOutside.setBounds(165, 398, 50, 50);
-		chooseNumberOfTables.add(btnMinusOutside);
 		
-		labelNumberOfTablesOutside = new JLabel("0");
-		labelNumberOfTablesOutside.setForeground(Color.white);
-		labelNumberOfTablesOutside.setHorizontalAlignment(SwingConstants.CENTER);
-		labelNumberOfTablesOutside.setHorizontalTextPosition(SwingConstants.CENTER);
-		labelNumberOfTablesOutside.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		labelNumberOfTablesOutside.setBounds(255, 412, 40, 20);
-		chooseNumberOfTables.add(labelNumberOfTablesOutside);
 		
-		btnPlusOutisde = new JButton("+");
-		btnPlusOutisde.setFocusPainted(false);
-		btnPlusOutisde.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		labelNumberOfTablesOutside=createLabel(255, 412, 40, 20,"0");
+		
+		btnPlusOutisde=createButtons(335, 398, 50, 50,"+",true);
 		btnPlusOutisde.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numberOfTablesOutside++;
@@ -217,24 +175,16 @@ public class PizzeriaDiddieffeUI extends JPanel {
 				btnMinusOutside.setEnabled(true);
 			}
 		});
-		btnPlusOutisde.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		btnPlusOutisde.setBounds(335, 398, 50, 50);
-		chooseNumberOfTables.add(btnPlusOutisde);
+		
+	
 		
 		chooseInsideOutside = new JPanel();// potrebbe essere una classe 
 		frame.getContentPane().add(chooseInsideOutside, "name_1233757414457");
 		chooseInsideOutside.setLayout(new GridLayout(2, 0, 0, 0));
-
-
-		final JButton btnInside = new JButton("Inside");
+		
+	
+		final OrderItemJButton btnInside = new OrderItemJButton(0,0,550,375,60,"Inside");
 		btnInside.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		btnInside.setForeground(new Color(0, 0, 0));
-		btnInside.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnInside.setIcon(new ImageIcon("res/insideButton.jpg"));
-		btnInside.setFont(new Font("Lucida Grande", Font.BOLD, 60));
-		btnInside.setText("Inside");
-		btnInside.setHorizontalTextPosition(JButton.CENTER);
-		btnInside.setVerticalTextPosition(JButton.CENTER);
 		btnInside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chooseInsideOutside.setVisible(false);
@@ -243,42 +193,53 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		});
 		chooseInsideOutside.add(btnInside);
 		
-		final JButton btnOutside = new JButton("Outside");
+		
+		
+		final OrderItemJButton btnOutside = new OrderItemJButton(0,0,550,375,60,"Outside");
 		btnOutside.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		btnOutside.setForeground(new Color(0, 0, 0));
-		btnOutside.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnOutside.setIcon(new ImageIcon("res/outsideButton.jpg"));
-		chooseInsideOutside.add(btnOutside);
-		btnOutside.setFont(new Font("Lucida Grande", Font.BOLD, 60));
-		btnOutside.setText("Outside");
-		btnOutside.setHorizontalTextPosition(JButton.CENTER);
-		btnOutside.setVerticalTextPosition(JButton.CENTER);
 		btnOutside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chooseInsideOutside.setVisible(false);
 				outsidePanel.setVisible(true);
 			}
 		});
-//		setProgressBarValue(10);
-		JButton btnDone = new JButton("Done");
-		btnDone.setBackground(new Color(255, 255, 255));
-		btnDone.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		chooseInsideOutside.add(btnOutside);
+		
+		
+		JButton btnDone=createButtons(175, 617, 200, 60,"Done",true);
 		btnDone.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(numberOfTablesInside>0 || numberOfTablesOutside>0){
-				chooseNumberOfTables.setVisible(false);
-				createPlacesPanels(numberOfTablesInside, numberOfTablesOutside,btnInside,btnOutside);
+		public void actionPerformed(ActionEvent e) {
+			if(numberOfTablesInside>0 || numberOfTablesOutside>0){
+			chooseNumberOfTables.setVisible(false);
+			createPlacesPanels(numberOfTablesInside, numberOfTablesOutside,btnInside,btnOutside);
+		}
 			}
-				}
-		});
-		btnDone.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		btnDone.setBounds(175, 617, 200, 60);
-		chooseNumberOfTables.add(btnDone);
+	});
 		
 		
 		
 	}
+
 	
+	private JButton createButtons(int x, int y,int width,int height,String text,boolean enable) {
+		myButtonSetter.createNewComponent();
+		myButtonSetter.setComponentTextProp(text, currentFont, fontSize, buttonTextColor);
+		myButtonSetter.setComponentProp(x, y, width, height);
+		myButtonSetter.setButtonEnabled(enable);
+		JButton button = myButtonSetter.getFormattedComponent();
+		chooseNumberOfTables.add(button);
+		return button;
+	}
+
+	
+	private JLabel createLabel(int x, int y,int width,int height,String text) {
+		myLabelSetter.createNewComponent();
+		myLabelSetter.setComponentTextProp(text, currentFont, fontSize,labelTextColor);
+		myLabelSetter.setComponentProp(x, y, width, height);
+		JLabel label = myLabelSetter.getFormattedComponent();
+		chooseNumberOfTables.add(label);
+		return label;
+	}
 	
 	
 	private void createPlacesPanels(int insideTables,int outsideTables,JButton btn_inside,JButton btn_outside){
@@ -294,11 +255,11 @@ public class PizzeriaDiddieffeUI extends JPanel {
 			Image orderOutside_bg=new ImageIcon("res/OrderManager.jpg").getImage();//creo pannello per ordini interni 
 			orderPanel=new JPanelwithBackgroundOrder(orderOutside_bg,frame);
 			frame.getContentPane().add(orderPanel);
+			
 			Image inside_bg = new ImageIcon ("res/parquetBG.jpg").getImage();
 			insidePanel = new JPanelwithBackgroundTables(inside_bg, insideTables, "inside",orderPanel);
 			insidePanel.setLayout(null);
 			frame.getContentPane().add(insidePanel);
-			
 			
 			Image outside_bg = new ImageIcon ("res/outsideBG.jpg").getImage();
 			outsidePanel = new JPanelwithBackgroundTables(outside_bg, outsideTables, "outside",orderPanel);
@@ -308,15 +269,9 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	}
 	
 	private void setBackButtons(){
-		
 		insidePanel.setVisiblePanel(chooseInsideOutside,frame);
 		outsidePanel.setVisiblePanel(chooseInsideOutside,frame);
 	
 	}
-	
-//	static void setProgressBarValue (int value) {
-//		System.out.println("in" + value);
-//		progressBar.setValue(value);
-//	}
-	
+
 }
