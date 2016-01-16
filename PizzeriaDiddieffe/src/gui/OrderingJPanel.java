@@ -1,19 +1,16 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -30,8 +27,8 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 	private JButton AddToOrderButton;
 	private JPanelWithBackgroundImgAndBackBtn currentJPanel = this;
 	private int addButtonWidth = 60;
-	private int addButtonHeight = 200;
-	private int addButtonx = 150;
+	private int addButtonHeight = 250;
+	private int addButtonx = 130;
 	private int addButtony = 640;
 	private CreateBaseCaseByName myCreator;
 	private Object object;
@@ -39,16 +36,12 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 	private Item currentItem;
 	private String currentClass;
 	private String[] currentClassName;
-	private ItemRemoverFromOrder myRemover;
-	private LinkedList<JButton> buttonList;
-	private int scrollPanex = 10;
-	private int scrollPaney = 180;
-	private int scrollPaneWidth = 530;
-	private int scrollPaneHeight = 420;
+	private Sound buttonSound;
 	
-	private int progressBarValue = 0;
-
-	private JPanel panel;
+	private LinkedList<JButton> baseCasesButtonList;
+	private LinkedList<JButton> toppingButtonList;
+	private LinkedList<String> currentTopping;
+	private String currentCaseBase;
 
 	private int baseFontSize = 15;
 	private int baseCasesx = 75; // 75
@@ -66,135 +59,118 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 	private int toppingFontSize = 13;
 	private int toppingYToMove = 80;
 	private int toppingXToMove = 125;
+	
+	private String addToOrderSound="res/addToOrderSound.wav";
+	private String clearSound="res/clearCurrentOrderSound.wav";
+	
+	private String[] baseCasesNameList;
+	private String[] toppingNameList;
 
-	private GridBagConstraints gdc;
 
-	public OrderingJPanel(Image img, String currentBasePackage, String[] pizzaItems, String[] pizzaToppingList, String[] classNameList) {
+	public OrderingJPanel(Image img, String currentBasePackage, String[] baseCasesNameList, String[] toppingNameList, String[] classNameList) {
 		super(img);
 		myCreator = new CreateBaseCaseByName();
-		myRemover = new ItemRemoverFromOrder();
-		buttonList = new LinkedList<JButton>();
-		
-		panel = new JPanel();
-
+		baseCasesButtonList = new LinkedList<JButton>();
+		toppingButtonList=new LinkedList<JButton>();
+		currentTopping=new LinkedList<String>();
+		buttonSound=new Sound();
 		currentClassName = classNameList;
-		// panel.setLayout(new GridLayout(6,6));
-		// gdc = new GridBagConstraints(
-		// panel.setLayout(currentJPanel.getLayout());
-		//
-		// JScrollPane scrollPane = new JScrollPane(panel);
-		// scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		// scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		// scrollPane.setBounds(scrollPanex, scrollPaney, scrollPaneWidth,
-		// scrollPaneHeight);
-		// scrollPane.setBorder(new LineBorder(Color.white,0));
-		// scrollPane.setWheelScrollingEnabled(true);
-		// currentJPanel.add(scrollPane);
-		System.out.println(currentBasePackage);
+		this.baseCasesNameList=baseCasesNameList;
 		this.currentClass = currentBasePackage;
-		String currentToppingPackage = currentBasePackage + ".topping";
-		createPizzaItems(pizzaItems, currentBasePackage);
-		createPizzaToppingsItems(pizzaToppingList, currentToppingPackage, (pizzaItems.length));
-		
+		this.toppingNameList=toppingNameList;
+	       
+		createPizzaToppingsItems(toppingNameList);
+		createPizzaItems(baseCasesNameList);
 		
 		addOrderButton();
 
 	}
 
+	
 	public void setOrder(Order currentOrder) {
 		this.currentOrder = currentOrder;
 	}
 
-	private void createPizzaItems(String[] pizzaItems, String currentPackage) {
-		final String fullPackagePath = "pizzeriadiddieffe.core." + currentPackage + ".";
-		
-		// create buttons for the 3 doughs
+	
+	private void createPizzaItems(String[] pizzaItems) {
 		for (int i = 0; i < pizzaItems.length; i++) {
-			String className = currentClassName[i];
+			
 			String currentItemText = pizzaItems[i];
 			final OrderItemJButton currentItemButton = new OrderItemJButton(baseCasesx, baseCasesy, baseCasesWidth,
 					baseCasesHeight, baseFontSize, currentItemText);
+			baseCasesButtonList.add(currentItemButton);
 			currentItemButton.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent e) {
-
-					System.out.println(currentItemButton.getText() + " creato oggetto/inserito in List.");
 					changeBorderColor(currentItemButton);
-					buttonList.add(currentItemButton);
-					try {
-						object = myCreator.createObjectByName(fullPackagePath + className);
-					} catch (Exception exception) {
-						System.out.println(exception.getMessage());
+					if(getBorderColor(currentItemButton).equals(Color.green)){
+					baseCasesButtonList.add(currentItemButton);
+					currentCaseBase=currentItemButton.getText();
+					setOthersButtons(false,baseCasesButtonList,currentItemButton);
+					setOthersButtons(true,toppingButtonList,currentItemButton);
+					}else{
+						currentCaseBase=null;
+						baseCasesButtonList.remove(currentItemButton);
+						setOthersButtons(true,baseCasesButtonList,currentItemButton);
+						setOthersButtons(false, toppingButtonList, currentItemButton);
 					}
-
-					currentItem = ((Item) object);
 				}
 			});
-			// gdc.gridx=baseCasesx;
-			// gdc.gridy=baseCasesy;
-			//
-			// gdc.anchor = GridBagConstraints.FIRST_LINE_START;
-			// panel.add(currentItemButton,gdc);
-			currentJPanel.add(currentItemButton);
-
+		currentJPanel.add(currentItemButton);
+			
 			baseCasesx = baseCasesx + baseCaseXToMove;
 		}
 
 	}
+	
+	private void setOthersButtons(boolean enable,LinkedList<JButton> list,JButton mybutton) {
+		Iterator<JButton> iteratore=getButtonListIterator(list);
+		while(iteratore.hasNext()){
+			JButton currentButton=iteratore.next();
+			currentButton.setEnabled(enable);
+			if(enable==false && mybutton.equals(currentButton)){
+				currentButton.setEnabled(true);
+			}
+		}
+		
+	}
+	
 
-	private void createPizzaToppingsItems(String[] toppingsItems, String currentPackage, int pizzaBasicItems) {
+	private void createPizzaToppingsItems(String[] toppingsItems) {
 		for (int i = 0; i < toppingsItems.length; i++) {
-			String className = currentClassName[i+pizzaBasicItems];
-			progressBarValue = progressBarValue + 5;
-			PizzeriaDiddieffeUI.setProgressBarValue(progressBarValue);
-
- 			// se ho già 4 toppings per colonna vado alla colonna dopo
+			
 			if (i % toppingsForColumn == 0 && i != 0) {
 				toppingX = toppingX + toppingXToMove;
 				toppingY = toppingYToStart;
 			}
-
-			final String fullPackagePath = "pizzeriadiddieffe.core." + currentPackage + ".";
-			// create buttons for the toppings
-
 			final String currentItemText = toppingsItems[i];
-			
 			final OrderItemJButton currentItemButton = new OrderItemJButton(toppingX, toppingY, toppingWidth,
 					toppingHeight, toppingFontSize, currentItemText);
+			toppingButtonList.add(currentItemButton);
+			currentItemButton.setEnabled(false);
 			currentItemButton.addActionListener(new ActionListener() {
+				
 				public void actionPerformed(ActionEvent e) {
 					changeBorderColor(currentItemButton);
-
 					if (getBorderColor(currentItemButton).equals(Color.green)) {
-						buttonList.add(currentItemButton);
-						try {
-							System.out.println(fullPackagePath + currentItemButton.getText() + currentItem + currentClass);
-
-							object = myCreator.createToppingByName(fullPackagePath + className,
-									currentItem, currentClass);
-						} catch (Exception exception) {
-//							System.out.println(exception.getMessage());
-							System.out.println(currentItem.getPrice());
-							System.out.println("errore");
-						}
-
-						System.out.println("Id ordine " + currentOrder.getId());
-						castToCurrentClass(currentClass);
+						currentTopping.add(currentItemButton.getText());
+						toppingButtonList.add(currentItemButton);
 					} else {
-//						(Pizza)object.remove
-//						myRemover.removeItem(currentItem, currentItemText, currentClass);
+						currentTopping.remove(currentItemButton.getText());
+						toppingButtonList.remove(currentItemButton);
 					}
 				}
-
 			});
 
 			currentJPanel.add(currentItemButton);
+			
 			toppingY = toppingY + toppingYToMove;
 		}
 	}
 
+	
 	private void addOrderButton() {
-		AddToOrderButton = new JButton("Add To Order");
+		AddToOrderButton = new JButton("Add To Order/Clear");
 		AddToOrderButton.setFont(new Font("Lucida Grande", Font.BOLD, 16));
 		AddToOrderButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		AddToOrderButton.setBounds(addButtonx, addButtony, addButtonHeight, addButtonWidth);
@@ -202,32 +178,68 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 
 		AddToOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (currentItem != null) {
+				buttonSound.setSound(clearSound);
+				if (currentCaseBase != null) {
 					try {
+						createChoseenBaseCase(currentCaseBase);
+						
+						Iterator iteratore=getListIterator(currentTopping);
+						while(iteratore.hasNext()){
+							String currentToppingName=(String)iteratore.next();
+							createChoosenToppings(currentToppingName);
+							
+						}
+						
 						currentOrder.add(currentItem);
-						resetButtons();
-						System.out.println(currentItem.getInfo());
+						
+						
+						buttonSound.setSound(addToOrderSound);
 					} catch (Exception e1) {
 						System.out.println(e1);
 					}
 				}
+					
+					buttonSound.playSound();
+					resetAllButtons();
+					currentCaseBase=null;
+					currentItem=null;
 			}
 
 		});
 	}
-
-	private Iterator getIterator() {
-		return buttonList.iterator();
+	
+	private void resetAllButtons(){
+		resetButtons();
+		setOthersButtons(false, toppingButtonList, new JButton());
+		setOthersButtons(true, baseCasesButtonList, new JButton());
 	}
 
+	
+	private Iterator<JButton> getButtonListIterator(LinkedList<JButton> list) {
+		return list.iterator();
+	}
+	
+	private Iterator getListIterator(LinkedList list) {
+		return list.iterator();
+	}
+
+
+	
 	private void resetButtons() {
-		Iterator<JButton> iteratore = getIterator();
-		while (iteratore.hasNext()) {
-			JButton currentButton = iteratore.next();
-			resetBorderColor(currentButton);
+		Iterator<JButton> iteratorBasecases = getButtonListIterator(baseCasesButtonList);
+		Iterator<JButton> iteratortopping = getButtonListIterator(toppingButtonList);
+		
+		resetListButtons(iteratorBasecases);
+		resetListButtons(iteratortopping);
 		}
-	}
 
+	private void resetListButtons(Iterator<JButton> iterator){
+		while (iterator.hasNext()) {
+			JButton currentButton = iterator.next();
+			resetBorderColor(currentButton);
+	}
+	}
+	
 	private void resetBorderColor(JButton currentButton) {
 		currentButton.setBorder(new LineBorder(Color.white, 3, true));
 
@@ -235,18 +247,67 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 
 	private void changeBorderColor(OrderItemJButton currentItemButton) {
 		Color currentBorder = getBorderColor(currentItemButton);
+		if(currentItemButton.isEnabled()){
 		if (currentBorder == Color.white) {
 			currentItemButton.setBorder((new LineBorder(Color.green, 3, true)));
 		} else {
 			currentItemButton.setBorder(new LineBorder(Color.white, 3, true));
 		}
+		}
 	}
 
+	
 	private Color getBorderColor(OrderItemJButton currentItemButton) {
 		Color currentBorder = ((LineBorder) currentItemButton.getBorder()).getLineColor();
 		return currentBorder;
 	}
+	
+	
+	private void createChoseenBaseCase(String className) {
+		
+		String currentclassName=getClassName(className,baseCasesNameList);
 
+		final String fullPackagePath = "pizzeriadiddieffe.core." + currentClass + ".";
+		try {
+			object = myCreator.createObjectByName(fullPackagePath + currentclassName);
+		} catch (Exception exception) {
+			System.out.println(exception.getMessage());
+		}
+		currentItem = ((Item) object);
+	}
+	
+	
+	private String getClassName(String className,String[] nameList) {
+		for(int i=0;i<currentClassName.length;i++){
+			if(nameList[i].equals(className)){
+				if(nameList.equals(toppingNameList)){
+					return currentClassName[i+baseCasesNameList.length];
+				}
+				return currentClassName[i];
+			}
+		}
+		return null;
+	}
+
+
+	private void createChoosenToppings( String currentPackage) {
+		
+		currentPackage=getClassName(currentPackage,toppingNameList);
+		
+		String fullPackagePath = "pizzeriadiddieffe.core." +currentClass+ ".topping." + currentPackage;
+		
+		
+		try {
+			object = myCreator.createToppingByName(fullPackagePath,
+					currentItem, currentClass);
+		} catch (Exception exception) {
+			System.out.println(currentItem.getPrice());
+			System.out.println("errore");
+		}
+		castToCurrentClass(currentClass);
+	}
+
+	
 	private void castToCurrentClass(String currentClass) {
 		if (currentClass.equals("pizza")) {
 			currentItem = (Pizza) object;

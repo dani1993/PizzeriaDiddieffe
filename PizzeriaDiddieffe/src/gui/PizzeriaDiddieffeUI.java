@@ -45,7 +45,7 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	private JButton btnPlusOutisde;
 	private JButton btnPlusInside;
 	
-	static JProgressBar progressBar;
+//	static JProgressBar progressBar;
 
 	/**
 	 * Launch the application.
@@ -101,7 +101,7 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		progressBar = new JProgressBar();
+//		progressBar = new JProgressBar();
 		
 		frame = new JFrame();
 		frame.setMaximumSize(new Dimension(550, 750));
@@ -115,9 +115,9 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		frame.getContentPane().add(chooseNumberOfTables, "name_1230783104452");
 		chooseNumberOfTables.setLayout(null);
 		//my progress bar
-		progressBar.setBounds(150, 500, 300, 50);
-		chooseNumberOfTables.add(progressBar);
-	    progressBar.setStringPainted(true);
+//		progressBar.setBounds(150, 500, 300, 50);
+//		chooseNumberOfTables.add(progressBar);
+//	    progressBar.setStringPainted(true);
 
 		
 		JLabel lblNumberOfTables = new JLabel("Number of tables inside:");
@@ -259,7 +259,7 @@ public class PizzeriaDiddieffeUI extends JPanel {
 				outsidePanel.setVisible(true);
 			}
 		});
-		setProgressBarValue(10);
+//		setProgressBarValue(10);
 		JButton btnDone = new JButton("Done");
 		btnDone.setBackground(new Color(255, 255, 255));
 		btnDone.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -314,9 +314,9 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	
 	}
 	
-	static void setProgressBarValue (int value) {
-		System.out.println("in" + value);
-		progressBar.setValue(value);
-	}
+//	static void setProgressBarValue (int value) {
+//		System.out.println("in" + value);
+//		progressBar.setValue(value);
+//	}
 	
 }

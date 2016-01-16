@@ -52,7 +52,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 	
 	private String[] beveragelist={"Small","Medium","Large"};
 	private String[] beverageToppingList = {"Water","Fizzy Water","Coke","Fanta","Beer"};
-	private static String  menuBeverageImagePath="res/drinksOrdering.jpg";
+	private static String  menuBeverageImagePath="res/DrinksOrdering.jpg";
 	private String beveragePackage="beverage";
 	
 	private static String orderViewerImagePath="res/bill.jpg";
@@ -71,7 +71,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 
 	
 	public void createOrderingPanels(JFrame myFrame) {
-		PizzeriaDiddieffeUI.progressBar.setValue(20);
+//		PizzeriaDiddieffeUI.progressBar.setValue(20);
 		int width = 550, height = 750;
 		Image menuPizzaImage=new ImageIcon(menuPizzaImagePath).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
 		pizzaOrderingPanel=new OrderingJPanel(menuPizzaImage,pizzaPackage,pizzaBasicClasses, pizzaToppingImages, pizzaClasses);
@@ -79,7 +79,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 		pizzaOrderingPanel.setVisiblePanel(currentJPanel, myFrame);
 		pizzaOrderingPanel.setVisible(false);
 		myFrame.add(pizzaOrderingPanel);
-		PizzeriaDiddieffeUI.progressBar.setValue(25);
+//		PizzeriaDiddieffeUI.progressBar.setValue(25);
 
 		Image menuBeverageImage=new ImageIcon(menuBeverageImagePath).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
 		beverageOrderingPanel=new OrderingJPanel(menuBeverageImage,beveragePackage,beveragelist, beverageToppingList, beverageClasses);
@@ -87,7 +87,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 		beverageOrderingPanel.setVisiblePanel(currentJPanel, myFrame);
 		beverageOrderingPanel.setVisible(false);
 		myFrame.add(beverageOrderingPanel);
-		PizzeriaDiddieffeUI.progressBar.setValue(30);
+//		PizzeriaDiddieffeUI.progressBar.setValue(30);
 
 		Image menuFocacciaImage=new ImageIcon(menuFocacciaImagePath).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
 		focacciaOrderingPanel=new OrderingJPanel(menuFocacciaImage, focacciaPackage,focaccialist, focacciaToppingList, focacciaClasses);
@@ -95,7 +95,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 		focacciaOrderingPanel.setVisiblePanel(currentJPanel, myFrame);
 		focacciaOrderingPanel.setVisible(false);
 		myFrame.add(focacciaOrderingPanel);
-		PizzeriaDiddieffeUI.progressBar.setValue(35);
+//		PizzeriaDiddieffeUI.progressBar.setValue(35);
 
 		orderViewer=new OrderViewer(menuPizzaImage,myFrame,currentJPanel);
 		orderViewer.setVisiblePanel(currentJPanel, myFrame);
