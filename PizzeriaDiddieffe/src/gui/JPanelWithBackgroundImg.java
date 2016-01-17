@@ -1,7 +1,11 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -22,6 +26,10 @@ class JPanelWithBackgroundImg extends JPanel {
 	private JPanel visible_panel;
 	private JFrame myFrame;
 	private ComponentsGetter myComponentGetter;
+	private ComponentCreator myComponentCreator;
+	private String buttonfontname="Lucida Grande";
+	private int buttonfontsize=16;
+	private Color buttoncolor=Color.black;
 	
 	public JPanelWithBackgroundImg(String img) {
 		this(new ImageIcon(img).getImage());
@@ -35,19 +43,21 @@ class JPanelWithBackgroundImg extends JPanel {
 		setMaximumSize(size);
 		setSize(size);
 		setLayout(null);
+		myComponentCreator=new ComponentCreator<>();
 		paintBackButton();
 		myComponentGetter=new ComponentsGetter();
+		
 		
 	}
 	
 	
 	private void paintBackButton() {
-//		btnBackToInOutScreen = new JButton ("Back");
+		btnBackToInOutScreen = createFormattedButton("Back", 10, 10, 100, 50);
 //		btnBackToInOutScreen.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-//		btnBackToInOutScreen.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+//		btnBackToInOutScreen.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		
 //		btnBackToInOutScreen.setBounds(10, 10, 100, 50);
-		btnBackToInOutScreen = new ClickableButtonWithImage(10, 10, 100, 50, 0, "Back");
-		this.add(btnBackToInOutScreen);
+//		btnBackToInOutScreen = new ClickableButtonWithImage(10, 10, 100, 50, 0, "Back");
+//		this.add(btnBackToInOutScreen);
 		btnBackToInOutScreen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setPanelsVisibility();
@@ -98,4 +108,11 @@ class JPanelWithBackgroundImg extends JPanel {
 	public JFrame getFrame(){
 		return myFrame;
 	}	
+	
+	private JButton createFormattedButton(String text,int buttonx,int buttony,int buttonwidth,int buttonheight){
+		myComponentCreator.createButton(text, buttonfontname,buttonfontsize, buttoncolor);
+		myComponentCreator.setUpComponentProp(buttonx, buttony, buttonwidth, buttonheight);
+		this.add(myComponentCreator.getButton());
+		return myComponentCreator.getButton();
+	}
 }

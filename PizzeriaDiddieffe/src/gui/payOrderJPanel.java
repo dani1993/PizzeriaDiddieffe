@@ -1,6 +1,7 @@
 package gui;
 
-
+import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 //import org.hamcrest.core.IsInstanceOf;
 
@@ -15,22 +17,27 @@ import pizzeriadiddieffe.core.Order;
 
 public class payOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 	
-	private int buttonsWidth=200;
-	private int buttonsHeight=100;
+	private int buttonsWidth=250;
+	private int buttonsHeight=200;
 	private int buttonsFont=30;
+	private int space=20;
+	private int singleButtonxSpace=10;
+	private int buttonsXSpace=buttonsWidth+space;
+	private int buttonsYSpace=buttonsHeight+space;
+	private int singleButtonX=singleButtonxSpace+buttonsXSpace/2;
 	private Order myOrder;
 	
 	private JButton cashPay;
-	private String cashImage="cashImage";
+	private String cashImage="res/cashImage.jpg";
 	private String cashText="Cash";
 	
 	private JButton BancomatPay;
-	private String bancomatImage="bancomatImage";
+	private String bancomatImage="res/bancomatImage.jpg";
 	private String bancomatText="Bancomat";
 	
-	private JButton mobilePay;
-	private String mobileImage="mobileImage";
-	private String mobileText="Mobile Pay";
+	private JButton ticketPay;
+	private String ticketImage="res/ticketImage.jpg";
+	private String ticketText="Mobile Pay";
 	
 	private payMethodInterface payStrategy; 
 	private payChooser myPayChooser; 
@@ -42,15 +49,15 @@ public class payOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 	
 	public payOrderJPanel(Image img,JFrame myFrame) {
 		super(img);
-		int x=150;
-		int y=150;
+		int x=15;
+		int y=200;
 		createPayButton(cashPay,x,y,cashImage,cashImage,cashImage,cashText);
-		x=350;
-		y=150;
+		x=x+buttonsXSpace;
+		y=200;
 		createPayButton(BancomatPay,x,y,bancomatImage,bancomatImage,bancomatImage,bancomatText);
-		x=150;
-		y=350;
-		createPayButton(mobilePay, x, y, mobileImage, mobileImage, mobileImage,mobileText);
+		x=singleButtonX;
+		y=y+buttonsYSpace;
+		createPayButton(ticketPay, x, y, ticketImage, ticketImage, ticketImage,ticketText);
 		this.myFrame=myFrame;
 		
 	}
@@ -98,8 +105,8 @@ public class payOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 			return new CashPayment(cashImageBG);
 		}
 		else if(text.equals("Mobile Pay")){
-			Image mobileImageBG=new ImageIcon(mobileImage).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
-			return new MobilePayMethod(mobileImageBG);
+			Image ticketImageBG=new ImageIcon(ticketImage).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
+			return new MobilePayMethod(ticketImageBG);
 		}
 		Image bancomatImageBG=new ImageIcon(bancomatImage).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
 		return new BancomatPayMethod(bancomatImageBG);

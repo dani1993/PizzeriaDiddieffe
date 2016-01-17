@@ -76,7 +76,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 	}
 
 	private void createOrderViewerPanel() {
-//		Image menuBeverageImage=new ImageIcon(menuBeverageImagePath).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+		Image menuBeverageImage=new ImageIcon(menuBeverageImagePath).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
 		orderViewer=new OrderViewer(orderViewerImage,myFrame,currentJPanel);
 		orderViewer.setVisiblePanel(currentJPanel, myFrame);
 		orderViewer.setVisible(false);

@@ -8,7 +8,7 @@ import javax.swing.SwingConstants;
 
 public class FormattedLabel implements ComponentFormatterInterface{
 	
-	private JLabel tempLabel=new JLabel();
+	private JLabel tempLabel;
 	
 	@Override
 	public void setComponentProp(int x,int y,int width,int height){

@@ -2,7 +2,6 @@
 package gui;
 
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -21,6 +20,7 @@ class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 	private ClickableButtonWithImage btnBackToInOutScreen;
 	private JPanel visible_panel;// pannello visibile
 	private JFrame myFrame;
+	private ComponentsGetter myComponentGetter;
 
 	public JPanelWithBackgroundImgAndBackBtn(String img) {
 		this(new ImageIcon(img).getImage());
@@ -34,6 +34,7 @@ class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 		setMaximumSize(size);
 		setSize(size);
 		setLayout(null);
+		myComponentGetter=new ComponentsGetter();
 
 		paintBackButton();
 
@@ -54,7 +55,7 @@ class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 										// invisibili,tranne il pannello
 										// visible_panel
 		List<Component> myComponents = new ArrayList<Component>();
-		myComponents = getComponents(myFrame);
+		myComponents = myComponentGetter.getComponents(myFrame);
 		for (Component comp : myComponents) {
 			if (comp.getClass().equals(visible_panel) && !comp.equals(visible_panel)) {
 				comp.setVisible(false);
@@ -63,18 +64,6 @@ class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 		this.setVisible(false);// senza questa problema di visibilita nel
 								// jpanel...order
 		visible_panel.setVisible(true);
-	}
-
-	// restituisce la lista dei componenti presenti nel frame
-	private List<Component> getComponents(Container currentComponent) {
-		Component[] allComponents = currentComponent.getComponents();
-		List<Component> componentsList = new ArrayList<Component>();
-		for (Component comp : allComponents) {
-			componentsList.add(comp);
-			if (comp instanceof Container)
-				componentsList.addAll(getComponents((Container) comp));
-		}
-		return componentsList;
 	}
 
 	public void setVisiblePanel(JPanel visible_panel, JFrame frame) {

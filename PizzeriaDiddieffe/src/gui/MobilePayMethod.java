@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -24,12 +25,10 @@ public class MobilePayMethod extends JPanelWithBackgroundImgAndBackBtn implement
 	private int labely=100;
 	private int labelWidth=500;
 	private int labelheight=40;
-	private int labelfont=20;
 	
-	private int buttonfont=20;
 	private int ySpace=200;
-	private int yBox= 30;
-	private int xBox = labelx;
+	private int yBox= 35;
+	private int xBox = 125;
 	private int boxWidth = 300;
 	private int boxHeight = 60;
 	private int menuSpace=100;
@@ -41,11 +40,22 @@ public class MobilePayMethod extends JPanelWithBackgroundImgAndBackBtn implement
 	
 	private String[] operators={"Apple Pay","Android Pay","Generic Operator"};
 	private String [] autentications={"Contact Less","Code Insertion"};
+	private ComponentCreator<String> myComponentCreator;
+	
+	private String buttonFont="Lucida Grande";
+	private int buttonfontsize=20;
+	private Color buttoncolor=Color.black;
+	private String labelFont="Lucida Grande";
+	private int labelfontsize=20;
+	private Color labelcolor=Color.BLACK;
+	private String comboFont="Lucida Grande";
+	private int combofontsize=20;
+	private Color combocolor=Color.BLACK;
 	
 	
 	public MobilePayMethod(Image img) {
 		super(img);
-		// TODO Auto-generated constructor stub
+		myComponentCreator=new ComponentCreator();
 	}
 	
 	@Override
@@ -59,22 +69,17 @@ public class MobilePayMethod extends JPanelWithBackgroundImgAndBackBtn implement
 	
 	private void createBox(){
 		yBox=yBox+ySpace;
-		autenticationMethod = new JComboBox<String>();
-		createMenuItems(autenticationMethod,autentications);
-		setMenuLayout(autenticationMethod,yBox);
+		autenticationMethod = createFormattedComboBox("", xBox, yBox, boxWidth, boxHeight);
+		createMenuItems(autenticationMethod, autentications);
 	
 		yBox=yBox+ySpace;
-		mobilepayOperator = new JComboBox<String>();
-		createMenuItems(mobilepayOperator,operators);
-		setMenuLayout(mobilepayOperator,yBox);
+		mobilepayOperator = createFormattedComboBox("", xBox, yBox, boxWidth, boxHeight);
+		createMenuItems(mobilepayOperator, operators);
+		
 		
 	}
 
-	private void setMenuLayout(JComboBox<String> currentMenu,int y) {
-		currentMenu.setBounds(xBox, y, boxWidth, boxHeight);
-		currentMenu.setFont(new Font("Lucida Grande", Font.BOLD, labelfont));
-		myPanel.add(currentMenu);
-	}
+
 
 	private void createMenuItems(JComboBox<String> currentMenu,String[] itemsName) {
 		for(int i=0;i<itemsName.length;i++){
@@ -84,32 +89,19 @@ public class MobilePayMethod extends JPanelWithBackgroundImgAndBackBtn implement
 	}
 
 	
-	private void setUpLabel(JLabel currentLabel,int y){
-		currentLabel.setBounds(labelx,y,labelWidth,labelheight);
-		currentLabel.setFont((new Font("Lucida Grande", Font.BOLD, labelfont)));
-		myPanel.add(currentLabel);
-	}
-	
 
 	private void createTotalLabel(){
 		
-		final JLabel label=new JLabel("Totale Ordine "+totprice);
-		setUpLabel(label, labely);
-		
+		final JLabel label=createFormattedLabel("Totale Ordine "+totprice, labelx, labely, labelWidth, labelheight);
 		
 		labely=labely+menuSpace;
-		final JLabel labelMethod = new JLabel("Choose Autentication Method ");
-		setUpLabel(labelMethod, labely);
+		final JLabel labelMethod =createFormattedLabel("Choose Autentication Method", labelx, labely, labelWidth, labelheight);
 		
 		labely=labely+menuSpace*2;
-		final JLabel labelOperator = new JLabel("Choose Operator ");
-		setUpLabel(labelOperator, labely);
+		final JLabel labelOperator = createFormattedLabel("Choose Operator ", labelx, labely, labelWidth, labelheight);
 		
 		
-		payButton=new JButton("Pay");
-		payButton.setBounds(buttonPayx, buttonPayy, buttonPayWidth, buttonPayHeight);
-		payButton.setFont((new Font("Lucida Grande", Font.BOLD, buttonfont)));
-		
+		payButton=createFormattedButton("Pay", buttonPayx, buttonPayy, buttonPayWidth, buttonPayHeight);
 		payButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -127,8 +119,28 @@ public class MobilePayMethod extends JPanelWithBackgroundImgAndBackBtn implement
 			}
 			}
 		});
-		
-		myPanel.add(payButton);
+	}
+	
+	private JButton createFormattedButton(String text,int buttonx,int buttony,int buttonwidth,int buttonheight){
+		myComponentCreator.createButton(text, buttonFont, buttonfontsize, buttoncolor);
+		myComponentCreator.setUpComponentProp(buttonx, buttony, buttonwidth, buttonheight);
+		myPanel.add(myComponentCreator.getButton());
+		return myComponentCreator.getButton();
+	}
+	
+	
+	private JLabel createFormattedLabel(String text,int labelx,int labely,int labelwidth,int labelheight){
+		myComponentCreator.createLabel(text, labelFont, labelfontsize, labelcolor);
+		myComponentCreator.setUpComponentProp(labelx, labely, labelwidth, labelheight);
+		myPanel.add(myComponentCreator.getLabel());
+		return myComponentCreator.getLabel();
 	}
 
+	private JComboBox<String> createFormattedComboBox(String text,int comboBoxX,int comboBoxY,int comboBoxWidth,int comboBoxHeight){
+		myComponentCreator.createComboBox(text, comboFont, combofontsize, combocolor);
+		myComponentCreator.setUpComponentProp(comboBoxX, comboBoxY, comboBoxWidth, comboBoxHeight);
+		myPanel.add(myComponentCreator.getComboBox());
+		return myComponentCreator.getComboBox();
+	}
+	
 }

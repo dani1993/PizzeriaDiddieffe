@@ -4,18 +4,22 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 
 import java.awt.Dimension;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import java.awt.CardLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Cursor;
 import javax.swing.border.LineBorder;
 
 public class PizzeriaDiddieffeUI extends JPanel {
@@ -43,13 +47,15 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	private JButton btnPlusInside;
 	
 	private Image img;
-	private FormattedLabel myLabelSetter=new FormattedLabel();
-	private String currentFont="Lucida Grande";
-	private int fontSize=18;
+	
+	private String labelfont="Lucida Grande";
+	private int labelfontSize=18;
+	private String buttonFont="Lucida Grande";
+	private int buttonfontsize=18;
 	private Color labelTextColor=Color.white;
 	private Color buttonTextColor=Color.black;
 	
-	private SignFormattedButton myButtonSetter=new SignFormattedButton();
+	private ComponentCreator myComponentCreator=new ComponentCreator<>();
 
 	/**
 	 * Launch the application.
@@ -113,10 +119,11 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		frame.getContentPane().add(chooseNumberOfTables, "name_1230783104452");
 		chooseNumberOfTables.setLayout(null);
 	
-		JLabel lblNumberOfTableInside=createLabel(155, 162, 240, 20,"Number of tables inside:");
-		final JLabel labelNumberOfTablesInside=createLabel(255, 226, 40, 20,"0");
+		JLabel lblNumberOfTableInside=createFormattedLabel("Number of tables inside:", 155, 162, 240, 20);
+		final JLabel labelNumberOfTablesInside=createFormattedLabel("0", 255, 226, 40, 20);
 	
-		btnMinusInside=createButtons(165, 212, 50, 50,"-",false);
+		btnMinusInside=createFormattedButton("-", 165, 212, 50, 50);
+		btnMinusInside.setEnabled(false);
 		btnMinusInside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numberOfTablesInside--;
@@ -129,7 +136,8 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		});
 		
 	
-		btnPlusInside=createButtons(335, 212, 50, 50,"+",true);
+		btnPlusInside=createFormattedButton("+", 335, 212, 50, 50);
+		btnPlusInside.setEnabled(true);
 		btnPlusInside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numberOfTablesInside++;
@@ -142,9 +150,10 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		});
 		
 		
-		JLabel lblNumberOfTableOutside=createLabel(155, 358, 240, 20,"Number of tables outside:");
+		JLabel lblNumberOfTableOutside=createFormattedLabel("Number of tables outside:", 155, 358, 240, 20);
 		
-		btnMinusOutside=createButtons(165, 398, 50, 50,"-",false);
+		btnMinusOutside=createFormattedButton("-", 165, 398, 50, 50);
+		btnMinusOutside.setEnabled(false);
 		btnMinusOutside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numberOfTablesOutside--;
@@ -158,9 +167,9 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		
 		
 		
-		labelNumberOfTablesOutside=createLabel(255, 412, 40, 20,"0");
+		labelNumberOfTablesOutside=createFormattedLabel("0", 255, 412, 40, 20);
 		
-		btnPlusOutisde=createButtons(335, 398, 50, 50,"+",true);
+		btnPlusOutisde=createFormattedButton("+", 335, 398, 50, 50);
 		btnPlusOutisde.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numberOfTablesOutside++;
@@ -202,7 +211,8 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		chooseInsideOutside.add(btnOutside);
 		
 		
-		JButton btnDone=createButtons(175, 617, 200, 60,"Done",true);
+		JButton btnDone=createFormattedButton("Done", 175, 617, 200, 60);
+		btnDone.setEnabled(true);
 		btnDone.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			if(numberOfTablesInside>0 || numberOfTablesOutside>0){
@@ -214,27 +224,6 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		
 		
 		
-	}
-
-	
-	private JButton createButtons(int x, int y,int width,int height,String text,boolean enable) {
-		myButtonSetter.createNewComponent();
-		myButtonSetter.setComponentTextProp(text, currentFont, fontSize, buttonTextColor);
-		myButtonSetter.setComponentProp(x, y, width, height);
-		myButtonSetter.setButtonEnabled(enable);
-		JButton button = myButtonSetter.getFormattedComponent();
-		chooseNumberOfTables.add(button);
-		return button;
-	}
-
-	
-	private JLabel createLabel(int x, int y,int width,int height,String text) {
-		myLabelSetter.createNewComponent();
-		myLabelSetter.setComponentTextProp(text, currentFont, fontSize,labelTextColor);
-		myLabelSetter.setComponentProp(x, y, width, height);
-		JLabel label = myLabelSetter.getFormattedComponent();
-		chooseNumberOfTables.add(label);
-		return label;
 	}
 	
 	
@@ -268,6 +257,21 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		insidePanel.setVisiblePanel(chooseInsideOutside,frame);
 		outsidePanel.setVisiblePanel(chooseInsideOutside,frame);
 	
+	}
+	
+	private JButton createFormattedButton(String text,int buttonx,int buttony,int buttonwidth,int buttonheight){
+		myComponentCreator.createButton(text, buttonFont, buttonfontsize, buttonTextColor);
+		myComponentCreator.setUpComponentProp(buttonx, buttony, buttonwidth, buttonheight);
+		chooseNumberOfTables.add(myComponentCreator.getButton());
+		return myComponentCreator.getButton();
+	}
+	
+	
+	private JLabel createFormattedLabel(String text,int labelx,int labely,int labelwidth,int labelheight){
+		myComponentCreator.createLabel(text, labelfont, labelfontSize,labelTextColor);
+		myComponentCreator.setUpComponentProp(labelx, labely, labelwidth, labelheight);
+		chooseNumberOfTables.add(myComponentCreator.getLabel());
+		return myComponentCreator.getLabel();
 	}
 
 }

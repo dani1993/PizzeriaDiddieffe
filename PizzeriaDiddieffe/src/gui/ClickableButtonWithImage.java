@@ -3,10 +3,12 @@ package gui;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 public class ClickableButtonWithImage extends JButton {

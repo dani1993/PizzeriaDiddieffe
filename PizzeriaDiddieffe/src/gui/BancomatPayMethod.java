@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -11,12 +12,6 @@ import javax.swing.JLabel;
 import pizzeriadiddieffe.core.Order;
 
 public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn implements payMethodInterface {
-
-
-	public BancomatPayMethod(Image img) {
-		super(img);
-		// TODO Auto-generated constructor stub
-	}
 
 	private double totprice;
 	private JPanelWithBackgroundImgAndBackBtn myPanel;
@@ -32,9 +27,7 @@ public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn impleme
 	private int labelWidth=500;
 	private int labelheight=40;
 	private int labelSpace=labelheight+space;
-	private int labelfont=25;
-
-	private int buttonfont=20;
+	
 	private int startX=20;
 	private int startY=320;
 	private int buttonX=startX;
@@ -49,29 +42,40 @@ public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn impleme
 	private int buttonPayy=320;
 	private int buttonPayWidth=220;
 	private int buttonPayHeight=250;
+	
+	private ComponentCreator myComponentCreator;
+	private int buttonfontsize=20;
+	private Color buttoncolor=Color.black;
+	private Color labelcolor=Color.BLACK;
+	private int labelfontsize=25;
+	private String buttonfontname="Lucida Grande";
+	private String labelfontname="Lucida Grande";
 
+	
+	public BancomatPayMethod(Image img) {
+		super(img);
+		// TODO Auto-generated constructor stub
+	}
+
+	
 	@Override
 	public void paymethod(Order totprice,JPanelWithBackgroundImgAndBackBtn myPanel) {
 		this.totprice=totprice.getPrice();
 		this.currentOrder=totprice;
 		this.myPanel=myPanel;
+		myComponentCreator=new ComponentCreator();
 		createTotalLabel();
 		createButtons();
 	}
 
 	private void createTotalLabel() {
-		final JLabel label=new JLabel("Totale Ordine "+totprice);
-		label.setBounds(labelx,labely,labelWidth,labelheight);
-		label.setFont((new Font("Lucida Grande", Font.BOLD, labelfont)));
-		myPanel.add(label);
+		
+		final JLabel label=createFormattedLabel("Totale Ordine "+totprice, labelx, labely, labelWidth, labelheight);
+	
 		labely=labely+labelSpace;
 
-		payButton=new JButton("Pay");
-		payButton.setBounds(buttonPayx, buttonPayy, buttonPayWidth, buttonPayHeight);
-		payButton.setFont((new Font("Lucida Grande", Font.BOLD, buttonfont)));
+		payButton=createFormattedButton("Pay", buttonPayx, buttonPayy, buttonPayWidth, buttonPayHeight);
 		payButton.addActionListener(new ActionListener() {
-
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(code.length()<5){
@@ -88,20 +92,12 @@ public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn impleme
 
 	private void createButtons() {
 
-		final JLabel label=new JLabel(totalString);
-		label.setBounds(labelx,labely,labelWidth,labelheight);
-		label.setFont((new Font("Lucida Grande", Font.BOLD, labelfont)));
-		myPanel.add(label);
+		final JLabel label=createFormattedLabel(totalString, labelx, labely, labelWidth, labelheight);
 
 		for(int i=0;i<10;i++){
 			final String buttonText=setCoordinates(i);
-
-			final JButton currentButton=new JButton(buttonText);
-			currentButton.setBounds(buttonX, buttonY, buttonWidth, buttonHeight);
-			currentButton.setFont((new Font("Lucida Grande", Font.BOLD, buttonfont)));
+			final JButton currentButton=createFormattedButton(buttonText, buttonX, buttonY, buttonWidth, buttonHeight);
 			currentButton.addActionListener(new ActionListener() {
-
-
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					code = code+"*";
@@ -109,21 +105,18 @@ public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn impleme
 					label.setText(currentValue);
 					}
 			});
-			myPanel.add(currentButton);
 		}
 
-		JButton cancButton=new JButton("C");
-		cancButton.setBounds(buttonX+xSpace, buttonY, buttonWidth, buttonHeight);
-		cancButton.setFont((new Font("Lucida Grande", Font.BOLD, buttonfont)));
+		JButton cancButton=createFormattedButton("C",buttonX+xSpace, buttonY, buttonWidth, buttonHeight);
 		cancButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				label.setText(baseTotalString);	
 			}
 		});
-		myPanel.add(cancButton);
 	}
 
+	
 	private String setCoordinates(int i) {
 		if(i==9){
 			buttonX=startX;
@@ -144,4 +137,21 @@ public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn impleme
 		}
 		return Integer.toString(i+1);
 	}
+	
+	
+	private JButton createFormattedButton(String text,int buttonx,int buttony,int buttonwidth,int buttonheight){
+		myComponentCreator.createButton(text, buttonfontname,buttonfontsize, buttoncolor);
+		myComponentCreator.setUpComponentProp(buttonx, buttony, buttonwidth, buttonheight);
+		myPanel.add(myComponentCreator.getButton());
+		return myComponentCreator.getButton();
+	}
+	
+	
+	private JLabel createFormattedLabel(String text,int labelx,int labely,int labelwidth,int labelheight){
+		myComponentCreator.createLabel(text, labelfontname, labelfontsize, labelcolor);
+		myComponentCreator.setUpComponentProp(labelx, labely, labelwidth, labelheight);
+		myPanel.add(myComponentCreator.getLabel());
+		return myComponentCreator.getLabel();
+	}
+
 }

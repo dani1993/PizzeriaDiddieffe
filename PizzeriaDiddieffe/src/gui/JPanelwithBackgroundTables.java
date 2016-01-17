@@ -1,8 +1,15 @@
 package gui;
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.SynchronousQueue;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class JPanelwithBackgroundTables extends JPanelWithBackgroundImgAndBackBtn{
 
@@ -16,6 +23,10 @@ public class JPanelwithBackgroundTables extends JPanelWithBackgroundImgAndBackBt
 	private int imgXToMove;
 	private int imgYToMove;
 	private int numberOfTablesInRow;
+	
+	private int[] coordinatesEight={30,3,150,170,60};
+	private int[] coordinatesFour={60,2,200,220,60};
+	private int [] coordinatesMax={60,2,200,220,160};
 	
 	public JPanelwithBackgroundTables(Image image) {
 		super(image);
@@ -76,29 +87,19 @@ public class JPanelwithBackgroundTables extends JPanelWithBackgroundImgAndBackBt
 		int[] coordinates = new int[5];
 		
 			if (numbers > 8) {
-				coordinates[0] = 30;  //xToStart
-				coordinates[1] = 3; // tablesPerRow
-				coordinates[2] = 150; // width
-				coordinates[3] = 170; // xToMove
-				coordinates[4] = 60; //y
-
+				coordinates=coordinatesEight;
 			} else {
+				
 				if (numbers > 4) {
-					coordinates[0] = 60; // xToStart
-					coordinates[1] = 2; // tablesPerRow
-					coordinates[2] = 200; // width
-					coordinates[3] = 220; // xToMove
-					coordinates[4] = 60; //y
+					coordinates=coordinatesFour;
 
 				} else {
-					coordinates[0] = 60; // xToStart
-					coordinates[1] = 2; // tablesPerRow
-					coordinates[2] = 200; // width
-					coordinates[3] = 220; // xToMove
-					coordinates[4] = 160; //y
+					coordinates=coordinatesMax;
 				}
 			}
 		return coordinates;
 	}
+	
+	
 
 }

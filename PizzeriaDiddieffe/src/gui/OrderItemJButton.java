@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 public class OrderItemJButton extends ClickableButtonWithImage{
 

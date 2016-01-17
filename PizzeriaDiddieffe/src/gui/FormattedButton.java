@@ -7,10 +7,10 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-public class SignFormattedButton implements ComponentFormatterInterface{
+public class FormattedButton implements ComponentFormatterInterface{
 
 	
-private JButton tempButton=new JButton();
+private JButton tempButton;
 
 	public void  setButtonEnabled(boolean enable){
 		tempButton.setEnabled(enable);
