@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
@@ -25,19 +26,20 @@ public class payOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 	private int buttonsXSpace=buttonsWidth+space;
 	private int buttonsYSpace=buttonsHeight+space;
 	private int singleButtonX=singleButtonxSpace+buttonsXSpace/2;
+	private String buttonFontName="Lucida Grande";
 	private Order myOrder;
 	
 	private JButton cashPay;
-	private String cashImage="res/cashImage.jpg";
+	private String cashImage="cashImage";
 	private String cashText="Cash";
 	
 	private JButton BancomatPay;
-	private String bancomatImage="res/bancomatImage.jpg";
+	private String bancomatImage="bancomatImage";
 	private String bancomatText="Bancomat";
 	
-	private JButton ticketPay;
-	private String ticketImage="res/ticketImage.jpg";
-	private String ticketText="Mobile Pay";
+	private JButton mobilePay;
+	private String mobileImage="mobileImage";
+	private String mobileText="Mobile Pay";
 	
 	private payMethodInterface payStrategy; 
 	private payChooser myPayChooser; 
@@ -51,13 +53,13 @@ public class payOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 		super(img);
 		int x=15;
 		int y=200;
-		createPayButton(cashPay,x,y,cashImage,cashImage,cashImage,cashText);
+		createPayButton(cashPay,x,y,cashText,cashText,cashText);
 		x=x+buttonsXSpace;
 		y=200;
-		createPayButton(BancomatPay,x,y,bancomatImage,bancomatImage,bancomatImage,bancomatText);
+		createPayButton(BancomatPay,x,y,bancomatText,bancomatText,bancomatText);
 		x=singleButtonX;
 		y=y+buttonsYSpace;
-		createPayButton(ticketPay, x, y, ticketImage, ticketImage, ticketImage,ticketText);
+		createPayButton(mobilePay, x, y, mobileText, mobileText, mobileText);
 		this.myFrame=myFrame;
 		
 	}
@@ -78,15 +80,11 @@ public class payOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 	}
 
 	
-	private void createPayButton(JButton payMode,int x,int y,String standardImage,String pressedImage, String mouseImage,String text) {
-		payMode = new ClickableButtonWithImage(x, y, buttonsWidth, buttonsHeight, buttonsFont, standardImage);
-		payMode.setText(text);
+	private void createPayButton(JButton payMode,int x,int y,String standardImage,String pressedImage, String mouseImage) {
+		payMode = new JButtonTextImage(x, y, buttonsWidth, buttonsHeight, buttonsFont, standardImage);
 		this.add(payMode);
 		final String currentText=payMode.getText();
-		
 		payMode.addActionListener(new ActionListener() {
-			
-
 			public void actionPerformed(ActionEvent e) {
 				createPayPanel(myFrame);
 				payStrategy=getStrategy(currentText);
@@ -101,12 +99,12 @@ public class payOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 
 	private payMethodInterface getStrategy(String text) {
 		if(text.equals("Cash")){
-			Image cashImageBG=new ImageIcon(cashImage).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
+			Image cashImageBG=new ImageIcon(cashImage).getImage().getScaledInstance(550, 750, java.awt.Image.SCALE_SMOOTH);
 			return new CashPayment(cashImageBG);
 		}
 		else if(text.equals("Mobile Pay")){
-			Image ticketImageBG=new ImageIcon(ticketImage).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
-			return new MobilePayMethod(ticketImageBG);
+			Image mobileImageBG=new ImageIcon(mobileImage).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
+			return new MobilePayMethod(mobileImageBG);
 		}
 		Image bancomatImageBG=new ImageIcon(bancomatImage).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
 		return new BancomatPayMethod(bancomatImageBG);

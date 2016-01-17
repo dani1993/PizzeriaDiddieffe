@@ -188,7 +188,7 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		chooseInsideOutside.setLayout(new GridLayout(2, 0, 0, 0));
 		
 	
-		final OrderItemJButton btnInside = new OrderItemJButton(0,0,550,375,60,"Inside");
+		final JButtonTextImage btnInside = new JButtonTextImage(0,0,550,375,60,"Inside");
 		btnInside.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		btnInside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -200,7 +200,7 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		
 		
 		
-		final OrderItemJButton btnOutside = new OrderItemJButton(0,0,550,375,60,"Outside");
+		final JButtonTextImage btnOutside = new JButtonTextImage(0,0,550,375,60,"Outside");
 		btnOutside.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		btnOutside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

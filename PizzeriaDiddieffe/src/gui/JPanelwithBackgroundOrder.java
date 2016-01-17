@@ -13,10 +13,10 @@ import pizzeriadiddieffe.core.OrderManager;
 public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn {
 
 	private JPanelWithBackgroundImgAndBackBtn currentJPanel = this;
-	private OrderItemJButton pizzaButton;
-	private OrderItemJButton beverageButton;
-	private OrderItemJButton focacciaButton;
-	private OrderItemJButton orderButton;
+	private JButtonTextImage pizzaButton;
+	private JButtonTextImage beverageButton;
+	private JButtonTextImage focacciaButton;
+	private JButtonTextImage orderButton;
 	private int buttonHeight = 230;
 	private int buttonWidth = 230;
 	private int startX = 35;
@@ -123,7 +123,7 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 
 	}
 	
-	private void setOrderViewerListner(OrderItemJButton currentItemJButton,final OrderViewer currentOrderViewer){
+	private void setOrderViewerListner(JButtonTextImage currentItemJButton,final OrderViewer currentOrderViewer){
 		currentItemJButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentOrderViewer.setOrder(currentOrder);
@@ -134,14 +134,14 @@ public class JPanelwithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 	}
 
 
-	private OrderItemJButton drawSelectedButton(OrderItemJButton currentItemJButton,int startX,int startY,String text) {
-		currentItemJButton = new OrderItemJButton(startX, startY,buttonWidth, buttonHeight, fontButtons, text);
+	private JButtonTextImage drawSelectedButton(JButtonTextImage currentItemJButton,int startX,int startY,String text) {
+		currentItemJButton = new JButtonTextImage(startX, startY,buttonWidth, buttonHeight, fontButtons, text);
 		this.add(currentItemJButton);
 		return currentItemJButton;
 	}
 	
 	
-	private void setActionListener(OrderItemJButton currentItemJButton,final OrderingJPanel currentOrderingPanel){
+	private void setActionListener(JButtonTextImage currentItemJButton,final OrderingJPanel currentOrderingPanel){
 		currentItemJButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentOrderingPanel.setOrder(currentOrder);

@@ -7,9 +7,9 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-public class OrderItemJButton extends ClickableButtonWithImage{
+public class JButtonTextImage extends ClickableButtonWithImage{
 
-	public OrderItemJButton(int x, int y, int width, int height,int font,String itemText) {
+	public JButtonTextImage(int x, int y, int width, int height,int font,String itemText) {
 		super(x, y, width, height,font, itemText);
 		this.setText(itemText);
 		this.setFont(new Font("Lucida Grande", Font.BOLD, font));

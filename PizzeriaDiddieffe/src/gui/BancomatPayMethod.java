@@ -79,7 +79,7 @@ public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn impleme
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(code.length()<5){
-					payButton.setText("Insert");
+					payButton.setText("Insert Code");
 				} else{
 					currentOrder.deleteAll();
 					payButton.setText("Payed");

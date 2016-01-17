@@ -92,7 +92,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 		for (int i = 0; i < pizzaItems.length; i++) {
 			
 			String currentItemText = pizzaItems[i];
-			final OrderItemJButton currentItemButton = new OrderItemJButton(baseCasesx, baseCasesy, baseCasesWidth,
+			final JButtonTextImage currentItemButton = new JButtonTextImage(baseCasesx, baseCasesy, baseCasesWidth,
 					baseCasesHeight, baseFontSize, currentItemText);
 			baseCasesButtonList.add(currentItemButton);
 			currentItemButton.addActionListener(new ActionListener() {
@@ -140,7 +140,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 				toppingY = toppingYToStart;
 			}
 			final String currentItemText = toppingsItems[i];
-			final OrderItemJButton currentItemButton = new OrderItemJButton(toppingX, toppingY, toppingWidth,
+			final JButtonTextImage currentItemButton = new JButtonTextImage(toppingX, toppingY, toppingWidth,
 					toppingHeight, toppingFontSize, currentItemText);
 			toppingButtonList.add(currentItemButton);
 			currentItemButton.setEnabled(false);
@@ -242,7 +242,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 
 	}
 
-	private void changeBorderColor(OrderItemJButton currentItemButton) {
+	private void changeBorderColor(JButtonTextImage currentItemButton) {
 		Color currentBorder = getBorderColor(currentItemButton);
 		if(currentItemButton.isEnabled()){
 		if (currentBorder == Color.white) {
@@ -254,7 +254,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 	}
 
 	
-	private Color getBorderColor(OrderItemJButton currentItemButton) {
+	private Color getBorderColor(JButtonTextImage currentItemButton) {
 		Color currentBorder = ((LineBorder) currentItemButton.getBorder()).getLineColor();
 		return currentBorder;
 	}
