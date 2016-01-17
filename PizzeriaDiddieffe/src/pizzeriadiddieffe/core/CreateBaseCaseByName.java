@@ -1,8 +1,7 @@
-package gui;
+package pizzeriadiddieffe.core;
 
 import java.lang.reflect.Constructor;
 
-import pizzeriadiddieffe.core.Item;
 import pizzeriadiddieffe.core.beverage.Beverage;
 import pizzeriadiddieffe.core.focaccia.Focaccia;
 import pizzeriadiddieffe.core.pizza.Pizza;
