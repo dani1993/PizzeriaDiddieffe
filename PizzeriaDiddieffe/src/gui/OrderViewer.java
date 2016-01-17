@@ -33,9 +33,9 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 	private int payButtonWight = 155;
 	private String payOrderImagePath = "res/payOrderBackground.jpg";
 	private Item currentItem;
-	private int scrollPanex = 15;
+	private int scrollPanex = 100;
 	private int scrollPaney = 200;
-	private int scrollPaneWidth = 510;
+	private int scrollPaneWidth = 350;
 	private int scrollPaneHeight = 420;
 
 	private JLabel descriptionLabel;
@@ -43,17 +43,13 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 	private int labely = -5;
 	private int labelHeight = 200;
 	private int labelWidth = 200;
-	private int labelFont = 25;
+	private int labelFont = 22;
 
 	public OrderViewer(Image img, JFrame myFrame, JPanelWithBackgroundImgAndBackBtn payOrderVisiblePanel) {
 		super(img);
 
 		JPanel panel = new JPanel();
-        
-       
-        
 	
-		
         descriptionLabel=new JLabel();
         descriptionLabel.setBounds(labelx, labely, labelWidth, labelHeight);
         descriptionLabel.setFont(new Font("Lucida Grande", Font.PLAIN, labelFont));
@@ -66,7 +62,9 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         scrollPane.setBounds(scrollPanex, scrollPaney, scrollPaneWidth, scrollPaneHeight);
-        scrollPane.setBorder(new LineBorder(Color.white,0));
+        scrollPane.setBorder(new LineBorder(Color.white,2));
+        scrollPane.setBackground(Color.white);
+        scrollPane.getViewport().setBackground(Color.white);
         currentJPanel.add(scrollPane);
         
         
@@ -79,7 +77,7 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 		myFrame.add(myPayJPanel);
 	     
 		
-		payOrderButton = new JButton ("pay Order");
+		payOrderButton = new JButton ("Pay Order");
 		payOrderButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		payOrderButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		payOrderButton.setBounds(payButtonx, payButtony, payButtonWight, payButtonHeight);
@@ -103,25 +101,25 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 	}
 
 	private void drawOrder() {
-		myItemslist=myOrder.getOrderList();
-		Iterator <Item> iteratore=getIterator();
-		String baseCase="";
-		String comma =",";
-		String tabSpace="<br> &nbsp;&nbsp;&nbsp;";
-		String newLine=" <br> ";
+		myItemslist = myOrder.getOrderList();
+		Iterator<Item> iteratore = getIterator();
+		String bullet = "&#8226;&nbsp;";
+		String baseCase = "";
+		String comma = ",";
+		String tabSpace = "</i> <br> <i> &nbsp;&nbsp;&nbsp;";
+		String endItalic = " </i> ";
+		String newLine = " <br> ";
 		String startBold = " <b> ";
-		String endBold = " <\b ";
-		String price="Price : ";
-		
-		
-		while (iteratore.hasNext()){
-			currentItem=iteratore.next();
-			System.out.println(currentItem.getInfo());
-			baseCase=baseCase+newLine+currentItem.getInfo();
-			baseCase=baseCase.replaceAll(comma, tabSpace);
-			baseCase=baseCase+newLine+startBold+price+currentItem.getPrice()+endBold+newLine;
-			
+		String endBold = " </b> ";
+		String price = "&nbsp;&nbsp;Price: ";
+
+		while (iteratore.hasNext()) {
+			currentItem = iteratore.next();
+			baseCase = baseCase + bullet + currentItem.getInfo() ;
+			baseCase = baseCase.replaceAll(comma, tabSpace);
+			baseCase = baseCase + newLine + endItalic + startBold + price + currentItem.getPrice() + endBold + newLine + newLine;
 		}
+		
 		
 		descriptionLabel.setText("<html>"+baseCase+"<html>");
 		

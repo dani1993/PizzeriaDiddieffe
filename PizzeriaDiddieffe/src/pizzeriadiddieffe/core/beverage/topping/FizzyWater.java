@@ -13,7 +13,7 @@ public class FizzyWater extends BeverageDecorator{
 	
 	@Override
 	public String getInfo() {
-		return tempBeverage.getInfo() + ",Fizzy Water";
+		return tempBeverage.getInfo() + ", Fizzy Water";
 	}
 	
 	@Override

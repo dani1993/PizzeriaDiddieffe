@@ -25,7 +25,6 @@ public class Sound {
 			    DataLine.Info info;
 			    Clip clip;
 			    
-			    System.out.println(soundName);
 
 			    stream = AudioSystem.getAudioInputStream(file);
 			    format = stream.getFormat();

@@ -42,17 +42,9 @@ class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 	}
 
 	private void paintBackButton() {
-//		Image image = new ImageIcon("res/Back.jpg").getImage().getScaledInstance(100, 50, java.awt.Image.SCALE_SMOOTH);
 		btnBackToInOutScreen = new ClickableButtonWithImage(10, 10, 100, 50, 0, "Back");
-//		btnBackToInOutScreen.setOpaque(false);
-//		btnBackToInOutScreen.setContentAreaFilled(false);
 		btnBackToInOutScreen.setBorderPainted(false);
-		// btnBackToInOutScreen.setFont(new Font("Lucida Grande", Font.PLAIN,
-		// 16));
-		// btnBackToInOutScreen.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		// btnBackToInOutScreen.setBounds(10, 10, 100, 50);
 		this.add(btnBackToInOutScreen);
-
 		btnBackToInOutScreen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setPanelsVisibility();
@@ -75,14 +67,8 @@ class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 		visible_panel.setVisible(true);
 	}
 
-	private List<Component> getComponents(Container currentComponent) {// restituisce
-																		// la
-																		// lista
-																		// dei
-																		// componenti
-																		// presenti
-																		// nel
-																		// frame
+	// restituisce la lista dei componenti presenti nel frame
+	private List<Component> getComponents(Container currentComponent) {
 		Component[] allComponents = currentComponent.getComponents();
 		List<Component> componentsList = new ArrayList<Component>();
 		for (Component comp : allComponents) {
