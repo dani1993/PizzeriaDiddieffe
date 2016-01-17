@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 
 import pizzeriadiddieffe.core.Order;
 
-
 public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements payMethodInterface   {
 	
 	public CashPayment(Image img) {
