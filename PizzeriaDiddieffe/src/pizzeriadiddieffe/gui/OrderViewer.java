@@ -19,6 +19,8 @@ import javax.swing.border.LineBorder;
 
 import pizzeriadiddieffe.core.Item;
 import pizzeriadiddieffe.core.Order;
+import pizzeriadiddieffe.gui.formattedelements.HtmlFormatter;
+import pizzeriadiddieffe.gui.jpanel.OrderScrollPane;
 import pizzeriadiddieffe.gui.jpanel.PayOrderJPanel;
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundImgAndBackBtn;
 
@@ -28,6 +30,9 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 	private PayOrderJPanel myPayJPanel;
 	private Order myOrder;
 	private LinkedList<Item> myItemsList;
+	private HtmlFormatter myHtmlFormatter;
+	private OrderScrollPane scrollPane;
+	
 	private JButton payOrderButton;
 	private int payButtonX = 200;
 	private int payButtonY = 650;
@@ -35,9 +40,11 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 	private int payButtonWight = 155;
 	private String payOrderImagePath = "res/payOrderBackground.jpg";
 	private Item currentItem;
-	private int scrollPaneX = 100;
+	
+	private Color scrollPaneColors=Color.white;
+	private int scrollPaneX = 20;
 	private int scrollPaneY = 200;
-	private int scrollPaneWidth = 350;
+	private int scrollPaneWidth = 510;
 	private int scrollPaneHeight = 420;
 
 	private JLabel descriptionLabel;
@@ -51,22 +58,17 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 		super(img);
 
 		JPanel panel = new JPanel();
-
+		myHtmlFormatter=new HtmlFormatter();
 		descriptionLabel = new JLabel();
 		descriptionLabel.setBounds(labelX, labelY, labelWidth, labelHeight);
 		descriptionLabel.setFont(new Font("Lucida Grande", Font.PLAIN, labelFont));
-
 		panel.add(descriptionLabel);
 
-		JScrollPane scrollPane = new JScrollPane(panel);
-		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-		scrollPane.setBounds(scrollPaneX, scrollPaneY, scrollPaneWidth, scrollPaneHeight);
-		scrollPane.setBorder(new LineBorder(Color.white,2));
-		scrollPane.setBackground(Color.white);
-		scrollPane.getViewport().setBackground(Color.white);
-		currentJPanel.add(scrollPane);
+		scrollPane=new OrderScrollPane();
+		scrollPane.setCurrentJPanel(panel);
+		scrollPane.setParameters(scrollPaneX, scrollPaneY, scrollPaneWidth, scrollPaneHeight);
+		scrollPane.setColors(scrollPaneColors, scrollPaneColors);
+		currentJPanel.add(scrollPane.getScrollPane());
 
 		Image payOrderImage = new ImageIcon(payOrderImagePath).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
 		myPayJPanel = new PayOrderJPanel(payOrderImage, myFrame);
@@ -79,7 +81,6 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 		payOrderButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		payOrderButton.setBounds(payButtonX, payButtonY, payButtonWight, payButtonHeight);
 		this.add(payOrderButton);
-
 		payOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				double price = myOrder.getPrice();
@@ -100,21 +101,14 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 	private void drawOrder() {
 		myItemsList = myOrder.getOrderList();
 		Iterator<Item> iteratore = getIterator();
-		String bullet = "&#8226;&nbsp;";
 		String baseCase = "";
-		String comma = ",";
-		String tabSpace = "</i> <br> <i> &nbsp;&nbsp;&nbsp;";
-		String endItalic = " </i> ";
-		String newLine = " <br> ";
-		String startBold = " <b> ";
-		String endBold = " </b> ";
-		String price = "&nbsp;&nbsp;Price: ";
 
 		while (iteratore.hasNext()) {
 			currentItem = iteratore.next();
-			baseCase = baseCase + bullet + currentItem.getInfo() ;
-			baseCase = baseCase.replaceAll(comma, tabSpace);
-			baseCase = baseCase + newLine + endItalic + startBold + price + currentItem.getPrice() + endBold + newLine + newLine;
+			baseCase = baseCase + myHtmlFormatter.getBullet() + currentItem.getInfo() ;
+			baseCase = baseCase.replaceAll(myHtmlFormatter.getComma(), myHtmlFormatter.getTabSpace());
+			baseCase = baseCase + myHtmlFormatter.getNewLine() + myHtmlFormatter.getEndItalic() + myHtmlFormatter.getStartBold() 
+			+ myHtmlFormatter.getPrice() + currentItem.getPrice() + myHtmlFormatter.getEndBold() + myHtmlFormatter.getNewLine() + myHtmlFormatter.getNewLine();
 		}
 
 		descriptionLabel.setText("<html>"+baseCase+"<html>");
