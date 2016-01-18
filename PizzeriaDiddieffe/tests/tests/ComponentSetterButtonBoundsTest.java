@@ -1,21 +1,17 @@
 package tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import gui.ComponentFormatterInterface;
-import gui.ComponentSetter;
-import gui.FormattedButton;
-import gui.FormattedLabel;
+import pizzeriadiddieffe.gui.componentclasses.ComponentFormatterInterface;
+import pizzeriadiddieffe.gui.componentclasses.ComponentSetter;
+import pizzeriadiddieffe.gui.formattedelements.FormattedButton;
 
 public class ComponentSetterButtonBoundsTest {
 	

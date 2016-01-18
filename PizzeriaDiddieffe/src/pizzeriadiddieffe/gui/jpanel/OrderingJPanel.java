@@ -113,17 +113,6 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 		}
 	}
 
-	private void setOthersButtons(boolean enable,LinkedList<JButton> list,JButton mybutton) {
-		Iterator<JButton> iteratore = getButtonListIterator(list);
-		while(iteratore.hasNext()){
-			JButton currentButton = iteratore.next();
-			currentButton.setEnabled(enable);
-			if(enable==false && mybutton.equals(currentButton)){
-				currentButton.setEnabled(true);
-			}
-		}
-	}
-
 	private void createPizzaToppingsItems(String[] toppingsItems) {
 		for (int i = 0; i<toppingsItems.length; i++) {
 			if (i%toppingsForColumn==0 && i!=0) {
@@ -183,7 +172,11 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 					}
 				}
 
-				buttonSound.playSound();
+				try {
+					buttonSound.playSound();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 				resetAllButtons();
 				currentTopping = new LinkedList<>();
 				currentCaseBase = null;
@@ -192,6 +185,20 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 		});
 	}
 
+	
+	private void setOthersButtons(boolean enable,LinkedList<JButton> list,JButton mybutton) {
+		Iterator<JButton> iteratore = getButtonListIterator(list);
+		while(iteratore.hasNext()){
+			JButton currentButton = iteratore.next();
+			currentButton.setEnabled(enable);
+			if(enable==false && mybutton.equals(currentButton)){
+				currentButton.setEnabled(true);
+			}
+		}
+	}
+	
+	
+	
 	private void resetAllButtons(){
 		resetButtons();
 		setOthersButtons(false, toppingButtonList, new JButton());

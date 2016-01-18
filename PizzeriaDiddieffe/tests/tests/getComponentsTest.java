@@ -1,6 +1,6 @@
 package tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.awt.Component;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import org.junit.Before;
 import org.junit.Test;
 
-import gui.ComponentsGetter;
+import pizzeriadiddieffe.gui.componentclasses.ComponentsGetter;
 
 public class getComponentsTest {
 	
