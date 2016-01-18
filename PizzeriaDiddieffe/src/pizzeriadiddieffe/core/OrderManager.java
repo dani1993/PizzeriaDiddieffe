@@ -1,28 +1,25 @@
 package pizzeriadiddieffe.core;
 
-
 import java.util.Iterator;
 import java.util.LinkedList;
 
 public class OrderManager {
-	private LinkedList<Order> myOrderList=new LinkedList<Order>();
-	
+	private LinkedList<Order> myOrderList = new LinkedList<Order>();
+
 	public Order checkOrder(String id) {
 		return orderSearch(id);
 	}
 
-
 	private Order createOrder(String id) {
-		Order newOrder=new Order();
+		Order newOrder = new Order();
 		newOrder.setId(id);
 		myOrderList.add(newOrder);
 		return newOrder;
 	}
 
-
 	private Order orderSearch(String id){
-		Iterator<Order> iteratore=getIterator();
-		Order order=new Order();
+		Iterator<Order> iteratore = getIterator();
+		Order order = new Order();
 		while(iteratore.hasNext()){
 			order=iteratore.next();
 			if(order.getId().equals(id)){
@@ -31,7 +28,7 @@ public class OrderManager {
 		}
 		return createOrder(id);
 	}
-	
+
 	private Iterator<Order> getIterator(){
 		return myOrderList.iterator();
 	}

@@ -9,11 +9,11 @@ public class RawHam extends FocacciaDecorator  {
 
 	public RawHam(Focaccia myFocaccia){
 		tempFocaccia = myFocaccia; 
-		}
+	}
 
 	@Override
 	public String getInfo() {
-		return tempFocaccia.getInfo() + ", Raw Ham";
+		return tempFocaccia.getInfo()+", Raw Ham";
 	}
 
 	@Override

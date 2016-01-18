@@ -9,11 +9,11 @@ public class Pecorino extends FocacciaDecorator  {
 
 	public Pecorino(Focaccia myFocaccia){
 		tempFocaccia = myFocaccia; 
-		}
+	}
 
 	@Override
 	public String getInfo() {
-		return tempFocaccia.getInfo() + ", Pecorino Cheese";
+		return tempFocaccia.getInfo()+", Pecorino Cheese";
 	}
 
 	@Override

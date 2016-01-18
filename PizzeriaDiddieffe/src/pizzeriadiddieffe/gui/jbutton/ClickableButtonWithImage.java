@@ -1,18 +1,15 @@
-package gui;
+package pizzeriadiddieffe.gui.jbutton;
 
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.Graphics2D;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 public class ClickableButtonWithImage extends JButton {
-
 	public ClickableButtonWithImage(int x, int y, int width, int height, int font, String image) {
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		this.setFont(new Font("Lucida Grande", Font.BOLD, font));
@@ -20,7 +17,7 @@ public class ClickableButtonWithImage extends JButton {
 		Image buttonImage;
 		Image darkbuttonImage;
 		Image darkerbuttonImage;
-		if (image == "Back") {
+		if (image=="Back") {
 			buttonImage = new ImageIcon("res/" + image + ".png").getImage().getScaledInstance(width, height,
 					java.awt.Image.SCALE_SMOOTH);
 			darkbuttonImage = new ImageIcon("res/"+image + "Dark.png").getImage().getScaledInstance(width, height,
@@ -41,7 +38,4 @@ public class ClickableButtonWithImage extends JButton {
 		this.setRolloverIcon(new ImageIcon(darkbuttonImage));
 		this.setPressedIcon(new ImageIcon(darkerbuttonImage));
 	}
-
-	}
-
-
+}

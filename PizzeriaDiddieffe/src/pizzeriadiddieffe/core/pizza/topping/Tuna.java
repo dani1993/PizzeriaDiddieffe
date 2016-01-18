@@ -9,11 +9,11 @@ public class Tuna extends PizzaDecorator {
 
 	public Tuna(Pizza myPizza){
 		tempPizza = myPizza; 
-		}
+	}
 
 	@Override
 	public String getInfo() {
-		return tempPizza.getInfo() + ", Tuna";
+		return tempPizza.getInfo()+", Tuna";
 	}
 
 	@Override

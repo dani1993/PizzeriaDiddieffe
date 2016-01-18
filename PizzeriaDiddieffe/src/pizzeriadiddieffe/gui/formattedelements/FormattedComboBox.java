@@ -1,4 +1,4 @@
-package gui;
+package pizzeriadiddieffe.gui.formattedelements;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -6,8 +6,9 @@ import java.awt.Font;
 
 import javax.swing.JComboBox;
 
+import pizzeriadiddieffe.gui.componentclasses.ComponentFormatterInterface;
+
 public class FormattedComboBox<E> implements ComponentFormatterInterface{
-	
 	private JComboBox<E> tempComboBox;
 
 	@Override
@@ -23,13 +24,11 @@ public class FormattedComboBox<E> implements ComponentFormatterInterface{
 
 	@Override
 	public void createNewComponent() {
-		tempComboBox=new JComboBox<E>();
+		tempComboBox = new JComboBox<E>();
 	}
 
 	@Override
 	public Component getFormattedComponent() {
 		return tempComboBox;
 	}
-	
-
 }

@@ -4,42 +4,41 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Order implements Item {
-	private LinkedList<Item> myOrder=new LinkedList<Item>();
+	private LinkedList<Item> myOrder = new LinkedList<Item>();
 	private String id;
 	private Iterator<Item> getIterator(){
 		Iterator<Item> myIterator = myOrder.iterator();
 		return myIterator;
 	}
-	
+
 	public void setId(String id){
-		this.id=id;
+		this.id = id;
 	}
-	
+
 	public String getId(){
 		return id;
 	}
-	
+
 	public LinkedList<Item> getOrderList(){
 		return myOrder;
 	}
-	
+
 	@Override
 	public double getPrice() {
 		double totPrice = 0;
 		Iterator<Item> myIterator = getIterator();
 		while(myIterator.hasNext()){
-			totPrice = totPrice + myIterator.next().getPrice();
+			totPrice = totPrice+myIterator.next().getPrice();
 		}
 		return totPrice;
 	}
-	
 
 	@Override
 	public String getInfo() {
 		String totInfo = "";
 		Iterator<Item> myIterator = getIterator();
 		while(myIterator.hasNext()){
-			totInfo = totInfo + myIterator.next().getInfo();
+			totInfo = totInfo+myIterator.next().getInfo();
 		}
 		return totInfo;
 	}
@@ -58,9 +57,6 @@ public class Order implements Item {
 	}
 
 	public void deleteAll() {
-		myOrder.removeAll(getOrderList());
-		
+		myOrder.removeAll(getOrderList());	
 	}
-	
-	
 }

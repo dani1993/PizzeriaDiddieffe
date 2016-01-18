@@ -4,15 +4,15 @@ import pizzeriadiddieffe.core.pizza.*;
 
 public class BufalaMozzarella extends PizzaDecorator {
 	Pizza tempPizza;
-	private final static double PRICE = 1;
+	private final static double PRICE = 1.00;
 
 	public BufalaMozzarella(Pizza myPizza){
 		tempPizza = myPizza; 
-		}
+	}
 
 	@Override
 	public String getInfo() {
-		return tempPizza.getInfo() + ", Bufala mozzarella";
+		return tempPizza.getInfo()+", Bufala mozzarella";
 	}
 
 	@Override

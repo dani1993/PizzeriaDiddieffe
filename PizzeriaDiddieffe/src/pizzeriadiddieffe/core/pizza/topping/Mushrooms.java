@@ -5,15 +5,15 @@ import pizzeriadiddieffe.core.pizza.PizzaDecorator;
 
 public class Mushrooms extends PizzaDecorator {
 	Pizza tempPizza;
-	private final static double PRICE = 1.5;
+	private final static double PRICE = 1.50;
 
 	public Mushrooms(Pizza myPizza){
 		tempPizza = myPizza; 
-		}
+	}
 
 	@Override
 	public String getInfo() {
-		return tempPizza.getInfo() + ", Mushroms";
+		return tempPizza.getInfo()+", Mushroms";
 	}
 
 	@Override

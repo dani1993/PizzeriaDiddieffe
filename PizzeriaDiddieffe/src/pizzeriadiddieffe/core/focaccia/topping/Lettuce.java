@@ -9,11 +9,11 @@ public class Lettuce extends FocacciaDecorator  {
 
 	public Lettuce(Focaccia myFocaccia){
 		tempFocaccia = myFocaccia; 
-		}
+	}
 
 	@Override
 	public String getInfo() {
-		return tempFocaccia.getInfo() + ", Lettuce";
+		return tempFocaccia.getInfo()+", Lettuce";
 	}
 
 	@Override

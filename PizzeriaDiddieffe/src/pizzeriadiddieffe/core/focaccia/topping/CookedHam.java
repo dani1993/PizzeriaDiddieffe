@@ -5,15 +5,15 @@ import pizzeriadiddieffe.core.focaccia.FocacciaDecorator;
 
 public class CookedHam extends FocacciaDecorator  {
 	Focaccia tempFocaccia;
-	private final static double PRICE = 1;
+	private final static double PRICE = 1.00;
 
 	public CookedHam(Focaccia myFocaccia){
 		tempFocaccia = myFocaccia; 
-		}
+	}
 
 	@Override
 	public String getInfo() {
-		return tempFocaccia.getInfo() + ", Cooked Ham";
+		return tempFocaccia.getInfo()+", Cooked Ham";
 	}
 
 	@Override

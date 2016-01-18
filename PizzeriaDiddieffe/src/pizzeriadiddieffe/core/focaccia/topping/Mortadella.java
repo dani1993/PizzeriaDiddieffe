@@ -5,15 +5,15 @@ import pizzeriadiddieffe.core.focaccia.FocacciaDecorator;
 
 public class Mortadella extends FocacciaDecorator  {
 	Focaccia tempFocaccia;
-	private final static double PRICE = 1;
+	private final static double PRICE = 1.00;
 
 	public Mortadella(Focaccia myFocaccia){
 		tempFocaccia = myFocaccia; 
-		}
+	}
 
 	@Override
 	public String getInfo() {
-		return tempFocaccia.getInfo() + ", Mortadella";
+		return tempFocaccia.getInfo()+", Mortadella";
 	}
 
 	@Override

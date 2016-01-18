@@ -1,4 +1,4 @@
-package gui;
+package pizzeriadiddieffe.gui.componentclasses;
 
 import java.awt.Component;
 import java.awt.Container;

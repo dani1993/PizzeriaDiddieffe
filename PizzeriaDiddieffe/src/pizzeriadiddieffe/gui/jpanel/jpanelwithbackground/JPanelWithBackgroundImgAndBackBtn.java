@@ -1,5 +1,4 @@
-
-package gui;
+package pizzeriadiddieffe.gui.jpanel.jpanelwithbackground;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -14,11 +13,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-class JPanelWithBackgroundImgAndBackBtn extends JPanel{
+import pizzeriadiddieffe.gui.componentclasses.ComponentsGetter;
+import pizzeriadiddieffe.gui.jbutton.ClickableButtonWithImage;
 
+public class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 	private Image img;
 	private ClickableButtonWithImage btnBackToInOutScreen;
-	private JPanel visible_panel;// pannello visibile
+	private JPanel visiblePanel;// pannello visibile
 	private JFrame myFrame;
 	private ComponentsGetter myComponentGetter;
 
@@ -34,10 +35,8 @@ class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 		setMaximumSize(size);
 		setSize(size);
 		setLayout(null);
-		myComponentGetter=new ComponentsGetter();
-
+		myComponentGetter = new ComponentsGetter();
 		paintBackButton();
-
 	}
 
 	private void paintBackButton() {
@@ -52,32 +51,30 @@ class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 	}
 
 	private void setPanelsVisibility() {// setto tutti i componenti del frame
-										// invisibili,tranne il pannello
-										// visible_panel
+		// invisibili,tranne il pannello
+		// visible_panel
 		List<Component> myComponents = new ArrayList<Component>();
 		myComponents = myComponentGetter.getComponents(myFrame);
 		for (Component comp : myComponents) {
-			if (comp.getClass().equals(visible_panel) && !comp.equals(visible_panel)) {
+			if (comp.getClass().equals(visiblePanel) && !comp.equals(visiblePanel)) {
 				comp.setVisible(false);
 			}
 		}
 		this.setVisible(false);// senza questa problema di visibilita nel
-								// jpanel...order
-		visible_panel.setVisible(true);
+		// jpanel...order
+		visiblePanel.setVisible(true);
 	}
 
-	public void setVisiblePanel(JPanel visible_panel, JFrame frame) {
-		this.visible_panel = visible_panel;
+	public void setVisiblePanel(JPanel visiblePanel, JFrame frame) {
+		this.visiblePanel = visiblePanel;
 		this.myFrame = frame;
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
-
 		super.paintComponent(g);
 		// draw background image
 		g.drawImage(img, 0, 0, null);
-
 	}
 
 	public JFrame getFrame() {

@@ -6,16 +6,16 @@ import pizzeriadiddieffe.core.beverage.BeverageDecorator;
 public class Fanta extends BeverageDecorator {
 	Beverage tempBeverage;
 	private final static double PRICE = 2.00;
-	
-	public Fanta(Beverage mybeverage){
-		tempBeverage=mybeverage;
+
+	public Fanta(Beverage myBeverage){
+		tempBeverage = myBeverage;
 	}
-	
+
 	@Override
 	public String getInfo() {
-		return tempBeverage.getInfo() + ", Fanta";
+		return tempBeverage.getInfo()+", Fanta";
 	}
-	
+
 	@Override
 	public double getPrice() {
 		return tempBeverage.getPrice()+PRICE;

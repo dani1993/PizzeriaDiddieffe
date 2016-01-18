@@ -9,11 +9,11 @@ public class Olive extends FocacciaDecorator  {
 
 	public Olive(Focaccia myFocaccia){
 		tempFocaccia = myFocaccia; 
-		}
+	}
 
 	@Override
 	public String getInfo() {
-		return tempFocaccia.getInfo() + ", Olives";
+		return tempFocaccia.getInfo()+", Olives";
 	}
 
 	@Override

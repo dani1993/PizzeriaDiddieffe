@@ -9,11 +9,11 @@ public class FreshTomato extends FocacciaDecorator  {
 
 	public FreshTomato(Focaccia myFocaccia){
 		tempFocaccia = myFocaccia; 
-		}
+	}
 
 	@Override
 	public String getInfo() {
-		return tempFocaccia.getInfo() + ", Slices of tomatoes";
+		return tempFocaccia.getInfo()+", Slices of tomatoes";
 	}
 
 	@Override
