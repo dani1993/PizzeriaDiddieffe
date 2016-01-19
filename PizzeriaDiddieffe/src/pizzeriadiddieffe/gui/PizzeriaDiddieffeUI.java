@@ -24,7 +24,6 @@ import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundOrd
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundTables;
 
 public class PizzeriaDiddieffeUI extends JPanel {
-
 	private  int numberOfTablesInside = 0;
 	private  int numberOfTablesOutside = 0;
 	private final int maxNumberOfTablesInside = 12;
@@ -146,7 +145,7 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		});
 
 		JLabel lblNumberOfTableOutside=createFormattedLabel("Number of tables outside:", 155, 358, 240, 20);
-		
+
 		btnMinusOutside = createFormattedButton("-", 165, 398, 50, 50);
 		btnMinusOutside.setEnabled(false);
 		btnMinusOutside.addActionListener(new ActionListener() {
@@ -220,7 +219,7 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		chooseInsideOutside.setVisible(true);
 
 		Image orderOutsideBg = new ImageIcon("res/OrderManager.jpg").getImage();//creo pannello per ordini interni 
-		orderPanel = new JPanelWithBackgroundOrder(orderOutsideBg,frame);
+		orderPanel = new JPanelWithBackgroundOrder(orderOutsideBg, frame);
 		frame.getContentPane().add(orderPanel);
 
 		Image insideBg = new ImageIcon ("res/parquetBG.jpg").getImage();
@@ -229,14 +228,14 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		frame.getContentPane().add(insidePanel);
 
 		Image outsideBg = new ImageIcon ("res/outsideBG.jpg").getImage();
-		outsidePanel = new JPanelWithBackgroundTables(outsideBg, outsideTables, "outside",orderPanel);
+		outsidePanel = new JPanelWithBackgroundTables(outsideBg, outsideTables, "outside", orderPanel);
 		frame.getContentPane().add(outsidePanel);
 		setBackButtons();
 	}
 
 	private void setBackButtons(){
-		insidePanel.setVisiblePanel(chooseInsideOutside,frame);
-		outsidePanel.setVisiblePanel(chooseInsideOutside,frame);
+		insidePanel.setVisiblePanel(chooseInsideOutside, frame);
+		outsidePanel.setVisiblePanel(chooseInsideOutside, frame);
 	}
 
 	private JButton createFormattedButton(String text, int buttonX, int buttonY, int buttonWidth, int buttonHeight){

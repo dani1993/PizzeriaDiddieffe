@@ -1,8 +1,6 @@
 package pizzeriadiddieffe.gui.jpanel;
 
 import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,25 +20,24 @@ import pizzeriadiddieffe.gui.jbutton.JButtonTextImage;
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundImgAndBackBtn;
 
 public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements OrderViewerInterface{
-	
 	private JButton AddToOrderButton;
 	private JButton ClearButton;
 	private JPanelWithBackgroundImgAndBackBtn currentJPanel = this;
-	
+
 	private int addButtonHeight = 60;
 	private int addButtonWidth = 200;
 	private int addButtonx = 325;
 	private int addButtony = 640;
-	
+
 	private int clearButtonHeight = 60;
 	private int clearButtonWidth = 200;
 	private int clearButtonx = 30;
 	private int clearButtony = 640;
-	
+
 	private ButtonBorderManager myBorderManager;
-	private Color defaultColor=Color.white;
-	private Color selectedColor=Color.green;
-	
+	private Color defaultColor = Color.white;
+	private Color selectedColor = Color.green;
+
 	private ItemCreator myItemCreator;
 	private Order currentOrder;
 	private Item currentItem;
@@ -71,26 +68,24 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements
 
 	private String addToOrderSound = "res/addToOrderSound.wav";
 	private String clearSound = "res/clearCurrentOrderSound.wav";
-	
-	private String buttonFont="Lucida Grande";
-	private int buttonFontSize=16;
-	private Color buttonTextColor=Color.black;
 
+	private String buttonFont = "Lucida Grande";
+	private int buttonFontSize = 16;
+	private Color buttonTextColor = Color.black;
 
 	public OrderingJPanel(Image img, String currentBasePackage, String[] baseCasesNameList, String[] toppingNameList, String[] classNameList) {
 		super(img);
-		
-		myItemCreator=new ItemCreator(currentBasePackage);
+
+		myItemCreator = new ItemCreator(currentBasePackage);
 		myItemCreator.setItemsLists(baseCasesNameList, toppingNameList, classNameList);
-		
-		myComponentCreator=new ComponentCreator<>();
-		
+
+		myComponentCreator = new ComponentCreator<>();
+
 		baseCasesButtonList = new LinkedList<JButton>();
 		toppingButtonList = new LinkedList<JButton>();
 		currentTopping = new LinkedList<String>();
 		buttonSound = new Sound();
-		myBorderManager=new ButtonBorderManager(defaultColor,selectedColor);
-		
+		myBorderManager = new ButtonBorderManager(defaultColor, selectedColor);
 
 		createToppingsItems(toppingNameList);
 		createBaseItems(baseCasesNameList);
@@ -102,7 +97,6 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements
 		this.currentOrder = currentOrder;
 	}
 
-	
 	private void createBaseItems(String[] pizzaItems) {
 		for (int i = 0; i<pizzaItems.length; i++) {
 			String currentItemText = pizzaItems[i];
@@ -115,25 +109,25 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements
 					if(getBorderColor(currentItemButton).equals(selectedColor)){
 						baseCasesButtonList.add(currentItemButton);
 						currentCaseBase = currentItemButton.getText();
-						setOthersButtons(false,baseCasesButtonList,currentItemButton);
-						setOthersButtons(true,toppingButtonList,currentItemButton);
+						setOthersButtons(false, baseCasesButtonList, currentItemButton);
+						setOthersButtons(true, toppingButtonList, currentItemButton);
 					}else{
 						currentCaseBase = null;
 						baseCasesButtonList.remove(currentItemButton);
-						setOthersButtons(true,baseCasesButtonList,currentItemButton);
+						setOthersButtons(true, baseCasesButtonList, currentItemButton);
 						setOthersButtons(false, toppingButtonList, currentItemButton);
 					}
 				}
 			});
 			currentJPanel.add(currentItemButton);
-			baseCasesX = baseCasesX + baseCaseXToMove;
+			baseCasesX = baseCasesX+baseCaseXToMove;
 		}
 	}
 
 	private void createToppingsItems(String[] toppingsItems) {
 		for (int i = 0; i<toppingsItems.length; i++) {
 			if (i%toppingsForColumn==0 && i!=0) {
-				toppingX = toppingX + toppingXToMove;
+				toppingX = toppingX+toppingXToMove;
 				toppingY = toppingYToStart;
 			}
 			final String currentItemText = toppingsItems[i];
@@ -156,7 +150,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements
 			});
 
 			currentJPanel.add(currentItemButton);
-			toppingY = toppingY + toppingYToMove;
+			toppingY = toppingY+toppingYToMove;
 		}
 	}
 
@@ -189,13 +183,13 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements
 				resetSelection();
 			}
 		});
-		
+
 		ClearButton=createFormattedButton("Clear Selection", clearButtonx, clearButtony, clearButtonWidth, clearButtonHeight);
 		ClearButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				buttonSound.setSound(clearSound);
+
 				try {
 					buttonSound.playSound();
 				} catch (Exception e1) {
@@ -211,22 +205,17 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements
 		currentTopping = new LinkedList<>();
 		currentCaseBase = null;
 		currentItem = null;
-		
 	}
-	
-	
-	
-	private void setOthersButtons(boolean enable,LinkedList<JButton> list,JButton mybutton) {
+
+	private void setOthersButtons(boolean enable, LinkedList<JButton> list, JButton mybutton) {
 		myBorderManager.setOthersButtons(enable, list, mybutton);
 	}
-	
-	
+
 	private void resetAllButtons(){
-		myBorderManager.resetButtons(baseCasesButtonList,toppingButtonList);
+		myBorderManager.resetButtons(baseCasesButtonList, toppingButtonList);
 		myBorderManager.setOthersButtons(false, toppingButtonList, new JButton());
 		myBorderManager.setOthersButtons(true, baseCasesButtonList, new JButton());
 	}
-
 
 	private Iterator<String> getListIterator(LinkedList<String> list) {
 		return list.iterator();
@@ -236,12 +225,10 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements
 		myBorderManager.changeBorderColor(currentItemButton);
 	}
 
-	
 	private Color getBorderColor(JButtonTextImage currentItemButton) {
 		return myBorderManager.getBorderColor(currentItemButton);
 	}
 
-	
 	private void createChoseenBaseCase(String className) {
 		myItemCreator.createChoseenBaseCase(className);
 		currentItem=myItemCreator.getCurrentItem();
@@ -252,12 +239,10 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements
 		currentItem=myItemCreator.getCurrentItem();
 	}
 
-	
 	private JButton createFormattedButton(String text, int buttonX, int buttonY, int buttonWidth, int buttonHeight){
 		myComponentCreator.createButton(text, buttonFont, buttonFontSize, buttonTextColor);
 		myComponentCreator.setUpComponentProp(buttonX, buttonY, buttonWidth, buttonHeight);
 		this.add(myComponentCreator.getButton());
 		return myComponentCreator.getButton();
-	}
-	
+	}	
 }

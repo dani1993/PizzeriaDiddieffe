@@ -10,55 +10,48 @@ import pizzeriadiddieffe.core.beverage.EmptyLargeGlass;
 import pizzeriadiddieffe.core.beverage.topping.Beer;
 
 public class BeerTest {
-	
-	private String beer_info="";
-	private double base_beer_price=3.00;
-	private double delta_factor=0.0;
-	private String actual_beverage_info="";
-	
-	private Beer my_beer;
-	private Beverage my_base_beverage;
-	
+	private String beerInfo = "";
+	private double baseBeerPrice = 3.00;
+	private double deltaFactor = 0.00;
+	private String actualBeverageInfo = "";
+
+	private Beer myBeer;
+	private Beverage myBaseBeverage;
+
 	@Before
 	public void beforetestBeer() {
-		EmptyLargeGlass my_empty_large_glass=new EmptyLargeGlass();
-		Beer my_beer=new Beer(my_empty_large_glass);
-		
-		this.my_beer=my_beer;
-		this.my_base_beverage=my_empty_large_glass;
-		
-		actual_beverage_info=this.my_beer.getInfo();
-		beer_info=my_base_beverage.getInfo()+", Beer";
+		EmptyLargeGlass myEmptyLargeGlass = new EmptyLargeGlass();
+		Beer myBeer = new Beer(myEmptyLargeGlass);
+
+		this.myBeer = myBeer;
+		this.myBaseBeverage = myEmptyLargeGlass;
+
+		actualBeverageInfo = this.myBeer.getInfo();
+		beerInfo = myBaseBeverage.getInfo()+", Beer";
 	}
-	
-	
+
 	@Test
 	public void getInfoAfterDecoration() {
-		assertEquals(beer_info, actual_beverage_info);
+		assertEquals(beerInfo, actualBeverageInfo);
 	}
-	
+
 	@Test
 	public void getInfoBeforeDecoration(){
-		String beverage_info=my_base_beverage.getInfo();
-		assertNotEquals(beer_info,beverage_info);
+		String beverageInfo = myBaseBeverage.getInfo();
+		assertNotEquals(beerInfo, beverageInfo);
 	}
-	
-	
+
 	@Test
 	public void getPriceAfterDecoration(){
-		double beer_price=my_beer.getPrice();
-		double price_expected=base_beer_price+my_base_beverage.getPrice();
-		assertEquals(price_expected, beer_price,delta_factor);
+		double beerPrice = myBeer.getPrice();
+		double priceExpected = baseBeerPrice+myBaseBeverage.getPrice();
+		assertEquals(priceExpected, beerPrice, deltaFactor);
 	}
-	
+
 	@Test
 	public void getPriceBeforeDecoration(){
-		double beer_price=my_beer.getPrice();
-		double beverate_price=my_base_beverage.getPrice();
-		assertNotEquals(beer_price,beverate_price,delta_factor);
+		double beerPrice = myBeer.getPrice();
+		double beveratePrice = myBaseBeverage.getPrice();
+		assertNotEquals(beerPrice, beveratePrice, deltaFactor);
 	}
-	
-	
-
-
 }

@@ -1,4 +1,5 @@
 package pizzeriadiddieffe.core.beverage;
+
 import pizzeriadiddieffe.core.Item;
 
 public abstract class Beverage implements Item {

@@ -8,41 +8,38 @@ import org.junit.Test;
 import pizzeriadiddieffe.core.beverage.EmptyLargeGlass;
 
 public class EmptyLargeGlassTest {
-	
-	
-	private String basic_glass_info="Empty large glass";
-	private double basic_glass_price=1.00;
-	private double delta_factor=0.0;
-	
-	private EmptyLargeGlass my_large_glass; 
-	private ItemTestClass fake_item;
+	private String basicGlassInfo = "Empty large glass";
+	private double basicGlassPrice = 1.00;
+	private double deltaFactor = 0.00;
+
+	private EmptyLargeGlass myLargeGlass; 
+	private ItemTestClass fakeItem;
 
 	@Before
 	public void createLargeGlass() {
-		my_large_glass=new EmptyLargeGlass();
-		fake_item=new ItemTestClass();
+		myLargeGlass = new EmptyLargeGlass();
+		fakeItem = new ItemTestClass();
 	}
-	
+
 	@Test
 	public void getInfo() {
-		String glass_info=my_large_glass.getInfo();
-		assertEquals(glass_info,basic_glass_info);
+		String glassInfo = myLargeGlass.getInfo();
+		assertEquals(glassInfo, basicGlassInfo);
 	}
 
 	@Test 
 	public void getPrice(){
-		double glass_price=my_large_glass.getPrice();
-		assertEquals(basic_glass_price,glass_price,delta_factor);
+		double glassPrice = myLargeGlass.getPrice();
+		assertEquals(basicGlassPrice, glassPrice, deltaFactor);
 	}
-	
-	@Test(expected=Exception.class)
+
+	@Test(expected = Exception.class)
 	public void addItem() throws Exception {
-		my_large_glass.add(fake_item);
+		myLargeGlass.add(fakeItem);
 	}
-	
-	@Test(expected=Exception.class)
+
+	@Test(expected = Exception.class)
 	public void removeItem() throws Exception {
-		my_large_glass.remove(fake_item);
+		myLargeGlass.remove(fakeItem);
 	}
-	
 }

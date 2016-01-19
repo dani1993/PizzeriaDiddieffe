@@ -3,25 +3,21 @@ package pizzeriadiddieffe.gui.formattedelements;
 import java.awt.Color;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
 import pizzeriadiddieffe.gui.jbutton.JButtonTextImage;
 
-public class ButtonBorderManager implements ButtonBorderManagerInterface
-{
-	
+public class ButtonBorderManager implements ButtonBorderManagerInterface{
 	private Color defaultColor;
 	private Color selectedColor;
-	
-	public ButtonBorderManager(Color defaultColor,Color selectedColor){
-		this.defaultColor=defaultColor;
-		this.selectedColor=selectedColor;
+
+	public ButtonBorderManager(Color defaultColor, Color selectedColor){
+		this.defaultColor = defaultColor;
+		this.selectedColor = selectedColor;
 	}
-	
-	
+
 	@Override
 	public  Color getBorderColor(JButtonTextImage currentItemButton) {
 		Color currentBorder = ((LineBorder) currentItemButton.getBorder()).getLineColor();
@@ -39,13 +35,13 @@ public class ButtonBorderManager implements ButtonBorderManagerInterface
 			}
 		}
 	}
-	
+
 	private void resetBorderColor(JButton currentButton) {
 		currentButton.setBorder(new LineBorder(defaultColor, 3, true));
 	}
 
 	@Override
-	public void setOthersButtons(boolean enable,LinkedList<JButton> list,JButton mybutton) {
+	public void setOthersButtons(boolean enable, LinkedList<JButton> list, JButton mybutton) {
 		Iterator<JButton> iteratore = getButtonListIterator(list);
 		while(iteratore.hasNext()){
 			JButton currentButton = iteratore.next();
@@ -55,21 +51,20 @@ public class ButtonBorderManager implements ButtonBorderManagerInterface
 			}
 		}
 	}
-	
+
 	private Iterator<JButton> getButtonListIterator(LinkedList<JButton> list) {
 		return list.iterator();
 	}
-	
+
 	@Override
-	public void resetButtons(LinkedList<JButton> baseCasesButtonList,LinkedList<JButton> toppingButtonList) {
+	public void resetButtons(LinkedList<JButton> baseCasesButtonList, LinkedList<JButton> toppingButtonList) {
 		Iterator<JButton> iteratorBasecases = getButtonListIterator(baseCasesButtonList);
 		Iterator<JButton> iteratortopping = getButtonListIterator(toppingButtonList);
 
 		resetListButtons(iteratorBasecases);
 		resetListButtons(iteratortopping);
 	}
-	
-	
+
 	private void resetListButtons(Iterator<JButton> iterator){
 		while (iterator.hasNext()) {
 			JButton currentButton = iterator.next();

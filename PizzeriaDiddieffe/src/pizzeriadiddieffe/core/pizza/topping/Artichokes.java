@@ -19,6 +19,4 @@ public class Artichokes extends PizzaDecorator {
 	public double getPrice() {
 		return tempPizza.getPrice()+PRICE;
 	}
-
-	
 }

@@ -6,6 +6,7 @@ import java.util.LinkedList;
 public class Order implements Item {
 	private LinkedList<Item> myOrder = new LinkedList<Item>();
 	private String id;
+
 	private Iterator<Item> getIterator(){
 		Iterator<Item> myIterator = myOrder.iterator();
 		return myIterator;
@@ -64,7 +65,7 @@ public class Order implements Item {
 		if(i>myOrder.size()){
 			throw new Exception("Can't remove that!");
 		}else{
-		myOrder.remove(i);
-	}
+			myOrder.remove(i);
 		}
+	}
 }

@@ -20,7 +20,7 @@ public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn impleme
 	private String baseTotalString = "Insert Code ";
 	private String totalString = baseTotalString;
 	private String code = "";
-	private String STAR="*";
+	private String STAR = "*";
 
 	private int space = 20;
 	private int labelX = 30;
@@ -92,8 +92,7 @@ public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn impleme
 			final String buttonText = setCoordinates(i);
 			final JButton currentButton = createFormattedButton(buttonText, buttonX, buttonY, buttonWidth, buttonHeight);
 			currentButton.addActionListener(new ActionListener() {
-				
-
+			
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					code = code+STAR;
@@ -103,7 +102,7 @@ public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn impleme
 			});
 		}
 
-		JButton cancButton=createFormattedButton("C",buttonX+xSpace, buttonY, buttonWidth, buttonHeight);
+		JButton cancButton = createFormattedButton("C", buttonX+xSpace, buttonY, buttonWidth, buttonHeight);
 		cancButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

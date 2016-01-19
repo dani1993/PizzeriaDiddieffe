@@ -3,7 +3,7 @@ package pizzeriadiddieffe.core;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class OrderManager implements OrderManagerInterface{
+public class OrderManager implements OrderManagerInterface {
 	private LinkedList<Order> myOrderList = new LinkedList<Order>();
 
 	@Override

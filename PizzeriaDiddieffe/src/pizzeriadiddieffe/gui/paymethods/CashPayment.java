@@ -49,7 +49,7 @@ public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements Pa
 	private int buttonPayY = 320;
 	private int buttonPayWidth = 220;
 	private int buttonPayHeight = 250;
-	private String amountToPayString="Amount to Pay ";
+	private String amountToPayString = "Amount to Pay ";
 
 	public CashPayment(Image img) {
 		super(img);
@@ -81,7 +81,7 @@ public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements Pa
 
 					if(currentText=="Pay" && resto>0){
 						payButton.setText("Change : "+(float)resto);
-					}else if(currentText!="Pay"){
+					}else if(currentText!="Pay" || resto==0){
 						currentOrder.deleteAll();
 						payButton.setText("Payed!");
 						payButton.setEnabled(false);
@@ -129,7 +129,7 @@ public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements Pa
 				label.setText(baseTotalString);	
 			}
 		});
-		
+
 		JButton dotButton = createFormattedButton(".", buttonX-xSpace, buttonY, buttonWidth, buttonHeight);
 		dotButton.addActionListener(new ActionListener() {
 			@Override

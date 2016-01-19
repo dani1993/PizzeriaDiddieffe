@@ -11,130 +11,123 @@ import org.junit.Test;
 import pizzeriadiddieffe.core.Item;
 import pizzeriadiddieffe.core.Order;
 
-public class OrderTest {
-	
-	private double delta_factor=0.0;
-	private double base_order_price=0.0;
-	private String base_order_info="";
-	
-	private Order my_order;
-	private ItemTestClass fake_item;
-	private double fake_price=1.00;
-	private String fake_info="fake info";
-	
+public class OrderTest {	
+	private double deltaFactor = 0.0;
+	private double baseOrderPrice = 0.0;
+	private String baseOrderInfo = "";
+
+	private Order myOrder;
+	private ItemTestClass fakeItem;
+	private double fakePrice = 1.00;
+	private String fakeInfo = "fake info";
+
 	@Before
 	public void test() {
-		my_order = new Order();
-		fake_item=new ItemTestClass(fake_price,fake_info);
+		myOrder = new Order();
+		fakeItem = new ItemTestClass(fakePrice, fakeInfo);
 	}
 
-	
 	@Test
 	public void emptyOrderList() {
-		LinkedList<Item> my_list=my_order.getOrderList();
-		assertTrue(my_list.isEmpty());
+		LinkedList<Item> myList = myOrder.getOrderList();
+		assertTrue(myList.isEmpty());
 	}
-	
-	@Test(expected=Exception.class)
+
+	@Test(expected = Exception.class)
 	public void removeItemFromList() throws Exception{
 		removeItemToOrderList();
 	}
 
-	
 	private void addItemToOrderList() throws Exception {
-		my_order.add(fake_item);
+		myOrder.add(fakeItem);
 	}
-	
-	
+
 	private void removeItemToOrderList() throws Exception {
-		my_order.remove(fake_item);
+		myOrder.remove(fakeItem);
 	}
-	
-	
+
 	@Test
 	public void addAndremoveItemFromList() throws Exception{
 		addItemToOrderList();
 		removeItemToOrderList();
-		LinkedList<Item> my_list=my_order.getOrderList();
-		assertTrue(my_list.isEmpty());
+		LinkedList<Item> myList=myOrder.getOrderList();
+		assertTrue(myList.isEmpty());
 	}
-	
-	
+
 	@Test
 	public void addItemToList() throws Exception{
 		addItemToOrderList();
 	}
-	
+
 	@Test
 	public void getOrderBasePrice(){
-		double base_price=my_order.getPrice();
-		assertEquals(base_order_price, base_price,delta_factor);
+		double basePrice = myOrder.getPrice();
+		assertEquals(baseOrderPrice, basePrice, deltaFactor);
 	}
-	
+
 	@Test
 	public void getOrderCurrentPrice() throws Exception{
 		addItemToOrderList();
-		double current_order_price=my_order.getPrice();
-		double fake_item_price=fake_item.getPrice();
-		assertEquals(fake_item_price,current_order_price,delta_factor);
+		double currentOrderPrice = myOrder.getPrice();
+		double fakeItemPrice = fakeItem.getPrice();
+		assertEquals(fakeItemPrice, currentOrderPrice, deltaFactor);
 	}
-	
+
 	@Test
 	public void getBaseOrderInfo(){
-		String my_order_info=my_order.getInfo();
-		assertEquals(base_order_info, my_order_info);
+		String myOrderInfo = myOrder.getInfo();
+		assertEquals(baseOrderInfo, myOrderInfo);
 	}
-	
+
 	@Test 
 	public void getCurrentOrderInfo() throws Exception{
 		addItemToOrderList();
-		String fake_item_info=fake_item.getInfo();
-		String current_order_info=my_order.getInfo();
-		assertEquals(fake_item_info, current_order_info);
-	}
-	
-	@Test
-	public void checkPriceAfterRemove() throws Exception{
-		double base_price=my_order.getPrice();
-		addItemToOrderList();
-		removeItemToOrderList();
-		double current_price=my_order.getPrice();
-		assertEquals(base_price,current_price,delta_factor);
-	}
-	
-	@Test
-	public void checkInfoAfterRemove() throws Exception{
-		String base_info=my_order.getInfo();
-		addItemToOrderList();
-		removeItemToOrderList();
-		String current_info=my_order.getInfo();
-		assertEquals(base_info,current_info);
-	}
-	
-	@Test 
-	public void removeItemFromOrder() throws Exception{
-		my_order.add(fake_item);
-		my_order.deleteIndex(0);
-		assertEquals(0,my_order.getOrderList().size());
-	}
-	
-	@Test (expected=Exception.class)
-	public void removeItemFromEmptyOrder() throws Exception{
-		my_order.deleteIndex(1);
-	}
-	
-	@Test 
-	public void removeAllItemsFromOrder() throws Exception{
-		my_order.add(fake_item);
-		my_order.add(fake_item);
-		my_order.deleteAll();
-		assertEquals(0,my_order.getOrderList().size());
-	}
-	
-	@Test 
-	public void removeAllItemsFromEmptyOrder() throws Exception{
-		my_order.deleteAll();
-		assertEquals(0,my_order.getOrderList().size());
+		String fakeItemInfo = fakeItem.getInfo();
+		String currentOrderInfo = myOrder.getInfo();
+		assertEquals(fakeItemInfo, currentOrderInfo);
 	}
 
+	@Test
+	public void checkPriceAfterRemove() throws Exception{
+		double basePrice = myOrder.getPrice();
+		addItemToOrderList();
+		removeItemToOrderList();
+		double currentPrice = myOrder.getPrice();
+		assertEquals(basePrice, currentPrice, deltaFactor);
+	}
+
+	@Test
+	public void checkInfoAfterRemove() throws Exception{
+		String baseInfo = myOrder.getInfo();
+		addItemToOrderList();
+		removeItemToOrderList();
+		String currentInfo = myOrder.getInfo();
+		assertEquals(baseInfo, currentInfo);
+	}
+
+	@Test 
+	public void removeItemFromOrder() throws Exception{
+		myOrder.add(fakeItem);
+		myOrder.deleteIndex(0);
+		assertEquals(0, myOrder.getOrderList().size());
+	}
+
+	@Test (expected = Exception.class)
+	public void removeItemFromEmptyOrder() throws Exception{
+		myOrder.deleteIndex(1);
+	}
+
+	@Test 
+	public void removeAllItemsFromOrder() throws Exception{
+		myOrder.add(fakeItem);
+		myOrder.add(fakeItem);
+		myOrder.deleteAll();
+		assertEquals(0, myOrder.getOrderList().size());
+	}
+
+	@Test 
+	public void removeAllItemsFromEmptyOrder() throws Exception{
+		myOrder.deleteAll();
+		assertEquals(0, myOrder.getOrderList().size());
+	}
 }

@@ -15,6 +15,7 @@ public  class CreateObjectByName implements ItemsCreatorInterface{
 
 		return object;
 	}
+
 	@Override
 	public Object createToppingByName(String className, Item baseItem, String type) throws Exception {
 		if (type.equals("pizza")) {

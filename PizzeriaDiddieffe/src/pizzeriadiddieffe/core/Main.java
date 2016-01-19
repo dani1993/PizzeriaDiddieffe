@@ -6,9 +6,8 @@ public class Main {
 	public static void main(String[] args){
 		run();
 	}
-	
+
 	private static void run(){
-		PizzeriaDiddieffeUI gui=new PizzeriaDiddieffeUI();
+		PizzeriaDiddieffeUI gui = new PizzeriaDiddieffeUI();
 	}
-	
 }

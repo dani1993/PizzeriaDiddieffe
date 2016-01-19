@@ -66,18 +66,19 @@ class JPanelWithBackgroundImg extends JPanel implements JPanelWithImageInterface
 		this.setVisible(false); 
 		visiblePanel.setVisible(true);
 	}
+
 	@Override
 	public void setVisiblePanel(JPanel visiblePanel, JFrame frame){
 		this.visiblePanel = visiblePanel;  
 		this.myFrame = frame;
 	}
 
-
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(img, 0, 0, null);
 	}
+
 	@Override
 	public JFrame getFrame(){
 		return myFrame;
