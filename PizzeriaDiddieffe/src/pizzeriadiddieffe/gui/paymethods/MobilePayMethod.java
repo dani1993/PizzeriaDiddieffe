@@ -14,7 +14,6 @@ import pizzeriadiddieffe.gui.creators.ComponentCreator;
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundImgAndBackBtn;
 
 public class MobilePayMethod extends JPanelWithBackgroundImgAndBackBtn implements PayMethodInterface {
-
 	private double totPrice;
 	private JPanelWithBackgroundImgAndBackBtn myPanel;
 	private JButton payButton;
@@ -39,8 +38,8 @@ public class MobilePayMethod extends JPanelWithBackgroundImgAndBackBtn implement
 	private int buttonPayWidth = 300;
 	private int buttonPayHeight = 100;
 
-	private String[] operators = {"Apple Pay","Android Pay","Generic Operator"};
-	private String [] autentications = {"Contact Less","Code Insertion"};
+	private String[] operators = {"Apple Pay", "Android Pay", "Generic Operator"};
+	private String [] autentications = {"Contact Less", "Code Insertion"};
 	private ComponentCreator<String> myComponentCreator;
 
 	private String buttonFont = "Lucida Grande";
@@ -84,7 +83,7 @@ public class MobilePayMethod extends JPanelWithBackgroundImgAndBackBtn implement
 	}
 
 	private void createTotalLabel(){		
-		final JLabel label = createFormattedLabel("Totale Ordine "+totPrice, labelX, labelY, labelWidth, labelHeight);
+		final JLabel label = createFormattedLabel("Amount to Pay "+totPrice, labelX, labelY, labelWidth, labelHeight);
 		labelY = labelY+menuSpace;
 
 		final JLabel labelMethod = createFormattedLabel("Choose Autentication Method", labelX, labelY, labelWidth, labelHeight);

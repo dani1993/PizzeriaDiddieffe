@@ -17,9 +17,9 @@ public class JPanelWithBackgroundTables extends JPanelWithBackgroundImgAndBackBt
 	private int imgYToMove;
 	private int numberOfTablesInRow;
 
-	private int[] coordinatesEight = {30,3,150,170,60};
-	private int[] coordinatesFour = {60,2,200,220,60};
-	private int[] coordinatesMax = {60,2,200,220,160};
+	private int[] coordinatesEight = {30, 3, 150, 170, 60};
+	private int[] coordinatesFour = {60, 2, 200, 220, 60};
+	private int[] coordinatesMax = {60, 2, 200, 220, 160};
 
 	public JPanelWithBackgroundTables(Image image) {
 		super(image);
@@ -48,14 +48,14 @@ public class JPanelWithBackgroundTables extends JPanelWithBackgroundImgAndBackBt
 		y = coordinates[4];
 
 		int i = 1;
-		while (i <= numbers) {
+		while (i<=numbers) {
 			x = xToStart;
 			for (int j = 0; j<numberOfTablesInRow && i<=numbers; j++) {
 				if (where=="inside") {
-					tableCode = Integer.toString(i) +"i";
+					tableCode = Integer.toString(i)+"i";
 				}
 				else {
-					tableCode = (Integer.toString(i) + "f");
+					tableCode = (Integer.toString(i)+"o");
 				}
 				final Table table = new Table(x, y, imgWidth, imgHeight, tableCode);
 				this.add(table);
@@ -67,10 +67,10 @@ public class JPanelWithBackgroundTables extends JPanelWithBackgroundImgAndBackBt
 						currentOrderPanel.setVisible(true);
 					}
 				});
-				x = x + imgXToMove;
+				x = x+imgXToMove;
 				i++;
 			}
-			y = y + imgYToMove;
+			y = y+imgYToMove;
 		}
 	}
 

@@ -12,28 +12,27 @@ public class ItemCreator {
 	private CreateObjectByName myCreator;
 	private String[] baseCasesNameList;
 	private String[] toppingNameList;
-	private String []currentClassNames;
+	private String[] currentClassNames;
 	private String currentClass;
 	
-	
 	public ItemCreator(String currentClass){
-		this.currentClass=currentClass;
-		myCreator=new CreateObjectByName();
+		this.currentClass = currentClass;
+		myCreator = new CreateObjectByName();
 	}
 	
-	public void setItemsLists(String []baseCasesNameList,String[]toppingNameList,String[]currentClassNames){
-		this.toppingNameList=toppingNameList;
-		this.currentClassNames=currentClassNames;
-		this.baseCasesNameList=baseCasesNameList;
+	public void setItemsLists(String[] baseCasesNameList, String[] toppingNameList, String[] currentClassNames){
+		this.toppingNameList = toppingNameList;
+		this.currentClassNames = currentClassNames;
+		this.baseCasesNameList = baseCasesNameList;
 	}
 
 	public void setCurrentItem(Item currentItem){
-		this.currentItem=currentItem;
+		this.currentItem = currentItem;
 	}
 
 	public void createChoseenBaseCase(String className) {
-		String currentclassName=getClassName(className,baseCasesNameList);
-		final String fullPackagePath = "pizzeriadiddieffe.core." + currentClass + "."+currentclassName;
+		String currentclassName = getClassName(className, baseCasesNameList);
+		final String fullPackagePath = "pizzeriadiddieffe.core."+currentClass+"."+currentclassName;
 		
 		try {
 			object = myCreator.createObjectByName(fullPackagePath);
@@ -43,14 +42,12 @@ public class ItemCreator {
 		currentItem = ((Item) object);
 	}
 	
-	
 	public Item getCurrentItem(){
 		return currentItem;
 	}
 	
-	
-	private String getClassName(String className,String[] nameList) {
-		for(int i=0; i<currentClassNames.length; i++){
+	private String getClassName(String className, String[] nameList) {
+		for(int i = 0; i<currentClassNames.length; i++){
 			if(nameList[i].equals(className)){
 				if(nameList.equals(toppingNameList)){
 					return currentClassNames[i+baseCasesNameList.length];
@@ -61,24 +58,18 @@ public class ItemCreator {
 		return null;
 	}
 	
-	
-	
-	
-	public void createChoosenToppings( String currentPackage) {
-		currentPackage=getClassName(currentPackage,toppingNameList);
-		String fullPackagePath = "pizzeriadiddieffe.core." +currentClass+ ".topping." + currentPackage;
+	public void createChoosenToppings(String currentPackage) {
+		currentPackage = getClassName(currentPackage, toppingNameList);
+		String fullPackagePath = "pizzeriadiddieffe.core."+currentClass+".topping."+currentPackage;
 
 		try {
-			object = myCreator.createToppingByName(fullPackagePath,
-					currentItem, currentClass);
+			object = myCreator.createToppingByName(fullPackagePath, currentItem, currentClass);
 		} catch (Exception exception) {
 			System.out.println(currentItem.getPrice());
 			System.out.println("errore");
 		}
 		castToCurrentClass(currentClass);
 	}
-	
-	
 	
 	private void castToCurrentClass(String currentClass) {
 		if (currentClass.equals("pizza")) {
@@ -91,5 +82,4 @@ public class ItemCreator {
 		currentItem = (Focaccia) object;
 		return;
 	}
-	
 }

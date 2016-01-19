@@ -18,7 +18,6 @@ import pizzeriadiddieffe.gui.paymethods.MobilePayMethod;
 import pizzeriadiddieffe.gui.paymethods.PayMethodInterface;
 
 public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
-
 	private int buttonsWidth = 250;
 	private int buttonsHeight = 200;
 	private int buttonsFont = 30;
@@ -42,10 +41,10 @@ public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 	private String mobileText = "Mobile Pay";
 
 	private PayMethodInterface payStrategy; 
-	private PayChooser myPayChooser; 
+	private PayChooser myPayChooser;
 	private JPanelWithBackgroundImgAndBackBtn payPanel;
 	private String payPanelImagePath = "res/payPanel.jpg";
-	private JPanelWithBackgroundImgAndBackBtn currentJPanel=this;
+	private JPanelWithBackgroundImgAndBackBtn currentJPanel = this;
 	private JFrame myFrame;
 
 	public PayOrderJPanel(Image img, JFrame myFrame) {

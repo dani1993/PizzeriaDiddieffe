@@ -17,19 +17,20 @@ public class ClickableButtonWithImage extends JButton {
 		Image buttonImage;
 		Image darkbuttonImage;
 		Image darkerbuttonImage;
+		
 		if (image=="Back") {
-			buttonImage = new ImageIcon("res/" + image + ".png").getImage().getScaledInstance(width, height,
+			buttonImage = new ImageIcon("res/"+image+".png").getImage().getScaledInstance(width, height,
 					java.awt.Image.SCALE_SMOOTH);
-			darkbuttonImage = new ImageIcon("res/"+image + "Dark.png").getImage().getScaledInstance(width, height,
+			darkbuttonImage = new ImageIcon("res/"+image+"Dark.png").getImage().getScaledInstance(width, height,
 					java.awt.Image.SCALE_SMOOTH);
-			darkerbuttonImage = new ImageIcon("res/"+image + "DarkDark.png").getImage().getScaledInstance(width, height,
+			darkerbuttonImage = new ImageIcon("res/"+image+"DarkDark.png").getImage().getScaledInstance(width, height,
 					java.awt.Image.SCALE_SMOOTH);
 		} else {
-			buttonImage = new ImageIcon("res/" + image + ".jpg").getImage().getScaledInstance(width, height,
+			buttonImage = new ImageIcon("res/"+image+".jpg").getImage().getScaledInstance(width, height,
 					java.awt.Image.SCALE_SMOOTH);
-			darkbuttonImage = new ImageIcon("res/"+image + "Dark.jpg").getImage().getScaledInstance(width, height,
+			darkbuttonImage = new ImageIcon("res/"+image+"Dark.jpg").getImage().getScaledInstance(width, height,
 					java.awt.Image.SCALE_SMOOTH);
-			darkerbuttonImage = new ImageIcon("res/"+image + "DarkDark.jpg").getImage().getScaledInstance(width, height,
+			darkerbuttonImage = new ImageIcon("res/"+image+"DarkDark.jpg").getImage().getScaledInstance(width, height,
 					java.awt.Image.SCALE_SMOOTH);
 		}
 		ImageIcon buttonIcon = new ImageIcon(buttonImage);

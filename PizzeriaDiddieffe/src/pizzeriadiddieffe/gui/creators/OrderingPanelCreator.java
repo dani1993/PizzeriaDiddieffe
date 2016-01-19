@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 import pizzeriadiddieffe.gui.jpanel.OrderingJPanel;
 
 public class OrderingPanelCreator implements PanelCreator{
-
 	private OrderingJPanel tempOrderingPanel;
 	private Image tempOrderingImage;
 

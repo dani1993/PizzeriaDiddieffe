@@ -26,7 +26,6 @@ import pizzeriadiddieffe.gui.jpanel.PayOrderJPanel;
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundImgAndBackBtn;
 
 public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
-
 	private JPanelWithBackgroundImgAndBackBtn currentJPanel = this;
 	private PayOrderJPanel myPayJPanel;
 	private Order myOrder;
@@ -56,22 +55,22 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 	private int labelWidth = 200;
 	private int labelFontSize = 22;
 	private String font="Lucida Grande";
-	private int buttonFontSize=22;
-	private Color buttonTextColor=Color.BLACK;
+	private int buttonFontSize = 22;
+	private Color buttonTextColor = Color.BLACK;
 
 	public OrderViewer(Image img, JFrame myFrame, JPanelWithBackgroundImgAndBackBtn payOrderVisiblePanel) {
 		super(img);
 
-		myComponentCreator=new ComponentCreator<>();
+		myComponentCreator = new ComponentCreator<>();
 		
 		JPanel panel = new JPanel();
-		myHtmlFormatter=new HtmlFormatter();
+		myHtmlFormatter = new HtmlFormatter();
 		descriptionLabel = new JLabel();
 		descriptionLabel.setBounds(labelX, labelY, labelWidth, labelHeight);
 		descriptionLabel.setFont(new Font("Lucida Grande", Font.PLAIN, labelFontSize));
 		panel.add(descriptionLabel);
 
-		scrollPane=new OrderScrollPane();
+		scrollPane = new OrderScrollPane();
 		scrollPane.setCurrentJPanel(panel);
 		scrollPane.setParameters(scrollPaneX, scrollPaneY, scrollPaneWidth, scrollPaneHeight);
 		scrollPane.setColors(scrollPaneColors, scrollPaneColors);
@@ -83,7 +82,7 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 		myPayJPanel.setVisible(false);
 		myFrame.add(myPayJPanel);
 
-		payOrderButton=createFormattedButton("Pay Order", payButtonX, payButtonY, payButtonWight, payButtonHeight);
+		payOrderButton = createFormattedButton("Pay Order", payButtonX, payButtonY, payButtonWight, payButtonHeight);
 		payOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				double price = myOrder.getPrice();
@@ -108,10 +107,10 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 
 		while (iteratore.hasNext()) {
 			currentItem = iteratore.next();
-			baseCase = baseCase + myHtmlFormatter.getBullet() + currentItem.getInfo() ;
+			baseCase = baseCase+myHtmlFormatter.getBullet()+currentItem.getInfo() ;
 			baseCase = baseCase.replaceAll(myHtmlFormatter.getComma(), myHtmlFormatter.getTabSpace());
-			baseCase = baseCase + myHtmlFormatter.getNewLine() + myHtmlFormatter.getEndItalic() + myHtmlFormatter.getStartBold() 
-			+ myHtmlFormatter.getPrice() + currentItem.getPrice() + myHtmlFormatter.getEndBold() + myHtmlFormatter.getNewLine() + myHtmlFormatter.getNewLine();
+			baseCase = baseCase+myHtmlFormatter.getNewLine()+myHtmlFormatter.getEndItalic()+myHtmlFormatter.getStartBold()+
+						myHtmlFormatter.getPrice()+currentItem.getPrice()+myHtmlFormatter.getEndBold()+myHtmlFormatter.getNewLine()+myHtmlFormatter.getNewLine();
 		}
 
 		descriptionLabel.setText("<html>"+baseCase+"<html>");
