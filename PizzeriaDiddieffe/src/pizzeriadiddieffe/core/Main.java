@@ -9,5 +9,6 @@ public class Main {
 
 	private static void run(){
 		PizzeriaDiddieffeUI gui = new PizzeriaDiddieffeUI();
+		gui.main(null);
 	}
 }
