@@ -20,7 +20,4 @@ public class Anchovy extends PizzaDecorator {
 		return tempPizza.getPrice()+PRICE;
 	}
 
-	public Pizza removeTopping () {
-		return tempPizza;
-	}
 }

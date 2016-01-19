@@ -12,10 +12,6 @@ import pizzeriadiddieffe.gui.componentclasses.ComponentFormatterInterface;
 public class FormattedButton implements ComponentFormatterInterface{
 	private JButton tempButton;
 
-	public void  setButtonEnabled(boolean enable){
-		tempButton.setEnabled(enable);
-	}
-
 	@Override
 	public void setComponentProp(int x, int y, int width, int height){
 		tempButton.setBounds(x, y, width, height);
