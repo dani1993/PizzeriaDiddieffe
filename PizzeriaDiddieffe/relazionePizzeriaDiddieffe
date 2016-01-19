@@ -1,0 +1,50 @@
+@@@@@@@@@@Ruolo delle classi
+
+-pacchetto pizzeriadiddieffe.core
+
+-1 CreateObjectByName:
+Classe che implementa l'interfaccia "ItemsCreatorInterface",viene utilizzata per creare i vari oggetti che andranno a comporre un singolo item.Tale elemento puo' essere di tipo pizza,beverage o focaccia.
+E' composta da due metodi principali: "createObjectByName",in grado di creare tramite le informazioni contenute nei parametri un oggetto che rappresenta un "caso base" del pattern Decorator;"createToppingByName",la cui funzione e' praticamenta la stessa di "createObjectByName",ad eccezione però,che in questo caso vengono istanziati e restituiti degli oggetti rappresentati i topping del patter Decorator.
+
+2-Item:
+Interfaccia che viene implementata da diverse classi del programma,specifica i vari metodi che dovranno essere implementati nelle sottoclassi.Quali "getInfo","getPrice","add","remove".
+
+3-ItemCreatorInterface
+Interfaccia che viene implementata dalla classe "CreateObjectByName",specifica i metodi principali che la classe dovra' implementare.Quali "createObjectByName" e "createToppingByName".
+
+
+4-Order
+Classe che implementa l'interfaccia "Item",implementa quindi tutti i metodi descritti in quest'ultima.Al suo interno dichiara inoltre vari campi:"id",che viene utilizzato per differenziare i vari ordini uno dall'altro;"myOrder",una LinkedList utilizzata per immagazzinare tutti gli item che andranno a compore l'ordine considerato.La classe specifica inoltre dei metodi getters e setters per il campo "id",oltre che a due metodi "deleteAll" e "deleteIndex",che rispettivamente,eliminano dalla LinkedList "myOrder" tutti gli item contenuti, oppure l'item che si trova in una certa posizione(che sara' inserita come parametro del metodo).
+
+5-OrderManager
+Classe che implementa l'interfaccia "OrderManagerInterface".Utilizza una LinkedList "myOrderList" per gestire i vari ordini che vengono creati a runtime.E' in grado di cercare un ordine all'interno della propria lista o di crearlo in caso di fallimento,tramite il metodo "createOrder".
+ 
+
+6-Sound
+Classe che implementa l'interfaccia "SoundPlayerInterface".Viene utilizzata per creare e riprodurre suoni relativi alla pressione di pulsanti.Dichiara quindi un campo "soundName",che puo' essere impostato piu' volte tramite il metodo "setSound".
+
+7-SoundPlayerInterface
+Interfaccia implementata dalla classe "Sound",dichiara due metodi:"setSound",utilizzato per impostare il nome del file audio che verra' riprodotto;"playSound",metodo utilizzato per riprodurre il file precedentemente impostato.
+
+pizzeriadiddieffe.core.pizza/beverage/focaccia
+
+1-Pizza
+Classe astratta che viene estesa dalle classi "PizzaDecorator" e da tutti i casi base del pattern("BasicBrownPizza","BasicDoubleWhitePizza","BasicWhitePizza").Implementa l'interfaccia "Item" e dichiara due metodi astratti "getInfo" e "getPrice". 
+
+2-PizzaDecorator
+Classe astratta che estende la classe "Pizza",dichiara due metodi astratti "getPrice" e "getInfo",che dovranno quindi essere implementati dalle sottoclassi,inoltre implementa i metodi "add" e "remove" del'interfaccia "Item".
+
+
+3-BasicWhitePizza
+Classe che estende la classe astratta "Pizza",implementando i metodi "getPrice" e "getInfo".Utilizza due campi PRICE e INFO, che specificano rispettivamente il prezzo dell'oggetto corrente e la sua descrizione.
+Vengono inoltre implementati i metodi "add" e "remove" dell'interfaccia "Item".Viene considerato come il caso base del pattern Decorator,potra' quindi essere decorato dai vari topping presenti nel pacchetto ".topping" .
+
+pizzadiddieffe.core.pizza.topping
+
+1-Anchovy
+Classe che estende PizzaDecorator,fa uso dei metodi "getInfo" e "getPrice" per decorare l'oggetto tempPizza.Quest'ultimo viene passato come parametro al costruttore della classe.Viene utilizzato come topping del pattern Decorator,e' quindi sufficente impostare come "tempPizza" una qualunque classe che estende la classe astratta "Pizza",al fine di arricchirla con le informazioni della classe Anchovy.
+
+
+
+
+
