@@ -19,6 +19,7 @@ import javax.swing.border.LineBorder;
 
 import pizzeriadiddieffe.core.Item;
 import pizzeriadiddieffe.core.Order;
+import pizzeriadiddieffe.gui.creators.ComponentCreator;
 import pizzeriadiddieffe.gui.formattedelements.HtmlFormatter;
 import pizzeriadiddieffe.gui.jpanel.OrderScrollPane;
 import pizzeriadiddieffe.gui.jpanel.PayOrderJPanel;
@@ -48,20 +49,26 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 	private int scrollPaneHeight = 420;
 
 	private JLabel descriptionLabel;
+	private ComponentCreator myComponentCreator;
 	private int labelX = -10;
 	private int labelY = -5;
 	private int labelHeight = 200;
 	private int labelWidth = 200;
-	private int labelFont = 22;
+	private int labelFontSize = 22;
+	private String font="Lucida Grande";
+	private int buttonFontSize=22;
+	private Color buttonTextColor=Color.BLACK;
 
 	public OrderViewer(Image img, JFrame myFrame, JPanelWithBackgroundImgAndBackBtn payOrderVisiblePanel) {
 		super(img);
 
+		myComponentCreator=new ComponentCreator<>();
+		
 		JPanel panel = new JPanel();
 		myHtmlFormatter=new HtmlFormatter();
 		descriptionLabel = new JLabel();
 		descriptionLabel.setBounds(labelX, labelY, labelWidth, labelHeight);
-		descriptionLabel.setFont(new Font("Lucida Grande", Font.PLAIN, labelFont));
+		descriptionLabel.setFont(new Font("Lucida Grande", Font.PLAIN, labelFontSize));
 		panel.add(descriptionLabel);
 
 		scrollPane=new OrderScrollPane();
@@ -76,11 +83,7 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 		myPayJPanel.setVisible(false);
 		myFrame.add(myPayJPanel);
 
-		payOrderButton = new JButton ("Pay Order");
-		payOrderButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		payOrderButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		payOrderButton.setBounds(payButtonX, payButtonY, payButtonWight, payButtonHeight);
-		this.add(payOrderButton);
+		payOrderButton=createFormattedButton("Pay Order", payButtonX, payButtonY, payButtonWight, payButtonHeight);
 		payOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				double price = myOrder.getPrice();
@@ -116,5 +119,12 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 
 	private Iterator<Item> getIterator() {
 		return myItemsList.iterator();
+	}
+	
+	private JButton createFormattedButton(String text, int buttonX, int buttonY, int buttonWidth, int buttonHeight){
+		myComponentCreator.createButton(text, font, buttonFontSize, buttonTextColor);
+		myComponentCreator.setUpComponentProp(buttonX, buttonY, buttonWidth, buttonHeight);
+		this.add(myComponentCreator.getButton());
+		return myComponentCreator.getButton();
 	}
 }

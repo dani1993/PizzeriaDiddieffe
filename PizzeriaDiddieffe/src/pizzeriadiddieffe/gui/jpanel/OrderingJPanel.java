@@ -10,15 +10,11 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
-import javax.swing.border.LineBorder;
 
-import pizzeriadiddieffe.core.CreateObjectByName;
 import pizzeriadiddieffe.core.Item;
 import pizzeriadiddieffe.core.Order;
 import pizzeriadiddieffe.core.Sound;
-import pizzeriadiddieffe.core.beverage.Beverage;
-import pizzeriadiddieffe.core.focaccia.Focaccia;
-import pizzeriadiddieffe.core.pizza.Pizza;
+import pizzeriadiddieffe.gui.creators.ComponentCreator;
 import pizzeriadiddieffe.gui.creators.ItemCreator;
 import pizzeriadiddieffe.gui.formattedelements.ButtonBorderManager;
 import pizzeriadiddieffe.gui.jbutton.JButtonTextImage;
@@ -27,12 +23,18 @@ import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundImg
 public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 	
 	private JButton AddToOrderButton;
+	private JButton ClearButton;
 	private JPanelWithBackgroundImgAndBackBtn currentJPanel = this;
 	
-	private int addButtonWidth = 60;
-	private int addButtonHeight = 250;
-	private int addButtonx = 130;
+	private int addButtonHeight = 60;
+	private int addButtonWidth = 200;
+	private int addButtonx = 325;
 	private int addButtony = 640;
+	
+	private int clearButtonHeight = 60;
+	private int clearButtonWidth = 200;
+	private int clearButtonx = 30;
+	private int clearButtony = 640;
 	
 	private ButtonBorderManager myBorderManager;
 	private Color defaultColor=Color.white;
@@ -42,6 +44,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 	private Order currentOrder;
 	private Item currentItem;
 	private Sound buttonSound;
+	private ComponentCreator myComponentCreator;
 
 	private LinkedList<JButton> baseCasesButtonList;
 	private LinkedList<JButton> toppingButtonList;
@@ -67,6 +70,10 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 
 	private String addToOrderSound = "res/addToOrderSound.wav";
 	private String clearSound = "res/clearCurrentOrderSound.wav";
+	
+	private String buttonFont="Lucida Grande";
+	private int buttonFontSize=16;
+	private Color buttonTextColor=Color.black;
 
 
 	public OrderingJPanel(Image img, String currentBasePackage, String[] baseCasesNameList, String[] toppingNameList, String[] classNameList) {
@@ -74,6 +81,8 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 		
 		myItemCreator=new ItemCreator(currentBasePackage);
 		myItemCreator.setItemsLists(baseCasesNameList, toppingNameList, classNameList);
+		
+		myComponentCreator=new ComponentCreator<>();
 		
 		baseCasesButtonList = new LinkedList<JButton>();
 		toppingButtonList = new LinkedList<JButton>();
@@ -151,15 +160,9 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 	}
 
 	private void addOrderButton() {
-		AddToOrderButton = new JButton("Add To Order/Clear");
-		AddToOrderButton.setFont(new Font("Lucida Grande", Font.BOLD, 16));
-		AddToOrderButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		AddToOrderButton.setBounds(addButtonx, addButtony, addButtonHeight, addButtonWidth);
-		this.add(AddToOrderButton);
-
+		AddToOrderButton=createFormattedButton("Add To Order", addButtonx, addButtony, addButtonWidth, addButtonHeight);
 		AddToOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				buttonSound.setSound(clearSound);
 				if (currentCaseBase!=null) {
 					try {
@@ -182,14 +185,35 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				resetAllButtons();
-				currentTopping = new LinkedList<>();
-				currentCaseBase = null;
-				currentItem = null;
+				resetSelection();
+			}
+		});
+		
+		ClearButton=createFormattedButton("Clear Selection", clearButtonx, clearButtony, clearButtonWidth, clearButtonHeight);
+		ClearButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				buttonSound.setSound(clearSound);
+				try {
+					buttonSound.playSound();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				resetSelection();
 			}
 		});
 	}
 
+	private void resetSelection(){
+		resetAllButtons();
+		currentTopping = new LinkedList<>();
+		currentCaseBase = null;
+		currentItem = null;
+		
+	}
+	
+	
 	
 	private void setOthersButtons(boolean enable,LinkedList<JButton> list,JButton mybutton) {
 		myBorderManager.setOthersButtons(enable, list, mybutton);
@@ -227,5 +251,12 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn {
 		currentItem=myItemCreator.getCurrentItem();
 	}
 
+	
+	private JButton createFormattedButton(String text, int buttonX, int buttonY, int buttonWidth, int buttonHeight){
+		myComponentCreator.createButton(text, buttonFont, buttonFontSize, buttonTextColor);
+		myComponentCreator.setUpComponentProp(buttonX, buttonY, buttonWidth, buttonHeight);
+		this.add(myComponentCreator.getButton());
+		return myComponentCreator.getButton();
+	}
 	
 }
