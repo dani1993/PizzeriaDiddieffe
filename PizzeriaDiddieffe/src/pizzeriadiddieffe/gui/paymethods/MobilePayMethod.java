@@ -13,6 +13,7 @@ import pizzeriadiddieffe.core.Order;
 import pizzeriadiddieffe.gui.creators.ComponentCreator;
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundImgAndBackBtn;
 
+@SuppressWarnings("serial")
 public class MobilePayMethod extends JPanelWithBackgroundImgAndBackBtn implements PayMethodInterface {
 	private double totPrice;
 	private JPanelWithBackgroundImgAndBackBtn myPanel;
@@ -83,12 +84,15 @@ public class MobilePayMethod extends JPanelWithBackgroundImgAndBackBtn implement
 	}
 
 	private void createTotalLabel(){		
+		@SuppressWarnings("unused")
 		final JLabel label = createFormattedLabel("Amount to Pay "+totPrice, labelX, labelY, labelWidth, labelHeight);
 		labelY = labelY+menuSpace;
 
+		@SuppressWarnings("unused")
 		final JLabel labelMethod = createFormattedLabel("Choose Autentication Method", labelX, labelY, labelWidth, labelHeight);
 		labelY = labelY+menuSpace*2;
 
+		@SuppressWarnings("unused")
 		final JLabel labelOperator = createFormattedLabel("Choose Operator ", labelX, labelY, labelWidth, labelHeight);
 
 		payButton = createFormattedButton("Pay", buttonPayX, buttonPayY, buttonPayWidth, buttonPayHeight);

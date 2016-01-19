@@ -4,6 +4,7 @@ import javax.swing.JButton;
 
 import pizzeriadiddieffe.gui.jbutton.ClickableButtonWithImage;
 
+@SuppressWarnings("serial")
 public class Table extends ClickableButtonWithImage {
 	private static String tableImg = "tavolo apparecchiato";
 	private static int tableFont = 60;

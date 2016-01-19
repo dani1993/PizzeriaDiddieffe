@@ -14,6 +14,7 @@ import pizzeriadiddieffe.gui.creators.OrderingPanelCreator;
 import pizzeriadiddieffe.gui.jbutton.JButtonTextImage;
 import pizzeriadiddieffe.gui.jpanel.OrderingJPanel;
 
+@SuppressWarnings("serial")
 public class JPanelWithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn implements JPanelWithImageOrderInterface{
 	private JPanelWithBackgroundImgAndBackBtn currentJPanel = this;
 	private JButtonTextImage pizzaButton;

@@ -5,6 +5,7 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 
+@SuppressWarnings("serial")
 public class JButtonTextImage extends ClickableButtonWithImage{
 	public JButtonTextImage(int x, int y, int width, int height, int font, String itemText) {
 		super(x, y, width, height,font, itemText);

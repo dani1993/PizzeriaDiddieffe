@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
+@SuppressWarnings("serial")
 public class ClickableButtonWithImage extends JButton {
 	public ClickableButtonWithImage(int x, int y, int width, int height, int font, String image) {
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

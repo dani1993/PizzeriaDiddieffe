@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
+@SuppressWarnings("serial")
 public class OrderScrollPane extends JScrollPane implements ScrollPaneInterface{
 	private JScrollPane scrollPane;
 

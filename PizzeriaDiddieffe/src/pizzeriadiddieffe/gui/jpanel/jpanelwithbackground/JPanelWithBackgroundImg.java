@@ -18,12 +18,14 @@ import javax.swing.JPanel;
 import pizzeriadiddieffe.gui.componentclasses.ComponentsGetter;
 import pizzeriadiddieffe.gui.creators.ComponentCreator;
 
+@SuppressWarnings("serial")
 class JPanelWithBackgroundImg extends JPanel implements JPanelWithImageInterface{
 	private Image img;
 	private JButton btnBackToInOutScreen;
 	private JPanel visiblePanel;
 	private JFrame myFrame;
 	private ComponentsGetter myComponentGetter;
+	@SuppressWarnings("rawtypes")
 	private ComponentCreator myComponentCreator;
 	private String buttonFontName = "Lucida Grande";
 	private int buttonFontSize = 16;

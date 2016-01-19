@@ -22,6 +22,7 @@ import pizzeriadiddieffe.gui.jpanel.OrderScrollPane;
 import pizzeriadiddieffe.gui.jpanel.PayOrderJPanel;
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundImgAndBackBtn;
 
+@SuppressWarnings("serial")
 public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn implements OrderViewerInterface{
 	private JPanelWithBackgroundImgAndBackBtn currentJPanel = this;
 	private PayOrderJPanel myPayJPanel;
@@ -60,6 +61,7 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn implements Or
 	private JLabel descriptionLabel;
 	private String notEditingText;
 	private boolean removingItem = false;
+	@SuppressWarnings("rawtypes")
 	private ComponentCreator myComponentCreator;
 	private int labelX = -10;
 	private int labelY = -5;

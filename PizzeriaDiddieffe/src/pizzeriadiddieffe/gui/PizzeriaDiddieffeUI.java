@@ -23,6 +23,7 @@ import pizzeriadiddieffe.gui.jbutton.JButtonTextImage;
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundOrder;
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundTables;
 
+@SuppressWarnings("serial")
 public class PizzeriaDiddieffeUI extends JPanel {
 	private  int numberOfTablesInside = 0;
 	private  int numberOfTablesOutside = 0;
@@ -55,6 +56,7 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	private Color labelTextColor = Color.white;
 	private Color buttonTextColor = Color.black;
 
+	@SuppressWarnings("rawtypes")
 	private ComponentCreator myComponentCreator = new ComponentCreator<>();
 
 	/**
@@ -115,7 +117,8 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		frame.getContentPane().add(chooseNumberOfTables, "name_1230783104452");
 		chooseNumberOfTables.setLayout(null);
 
-		JLabel lblNumberOfTableInside=createFormattedLabel("Number of tables inside:", 155, 162, 240, 20);
+		@SuppressWarnings("unused")
+		JLabel lblNumberOfTableInside = createFormattedLabel("Number of tables inside:", 155, 162, 240, 20);
 		final JLabel labelNumberOfTablesInside=createFormattedLabel("0", 255, 226, 40, 20);
 
 		btnMinusInside = createFormattedButton("-", 165, 212, 50, 50);
@@ -144,7 +147,8 @@ public class PizzeriaDiddieffeUI extends JPanel {
 			}
 		});
 
-		JLabel lblNumberOfTableOutside=createFormattedLabel("Number of tables outside:", 155, 358, 240, 20);
+		@SuppressWarnings("unused")
+		JLabel lblNumberOfTableOutside = createFormattedLabel("Number of tables outside:", 155, 358, 240, 20);
 
 		btnMinusOutside = createFormattedButton("-", 165, 398, 50, 50);
 		btnMinusOutside.setEnabled(false);

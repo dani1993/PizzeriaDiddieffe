@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import pizzeriadiddieffe.gui.Table;
 
+@SuppressWarnings("serial")
 public class JPanelWithBackgroundTables extends JPanelWithBackgroundImgAndBackBtn{
 	private String tableCode;
 	private JPanelWithBackgroundTables currentPanel;

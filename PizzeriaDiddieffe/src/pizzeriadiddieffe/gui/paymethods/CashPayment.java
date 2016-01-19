@@ -12,6 +12,7 @@ import pizzeriadiddieffe.core.Order;
 import pizzeriadiddieffe.gui.creators.ComponentCreator;
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundImgAndBackBtn;
 
+@SuppressWarnings("serial")
 public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements PayMethodInterface   {
 	private double totPrice;
 	private JPanelWithBackgroundImgAndBackBtn myPanel;
@@ -19,6 +20,7 @@ public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements Pa
 	private Order currentOrder;
 	private String baseTotalString = "Amount Paid ";
 	private String totalString = baseTotalString;
+	@SuppressWarnings("rawtypes")
 	private ComponentCreator myComponentCreator;
 
 	private Color labelColor = Color.black;
@@ -51,6 +53,7 @@ public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements Pa
 	private int buttonPayHeight = 250;
 	private String amountToPayString = "Amount to Pay ";
 
+	@SuppressWarnings("rawtypes")
 	public CashPayment(Image img) {
 		super(img);
 		myComponentCreator = new ComponentCreator();
@@ -66,6 +69,7 @@ public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements Pa
 	}
 
 	private void createTotalLabel() {	
+		@SuppressWarnings("unused")
 		final JLabel label = (JLabel) createFormattedLabel(amountToPayString+totPrice, labelX,labelY, labelWidth, labelHeight);
 		labelY = labelY+labelSpace;
 

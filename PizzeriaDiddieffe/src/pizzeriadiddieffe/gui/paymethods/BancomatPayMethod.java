@@ -12,6 +12,7 @@ import pizzeriadiddieffe.core.Order;
 import pizzeriadiddieffe.gui.creators.ComponentCreator;
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundImgAndBackBtn;
 
+@SuppressWarnings("serial")
 public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn implements PayMethodInterface {
 	private double totPrice;
 	private JPanelWithBackgroundImgAndBackBtn myPanel;
@@ -43,6 +44,7 @@ public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn impleme
 	private int buttonPayWidth = 220;
 	private int buttonPayHeight = 250;
 
+	@SuppressWarnings("rawtypes")
 	private ComponentCreator myComponentCreator;
 	private int buttonFontSize = 20;
 	private Color buttonColor = Color.black;
@@ -55,6 +57,7 @@ public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn impleme
 		super(img);
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void payMethod(Order totPrice, JPanelWithBackgroundImgAndBackBtn myPanel) {
 		this.totPrice = totPrice.getPrice();
@@ -66,6 +69,7 @@ public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn impleme
 	}
 
 	private void createTotalLabel() {
+		@SuppressWarnings("unused")
 		final JLabel label = createFormattedLabel("Amount to Pay "+totPrice, labelX, labelY, labelWidth, labelHeight);
 		labelY = labelY+labelSpace;
 

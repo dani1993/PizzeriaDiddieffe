@@ -61,6 +61,7 @@ public class ComponentCreator<E> implements ComponentCreatorInterface<E>{
 		setUpComponent(text, componentFont, componentFontSize, componentColor);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public JComboBox<E> getComboBox(){
 		return (JComboBox<E>)componentFormatter.getFormattedComponent();

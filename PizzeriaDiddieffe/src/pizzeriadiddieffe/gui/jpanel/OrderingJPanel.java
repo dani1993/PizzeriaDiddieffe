@@ -19,6 +19,7 @@ import pizzeriadiddieffe.gui.formattedelements.ButtonBorderManager;
 import pizzeriadiddieffe.gui.jbutton.JButtonTextImage;
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundImgAndBackBtn;
 
+@SuppressWarnings("serial")
 public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements OrderViewerInterface{
 	private JButton AddToOrderButton;
 	private JButton ClearButton;
@@ -42,6 +43,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements
 	private Order currentOrder;
 	private Item currentItem;
 	private Sound buttonSound;
+	@SuppressWarnings("rawtypes")
 	private ComponentCreator myComponentCreator;
 
 	private LinkedList<JButton> baseCasesButtonList;

@@ -7,6 +7,7 @@ public class Main {
 		run();
 	}
 
+	@SuppressWarnings("static-access")
 	private static void run(){
 		PizzeriaDiddieffeUI gui = new PizzeriaDiddieffeUI();
 		gui.main(null);

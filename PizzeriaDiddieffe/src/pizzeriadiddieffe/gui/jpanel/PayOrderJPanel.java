@@ -17,6 +17,7 @@ import pizzeriadiddieffe.gui.paymethods.CashPayment;
 import pizzeriadiddieffe.gui.paymethods.MobilePayMethod;
 import pizzeriadiddieffe.gui.paymethods.PayMethodInterface;
 
+@SuppressWarnings("serial")
 public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 	private int buttonsWidth = 250;
 	private int buttonsHeight = 200;

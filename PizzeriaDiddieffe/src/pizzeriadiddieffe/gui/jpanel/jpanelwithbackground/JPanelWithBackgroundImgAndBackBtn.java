@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import pizzeriadiddieffe.gui.componentclasses.ComponentsGetter;
 import pizzeriadiddieffe.gui.jbutton.ClickableButtonWithImage;
 
+@SuppressWarnings("serial")
 public class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 	private Image img;
 	private ClickableButtonWithImage btnBackToInOutScreen;
