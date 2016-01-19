@@ -84,7 +84,7 @@ public class MobilePayMethod extends JPanelWithBackgroundImgAndBackBtn implement
 	}
 
 	private void createTotalLabel(){		
-		final JLabel label = createFormattedLabel("Totale Ordine "+totPrice, labelX, labelY, labelWidth, labelHeight);
+		final JLabel label = createFormattedLabel("Amount to Pay "+totPrice, labelX, labelY, labelWidth, labelHeight);
 		labelY = labelY+menuSpace;
 
 		final JLabel labelMethod = createFormattedLabel("Choose Autentication Method", labelX, labelY, labelWidth, labelHeight);

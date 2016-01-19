@@ -53,11 +53,11 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements
 	private String currentCaseBase;
 
 	private int baseFontSize = 15;
-	private int baseCasesX = 75; 
+	private int baseCasesX = 50; 
 	private int baseCasesY = 190; 
-	private int baseCasesWidth = 120;
+	private int baseCasesWidth = 140;
 	private int baseCasesHeight = 70;
-	private int baseCaseXToMove = 140;
+	private int baseCaseXToMove = 155;
 
 	private int toppingX = 38;
 	private int toppingYToStart = 290;
@@ -92,8 +92,8 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements
 		myBorderManager=new ButtonBorderManager(defaultColor,selectedColor);
 		
 
-		createPizzaToppingsItems(toppingNameList);
-		createPizzaItems(baseCasesNameList);
+		createToppingsItems(toppingNameList);
+		createBaseItems(baseCasesNameList);
 		addOrderButton();
 	}
 
@@ -103,7 +103,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements
 	}
 
 	
-	private void createPizzaItems(String[] pizzaItems) {
+	private void createBaseItems(String[] pizzaItems) {
 		for (int i = 0; i<pizzaItems.length; i++) {
 			String currentItemText = pizzaItems[i];
 			final JButtonTextImage currentItemButton = new JButtonTextImage(baseCasesX, baseCasesY, baseCasesWidth,
@@ -130,7 +130,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements
 		}
 	}
 
-	private void createPizzaToppingsItems(String[] toppingsItems) {
+	private void createToppingsItems(String[] toppingsItems) {
 		for (int i = 0; i<toppingsItems.length; i++) {
 			if (i%toppingsForColumn==0 && i!=0) {
 				toppingX = toppingX + toppingXToMove;

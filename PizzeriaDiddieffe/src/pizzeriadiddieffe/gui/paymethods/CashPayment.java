@@ -17,7 +17,7 @@ public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements Pa
 	private JPanelWithBackgroundImgAndBackBtn myPanel;
 	private JButton payButton;
 	private Order currentOrder;
-	private String baseTotalString = "Importo Consegnato ";
+	private String baseTotalString = "Amount Paid ";
 	private String totalString = baseTotalString;
 	private ComponentCreator myComponentCreator;
 
@@ -49,6 +49,7 @@ public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements Pa
 	private int buttonPayY = 320;
 	private int buttonPayWidth = 220;
 	private int buttonPayHeight = 250;
+	private String amountToPayString="Amount to Pay ";
 
 	public CashPayment(Image img) {
 		super(img);
@@ -65,7 +66,7 @@ public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements Pa
 	}
 
 	private void createTotalLabel() {	
-		final JLabel label = (JLabel) createFormattedLabel("Totale importo "+totPrice, labelX,labelY, labelWidth, labelHeight);
+		final JLabel label = (JLabel) createFormattedLabel(amountToPayString+totPrice, labelX,labelY, labelWidth, labelHeight);
 		labelY = labelY+labelSpace;
 
 		payButton = createFormattedButton("Pay", buttonPayX, buttonPayY, buttonPayWidth, buttonPayHeight);
@@ -79,7 +80,7 @@ public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements Pa
 					double resto = totValue-totPrice;
 
 					if(currentText=="Pay" && resto>0){
-						payButton.setText("Resto : "+resto);
+						payButton.setText("Change : "+(float)resto);
 					}else if(currentText!="Pay"){
 						currentOrder.deleteAll();
 						payButton.setText("Payed!");
@@ -116,7 +117,7 @@ public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements Pa
 					int value = Integer.parseInt(currentButton.getText());
 					String currentValue = label.getText()+value;
 					label.setText(currentValue);
-					totalString = currentValue.substring(18);		
+					totalString = currentValue.substring(baseTotalString.length());		
 				}
 			});
 		}

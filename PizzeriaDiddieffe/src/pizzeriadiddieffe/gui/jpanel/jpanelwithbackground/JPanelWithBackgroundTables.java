@@ -52,10 +52,10 @@ public class JPanelWithBackgroundTables extends JPanelWithBackgroundImgAndBackBt
 			x = xToStart;
 			for (int j = 0; j<numberOfTablesInRow && i<=numbers; j++) {
 				if (where=="inside") {
-					tableCode = Integer.toString(i) +"i";
+					tableCode = Integer.toString(i) +" i";
 				}
 				else {
-					tableCode = (Integer.toString(i) + "f");
+					tableCode = (Integer.toString(i) + " o");
 				}
 				final Table table = new Table(x, y, imgWidth, imgHeight, tableCode);
 				this.add(table);

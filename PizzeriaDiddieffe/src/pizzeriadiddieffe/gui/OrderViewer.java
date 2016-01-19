@@ -183,7 +183,7 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn implements Or
 			itemslist.add(baseCase.substring(lastIndex));
 			lastIndex=baseCase.length();	
 		}
-
+		baseCase=baseCase+myHtmlFormatter.getBullet()+myHtmlFormatter.getStartBold()+"Total Price: "+myOrder.getPrice()+myHtmlFormatter.getEndBold();
 		descriptionLabel.setText("<html>"+baseCase+"<html>");
 		notEditingText=descriptionLabel.getText();
 	}
