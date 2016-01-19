@@ -98,13 +98,13 @@ public class MobilePayMethod extends JPanelWithBackgroundImgAndBackBtn implement
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String currentText = payButton.getText();
-
 				if(currentText.equals("Pay")){
 					payButton.setText("Autentication");
 					mobilePayOperator.setEnabled(false);
 					autenticationMethod.setEnabled(false);
 				}else if(currentText.equals("Autentication")){
 					currentOrder.deleteAll();
+					payButton.setEnabled(false);
 					payButton.setText("Payed!");
 				}
 			}

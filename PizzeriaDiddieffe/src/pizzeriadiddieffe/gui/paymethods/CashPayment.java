@@ -83,6 +83,7 @@ public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements Pa
 					}else if(currentText!="Pay"){
 						currentOrder.deleteAll();
 						payButton.setText("Payed!");
+						payButton.setEnabled(false);
 					}
 				}
 			}
@@ -125,6 +126,14 @@ public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements Pa
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				label.setText(baseTotalString);	
+			}
+		});
+		
+		JButton dotButton = createFormattedButton(".", buttonX-xSpace, buttonY, buttonWidth, buttonHeight);
+		dotButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				label.setText(label.getText()+".");	
 			}
 		});
 	}

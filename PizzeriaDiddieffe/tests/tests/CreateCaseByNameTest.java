@@ -5,12 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import pizzeriadiddieffe.core.CreateBaseCaseByName;
+import pizzeriadiddieffe.core.CreateObjectByName;
 import pizzeriadiddieffe.core.Item;
 
 public class CreateCaseByNameTest {
 
-	private  CreateBaseCaseByName myCreator;
+	private  CreateObjectByName myCreator;
 
 	private String toppingName="Mozzarella";
 	private String baseCaseName="pizza";
@@ -37,7 +37,7 @@ public class CreateCaseByNameTest {
 	
 	@Before
 	public void setUp(){
-		myCreator=new CreateBaseCaseByName();
+		myCreator=new CreateObjectByName();
 		resetAll();
 		
 	}

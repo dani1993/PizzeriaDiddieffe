@@ -6,7 +6,7 @@ import pizzeriadiddieffe.core.beverage.Beverage;
 import pizzeriadiddieffe.core.focaccia.Focaccia;
 import pizzeriadiddieffe.core.pizza.Pizza;
 
-public  class CreateBaseCaseByName{
+public  class CreateObjectByName{
 	public Object createObjectByName (String className) throws Exception{
 		Class<?> clazz = Class.forName(className);
 		Constructor<?> ctor = clazz.getConstructor();
