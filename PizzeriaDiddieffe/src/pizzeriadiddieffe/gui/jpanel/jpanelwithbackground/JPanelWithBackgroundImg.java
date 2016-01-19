@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import pizzeriadiddieffe.gui.componentclasses.ComponentsGetter;
 import pizzeriadiddieffe.gui.creators.ComponentCreator;
 
-class JPanelWithBackgroundImg extends JPanel {
+class JPanelWithBackgroundImg extends JPanel implements JPanelWithImageInterface{
 	private Image img;
 	private JButton btnBackToInOutScreen;
 	private JPanel visiblePanel;
@@ -66,7 +66,7 @@ class JPanelWithBackgroundImg extends JPanel {
 		this.setVisible(false); 
 		visiblePanel.setVisible(true);
 	}
-
+	@Override
 	public void setVisiblePanel(JPanel visiblePanel, JFrame frame){
 		this.visiblePanel = visiblePanel;  
 		this.myFrame = frame;
@@ -78,7 +78,7 @@ class JPanelWithBackgroundImg extends JPanel {
 		super.paintComponent(g);
 		g.drawImage(img, 0, 0, null);
 	}
-
+	@Override
 	public JFrame getFrame(){
 		return myFrame;
 	}	

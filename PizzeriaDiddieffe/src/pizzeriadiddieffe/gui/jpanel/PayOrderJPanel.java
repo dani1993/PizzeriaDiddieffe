@@ -18,6 +18,7 @@ import pizzeriadiddieffe.gui.paymethods.MobilePayMethod;
 import pizzeriadiddieffe.gui.paymethods.PayMethodInterface;
 
 public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
+
 	private int buttonsWidth = 250;
 	private int buttonsHeight = 200;
 	private int buttonsFont = 30;
@@ -29,22 +30,22 @@ public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 	private Order myOrder;
 
 	private JButton cashPay;
-	private String cashImage = "cashImage";
 	private String cashText = "Cash";
+	private String cashImagePath="res/CashMethod.jpg";
 
 	private JButton BancomatPay;
-	private String bancomatImage = "bancomatImage";
 	private String bancomatText = "Bancomat";
+	private String bancomatImagePath="res/BancomatMethod.jpg";
 
 	private JButton mobilePay;
-	private String mobileImage = "mobileImage";
 	private String mobileText = "Mobile Pay";
+	private String mobileImagePath="res/MobileMethod.jpg";
 
 	private PayMethodInterface payStrategy; 
-	private PayChooser myPayChooser;
+	private PayChooser myPayChooser; 
 	private JPanelWithBackgroundImgAndBackBtn payPanel;
-	private String payPanelImagePath = "res/payPanel.jpg";
-	private JPanelWithBackgroundImgAndBackBtn currentJPanel = this;
+	private String payPanelImagePath = "res/PaymentMethodBG.jpg";
+	private JPanelWithBackgroundImgAndBackBtn currentJPanel=this;
 	private JFrame myFrame;
 
 	public PayOrderJPanel(Image img, JFrame myFrame) {
@@ -91,14 +92,14 @@ public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 
 	private PayMethodInterface getStrategy(String text) {
 		if(text.equals("Cash")){
-			Image cashImageBG = new ImageIcon(cashImage).getImage().getScaledInstance(550, 750, java.awt.Image.SCALE_SMOOTH);
+			Image cashImageBG = new ImageIcon(cashImagePath).getImage();
 			return new CashPayment(cashImageBG);
 		}
 		else if(text.equals("Mobile Pay")){
-			Image mobileImageBG = new ImageIcon(mobileImage).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
+			Image mobileImageBG = new ImageIcon(mobileImagePath).getImage();
 			return new MobilePayMethod(mobileImageBG);
 		}
-		Image bancomatImageBG = new ImageIcon(bancomatImage).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
+		Image bancomatImageBG = new ImageIcon(bancomatImagePath).getImage();
 		return new BancomatPayMethod(bancomatImageBG);
 	}
 }

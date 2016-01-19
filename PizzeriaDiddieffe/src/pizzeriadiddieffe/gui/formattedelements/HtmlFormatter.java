@@ -1,6 +1,7 @@
 package pizzeriadiddieffe.gui.formattedelements;
 
-public class HtmlFormatter {
+public class HtmlFormatter implements HtmlFormatterInterface{
+
 	private String bullet = "&#8226;&nbsp;";
 	private String comma = ",";
 	private String tabSpace = "</i> <br> <i> &nbsp;&nbsp;&nbsp;";
@@ -9,68 +10,49 @@ public class HtmlFormatter {
 	private String startBold = " <b> ";
 	private String endBold = " </b> ";
 	private String price = "&nbsp;&nbsp;Price: ";
-	
+	private String highligh="<span style=\"background-color: #FFFF00\">";
+	private String endhighligh="</span>";
+	@Override
 	public String getBullet() {
 		return bullet;
 	}
-	
-	public void setBullet(String bullet) {
-		this.bullet = bullet;
-	}
-	
+	@Override
 	public String getComma() {
 		return comma;
 	}
-	
-	public void setComma(String comma) {
-		this.comma = comma;
-	}
-	
+	@Override
 	public String getTabSpace() {
 		return tabSpace;
 	}
-	
-	public void setTabSpace(String tabSpace) {
-		this.tabSpace = tabSpace;
-	}
-	
+	@Override
 	public String getEndItalic() {
 		return endItalic;
 	}
-	
-	public void setEndItalic(String endItalic) {
-		this.endItalic = endItalic;
-	}
-	
+	@Override
 	public String getNewLine() {
 		return newLine;
 	}
-	
-	public void setNewLine(String newLine) {
-		this.newLine = newLine;
-	}
-	
+	@Override
 	public String getStartBold() {
 		return startBold;
 	}
-	
-	public void setStartBold(String startBold) {
-		this.startBold = startBold;
-	}
-	
+	@Override
 	public String getEndBold() {
 		return endBold;
 	}
-	
-	public void setEndBold(String endBold) {
-		this.endBold = endBold;
-	}
-	
+	@Override
 	public String getPrice() {
 		return price;
 	}
-	
-	public void setPrice(String price) {
-		this.price = price;
+	@Override
+	public String getHighligh() {
+		return highligh;
 	}
+	@Override
+	public String getEndhighligh() {
+		return endhighligh;
+	}
+	
+	
+	
 }

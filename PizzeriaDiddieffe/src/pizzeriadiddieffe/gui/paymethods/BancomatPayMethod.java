@@ -17,10 +17,9 @@ public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn impleme
 	private JPanelWithBackgroundImgAndBackBtn myPanel;
 	private JButton payButton;
 	private Order currentOrder;
-	private String baseTotalString = "Insert Code ";
+	private String baseTotalString = "Inserire Codice ";
 	private String totalString = baseTotalString;
 	private String code = "";
-	private final static String STAR = "*";
 
 	private int space = 20;
 	private int labelX = 30;
@@ -66,7 +65,7 @@ public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn impleme
 	}
 
 	private void createTotalLabel() {
-		final JLabel label = createFormattedLabel("Amount to Pay "+totPrice, labelX, labelY, labelWidth, labelHeight);
+		final JLabel label = createFormattedLabel("Totale Ordine "+totPrice, labelX, labelY, labelWidth, labelHeight);
 		labelY = labelY+labelSpace;
 
 		payButton = createFormattedButton("Pay", buttonPayX, buttonPayY, buttonPayWidth, buttonPayHeight);
@@ -94,8 +93,8 @@ public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn impleme
 			currentButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					code = code+STAR;
-					String currentValue = label.getText()+STAR;
+					code = code+"*";
+					String currentValue = label.getText()+"*";
 					label.setText(currentValue);
 				}
 			});

@@ -26,7 +26,7 @@ import pizzeriadiddieffe.gui.jpanel.OrderScrollPane;
 import pizzeriadiddieffe.gui.jpanel.PayOrderJPanel;
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundImgAndBackBtn;
 
-public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
+public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn implements OrderViewerInterface{
 
 	private JPanelWithBackgroundImgAndBackBtn currentJPanel = this;
 	private PayOrderJPanel myPayJPanel;
@@ -53,7 +53,7 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 	private int payButtonY = 650;
 	private int payButtonHeight = 50;
 	private int payButtonWight = 160;
-	private String payOrderImagePath = "res/payOrderBackground.jpg";
+	private String payOrderImagePath = "res/PaymentMethodBG.jpg";
 	private Item currentItem;
 	
 	private Color scrollPaneColors=Color.white;
@@ -96,7 +96,7 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 		scrollPane.setColors(scrollPaneColors, scrollPaneColors);
 		currentJPanel.add(scrollPane.getScrollPane());
 
-		Image payOrderImage = new ImageIcon(payOrderImagePath).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
+		Image payOrderImage = new ImageIcon(payOrderImagePath).getImage();
 		myPayJPanel = new PayOrderJPanel(payOrderImage, myFrame);
 		myPayJPanel.setVisiblePanel(payOrderVisiblePanel, myFrame);
 		myPayJPanel.setVisible(false);
@@ -148,7 +148,11 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(removingItem==true){
-				myOrder.deleteIndex(currentEditItem-1);
+				try {
+					myOrder.deleteIndex(currentEditItem-1);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 				currentEditItem=0;
 				drawOrder();
 				
@@ -157,6 +161,7 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 	});
 	}
 	
+	@Override
 	public void setOrder(Order myOrder){
 		this.myOrder = myOrder;
 		drawOrder();
@@ -168,7 +173,6 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 		myItemsList = myOrder.getOrderList();
 		Iterator<Item> iteratore = getIterator();
 		String baseCase = "";
-		int i=0;
 		int lastIndex=0;
 		while (iteratore.hasNext()) {
 			currentItem = iteratore.next();
@@ -177,8 +181,7 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 			baseCase = baseCase + myHtmlFormatter.getNewLine() + myHtmlFormatter.getEndItalic() + myHtmlFormatter.getStartBold() 
 			+ myHtmlFormatter.getPrice() + currentItem.getPrice() + myHtmlFormatter.getEndBold() + myHtmlFormatter.getNewLine() + myHtmlFormatter.getNewLine();
 			itemslist.add(baseCase.substring(lastIndex));
-			lastIndex=baseCase.length();
-			i++;	
+			lastIndex=baseCase.length();	
 		}
 
 		descriptionLabel.setText("<html>"+baseCase+"<html>");
@@ -196,4 +199,3 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 		return myComponentCreator.getButton();
 	}
 }
-

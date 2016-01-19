@@ -5,5 +5,5 @@ import java.awt.Container;
 import java.util.List;
 
 public interface ComponentGetterInterface {
-	public List<Component> getComponents(Container currentComponent);
+	public List<Component> getComponents( Container currentComponent);
 }

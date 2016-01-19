@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ComponentsGetter implements ComponentGetterInterface{
 	@Override
-	public List<Component> getComponents(Container currentComponent){
+	public List<Component> getComponents( Container currentComponent){
 		Component[] allComponents = currentComponent.getComponents();
 		List<Component> componentsList = new ArrayList<Component>();
 		for (Component comp : allComponents) {

@@ -24,6 +24,7 @@ import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundOrd
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundTables;
 
 public class PizzeriaDiddieffeUI extends JPanel {
+
 	private  int numberOfTablesInside = 0;
 	private  int numberOfTablesOutside = 0;
 	private final int maxNumberOfTablesInside = 12;
@@ -115,8 +116,8 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		frame.getContentPane().add(chooseNumberOfTables, "name_1230783104452");
 		chooseNumberOfTables.setLayout(null);
 
-		JLabel lblNumberOfTableInside = createFormattedLabel("Number of tables inside:", 155, 162, 240, 20);
-		final JLabel labelNumberOfTablesInside = createFormattedLabel("0", 255, 226, 40, 20);
+		JLabel lblNumberOfTableInside=createFormattedLabel("Number of tables inside:", 155, 162, 240, 20);
+		final JLabel labelNumberOfTablesInside=createFormattedLabel("0", 255, 226, 40, 20);
 
 		btnMinusInside = createFormattedButton("-", 165, 212, 50, 50);
 		btnMinusInside.setEnabled(false);
@@ -144,7 +145,7 @@ public class PizzeriaDiddieffeUI extends JPanel {
 			}
 		});
 
-		JLabel lblNumberOfTableOutside = createFormattedLabel("Number of tables outside:", 155, 358, 240, 20);
+		JLabel lblNumberOfTableOutside=createFormattedLabel("Number of tables outside:", 155, 358, 240, 20);
 		
 		btnMinusOutside = createFormattedButton("-", 165, 398, 50, 50);
 		btnMinusOutside.setEnabled(false);
@@ -228,14 +229,14 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		frame.getContentPane().add(insidePanel);
 
 		Image outsideBg = new ImageIcon ("res/outsideBG.jpg").getImage();
-		outsidePanel = new JPanelWithBackgroundTables(outsideBg, outsideTables, "outside", orderPanel);
+		outsidePanel = new JPanelWithBackgroundTables(outsideBg, outsideTables, "outside",orderPanel);
 		frame.getContentPane().add(outsidePanel);
 		setBackButtons();
 	}
 
 	private void setBackButtons(){
-		insidePanel.setVisiblePanel(chooseInsideOutside, frame);
-		outsidePanel.setVisiblePanel(chooseInsideOutside, frame);
+		insidePanel.setVisiblePanel(chooseInsideOutside,frame);
+		outsidePanel.setVisiblePanel(chooseInsideOutside,frame);
 	}
 
 	private JButton createFormattedButton(String text, int buttonX, int buttonY, int buttonWidth, int buttonHeight){
