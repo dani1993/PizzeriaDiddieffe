@@ -10,16 +10,16 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class Sound {
+public class Sound implements SoundPlayerInterface{
 	private String soundName;
 
+	@Override
 	public void setSound(String soundName){
 		this.soundName = soundName;
 	}
 
+	@Override
 	public void playSound() throws Exception{
-	
-		
 			File file = new File(soundName);
 			AudioInputStream stream;
 			AudioFormat format;

@@ -6,7 +6,8 @@ import pizzeriadiddieffe.core.beverage.Beverage;
 import pizzeriadiddieffe.core.focaccia.Focaccia;
 import pizzeriadiddieffe.core.pizza.Pizza;
 
-public  class CreateObjectByName{
+public  class CreateObjectByName implements ItemsCreatorInterface{
+	@Override
 	public Object createObjectByName (String className) throws Exception{
 		Class<?> clazz = Class.forName(className);
 		Constructor<?> ctor = clazz.getConstructor();
@@ -14,7 +15,7 @@ public  class CreateObjectByName{
 
 		return object;
 	}
-
+	@Override
 	public Object createToppingByName(String className, Item baseItem, String type) throws Exception {
 		if (type.equals("pizza")) {
 			baseItem = (Pizza) baseItem;

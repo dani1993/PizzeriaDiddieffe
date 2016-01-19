@@ -60,7 +60,11 @@ public class Order implements Item {
 		myOrder.removeAll(getOrderList());	
 	}
 
-	public void deleteIndex(int i) {
+	public void deleteIndex(int i) throws Exception{
+		if(i>myOrder.size()){
+			throw new Exception("Can't remove that!");
+		}else{
 		myOrder.remove(i);
 	}
+		}
 }

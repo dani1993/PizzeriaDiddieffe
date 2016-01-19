@@ -111,6 +111,30 @@ public class OrderTest {
 		assertEquals(base_info,current_info);
 	}
 	
+	@Test 
+	public void removeItemFromOrder() throws Exception{
+		my_order.add(fake_item);
+		my_order.deleteIndex(0);
+		assertEquals(0,my_order.getOrderList().size());
+	}
 	
+	@Test (expected=Exception.class)
+	public void removeItemFromEmptyOrder() throws Exception{
+		my_order.deleteIndex(1);
+	}
+	
+	@Test 
+	public void removeAllItemsFromOrder() throws Exception{
+		my_order.add(fake_item);
+		my_order.add(fake_item);
+		my_order.deleteAll();
+		assertEquals(0,my_order.getOrderList().size());
+	}
+	
+	@Test 
+	public void removeAllItemsFromEmptyOrder() throws Exception{
+		my_order.deleteAll();
+		assertEquals(0,my_order.getOrderList().size());
+	}
 
 }
