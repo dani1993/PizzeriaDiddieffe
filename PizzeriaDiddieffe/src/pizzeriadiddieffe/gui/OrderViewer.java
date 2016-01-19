@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -26,6 +27,7 @@ import pizzeriadiddieffe.gui.jpanel.PayOrderJPanel;
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundImgAndBackBtn;
 
 public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
+
 	private JPanelWithBackgroundImgAndBackBtn currentJPanel = this;
 	private PayOrderJPanel myPayJPanel;
 	private Order myOrder;
@@ -33,11 +35,24 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 	private HtmlFormatter myHtmlFormatter;
 	private OrderScrollPane scrollPane;
 	
+	private JButton editButton;
+	private int editButtonX = 390;
+	private int editButtonY = 140;
+	private int editButtonHeight = 50;
+	private int editButtonWight = 140;
+	private int currentEditItem=0;
+	
+	private JButton removeButton;
+	private int removeButtonX = 20;
+	private int removeButtonY = 650;
+	private int removeButtonHeight = 50;
+	private int removeButtonWight = 155;
+	
 	private JButton payOrderButton;
-	private int payButtonX = 200;
+	private int payButtonX = 370;
 	private int payButtonY = 650;
 	private int payButtonHeight = 50;
-	private int payButtonWight = 155;
+	private int payButtonWight = 160;
 	private String payOrderImagePath = "res/payOrderBackground.jpg";
 	private Item currentItem;
 	
@@ -47,7 +62,10 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 	private int scrollPaneWidth = 510;
 	private int scrollPaneHeight = 420;
 
+	
 	private JLabel descriptionLabel;
+	private String notEditingText;
+	private boolean removingItem=false;
 	private ComponentCreator myComponentCreator;
 	private int labelX = -10;
 	private int labelY = -5;
@@ -55,22 +73,24 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 	private int labelWidth = 200;
 	private int labelFontSize = 22;
 	private String font="Lucida Grande";
-	private int buttonFontSize = 22;
-	private Color buttonTextColor = Color.BLACK;
+	private int buttonFontSize=22;
+	private Color buttonTextColor=Color.BLACK;
+	private LinkedList<String> itemslist;
 
 	public OrderViewer(Image img, JFrame myFrame, JPanelWithBackgroundImgAndBackBtn payOrderVisiblePanel) {
 		super(img);
 
-		myComponentCreator = new ComponentCreator<>();
+		myComponentCreator=new ComponentCreator<>();
+		
 		
 		JPanel panel = new JPanel();
-		myHtmlFormatter = new HtmlFormatter();
+		myHtmlFormatter=new HtmlFormatter();
 		descriptionLabel = new JLabel();
 		descriptionLabel.setBounds(labelX, labelY, labelWidth, labelHeight);
-		descriptionLabel.setFont(new Font("Lucida Grande", Font.PLAIN, labelFontSize));
+		descriptionLabel.setFont(new Font(font, Font.PLAIN, labelFontSize));
 		panel.add(descriptionLabel);
 
-		scrollPane = new OrderScrollPane();
+		scrollPane=new OrderScrollPane();
 		scrollPane.setCurrentJPanel(panel);
 		scrollPane.setParameters(scrollPaneX, scrollPaneY, scrollPaneWidth, scrollPaneHeight);
 		scrollPane.setColors(scrollPaneColors, scrollPaneColors);
@@ -82,7 +102,7 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 		myPayJPanel.setVisible(false);
 		myFrame.add(myPayJPanel);
 
-		payOrderButton = createFormattedButton("Pay Order", payButtonX, payButtonY, payButtonWight, payButtonHeight);
+		payOrderButton=createFormattedButton("Pay Order", payButtonX, payButtonY, payButtonWight, payButtonHeight);
 		payOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				double price = myOrder.getPrice();
@@ -93,27 +113,76 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 				}
 			}
 		});
+	
+	
+	editButton=createFormattedButton("Edit", editButtonX, editButtonY, editButtonWight, editButtonHeight);
+	editButton.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			if(itemslist.size()>0 && currentEditItem<itemslist.size()){
+				removingItem=true;
+				currentEditItem++;
+				String currentItem=myHtmlFormatter.getHighligh()+itemslist.get(currentEditItem-1)+myHtmlFormatter.getEndhighligh();
+				String currentText="";
+				for(int i=0;i<itemslist.size();i++){
+					if(i==currentEditItem-1){
+						currentText=currentText+currentItem;
+					}else{
+						currentText=currentText+itemslist.get(i);
+					}
+			}
+				descriptionLabel.setText("<html>"+currentText+"<html>");
+			}else{
+				currentEditItem=0;
+				removingItem=false;
+				descriptionLabel.setText(notEditingText);
+				}
+		}
+		
+	});
+	
+	
+	removeButton=createFormattedButton("Remove", removeButtonX, removeButtonY, removeButtonWight, removeButtonHeight);
+	removeButton.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(removingItem==true){
+				myOrder.deleteIndex(currentEditItem-1);
+				currentEditItem=0;
+				drawOrder();
+				
+			}
+		}
+	});
 	}
-
+	
 	public void setOrder(Order myOrder){
 		this.myOrder = myOrder;
 		drawOrder();
 	}
-
+	
+	
 	private void drawOrder() {
+		itemslist=new LinkedList<String>();
 		myItemsList = myOrder.getOrderList();
 		Iterator<Item> iteratore = getIterator();
 		String baseCase = "";
-
+		int i=0;
+		int lastIndex=0;
 		while (iteratore.hasNext()) {
 			currentItem = iteratore.next();
-			baseCase = baseCase+myHtmlFormatter.getBullet()+currentItem.getInfo() ;
+			baseCase = baseCase + myHtmlFormatter.getBullet() + currentItem.getInfo() ;
 			baseCase = baseCase.replaceAll(myHtmlFormatter.getComma(), myHtmlFormatter.getTabSpace());
-			baseCase = baseCase+myHtmlFormatter.getNewLine()+myHtmlFormatter.getEndItalic()+myHtmlFormatter.getStartBold()+
-						myHtmlFormatter.getPrice()+currentItem.getPrice()+myHtmlFormatter.getEndBold()+myHtmlFormatter.getNewLine()+myHtmlFormatter.getNewLine();
+			baseCase = baseCase + myHtmlFormatter.getNewLine() + myHtmlFormatter.getEndItalic() + myHtmlFormatter.getStartBold() 
+			+ myHtmlFormatter.getPrice() + currentItem.getPrice() + myHtmlFormatter.getEndBold() + myHtmlFormatter.getNewLine() + myHtmlFormatter.getNewLine();
+			itemslist.add(baseCase.substring(lastIndex));
+			lastIndex=baseCase.length();
+			i++;	
 		}
 
 		descriptionLabel.setText("<html>"+baseCase+"<html>");
+		notEditingText=descriptionLabel.getText();
 	}
 
 	private Iterator<Item> getIterator() {
@@ -127,3 +196,4 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn {
 		return myComponentCreator.getButton();
 	}
 }
+

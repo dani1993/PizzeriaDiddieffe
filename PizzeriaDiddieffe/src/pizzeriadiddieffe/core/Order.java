@@ -59,4 +59,8 @@ public class Order implements Item {
 	public void deleteAll() {
 		myOrder.removeAll(getOrderList());	
 	}
+
+	public void deleteIndex(int i) {
+		myOrder.remove(i);
+	}
 }
