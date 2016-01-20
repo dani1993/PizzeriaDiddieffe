@@ -1,7 +1,6 @@
 package pizzeriadiddieffe.gui.paymethods;
 
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,10 +9,11 @@ import javax.swing.JLabel;
 
 import pizzeriadiddieffe.core.Order;
 import pizzeriadiddieffe.gui.creators.ComponentCreator;
+import pizzeriadiddieffe.gui.jpanel.JPanelWithBackBtn;
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundImgAndBackBtn;
 
 @SuppressWarnings("serial")
-public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements PayMethodInterface   {
+public class CashPayment extends JPanelWithBackBtn implements PayMethodInterface   {
 	private double totPrice;
 	private JPanelWithBackgroundImgAndBackBtn myPanel;
 	private JButton payButton;
@@ -52,10 +52,10 @@ public class CashPayment extends JPanelWithBackgroundImgAndBackBtn implements Pa
 	private int buttonPayWidth = 220;
 	private int buttonPayHeight = 250;
 	private String amountToPayString = "Amount to Pay ";
-
+	
 	@SuppressWarnings("rawtypes")
-	public CashPayment(Image img) {
-		super(img);
+	public CashPayment() {
+		super();
 		myComponentCreator = new ComponentCreator();
 	}
 

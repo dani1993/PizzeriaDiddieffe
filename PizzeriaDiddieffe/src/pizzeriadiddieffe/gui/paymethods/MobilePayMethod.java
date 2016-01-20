@@ -1,7 +1,6 @@
 package pizzeriadiddieffe.gui.paymethods;
 
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,10 +10,11 @@ import javax.swing.JLabel;
 
 import pizzeriadiddieffe.core.Order;
 import pizzeriadiddieffe.gui.creators.ComponentCreator;
+import pizzeriadiddieffe.gui.jpanel.JPanelWithBackBtn;
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundImgAndBackBtn;
 
 @SuppressWarnings("serial")
-public class MobilePayMethod extends JPanelWithBackgroundImgAndBackBtn implements PayMethodInterface {
+public class MobilePayMethod extends JPanelWithBackBtn implements PayMethodInterface {
 	private double totPrice;
 	private JPanelWithBackgroundImgAndBackBtn myPanel;
 	private JButton payButton;
@@ -53,8 +53,8 @@ public class MobilePayMethod extends JPanelWithBackgroundImgAndBackBtn implement
 	private int comboFontSize = 20;
 	private Color comboColor = Color.BLACK;
 
-	public MobilePayMethod(Image img) {
-		super(img);
+	public MobilePayMethod() {
+		super();
 		myComponentCreator = new ComponentCreator<String>();
 	}
 

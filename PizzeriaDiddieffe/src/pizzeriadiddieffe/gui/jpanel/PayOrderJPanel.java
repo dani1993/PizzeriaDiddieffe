@@ -44,7 +44,7 @@ public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 	private PayMethodInterface payStrategy; 
 	private PayChooser myPayChooser;
 	private JPanelWithBackgroundImgAndBackBtn payPanel;
-	private String payPanelImagePath = "res/PaymentMethodBG.jpg";
+	private String payPanelImagePath = "";
 	private JPanelWithBackgroundImgAndBackBtn currentJPanel = this;
 	private JFrame myFrame;
 
@@ -63,7 +63,7 @@ public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 	}
 
 	private void createPayPanel(JFrame myFrame) {
-		Image payOrderImage = new ImageIcon(payPanelImagePath).getImage().getScaledInstance(WIDTH, HEIGHT, java.awt.Image.SCALE_SMOOTH);
+		Image payOrderImage = new ImageIcon(payPanelImagePath).getImage();
 		payPanel = new JPanelWithBackgroundImgAndBackBtn(payOrderImage);
 		payPanel.setVisiblePanel(currentJPanel, myFrame);
 		payPanel.setVisible(false);
@@ -80,8 +80,8 @@ public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 		final String currentText = payMode.getText();
 		payMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				createPayPanel(myFrame);
 				payStrategy = getStrategy(currentText);
+				createPayPanel(myFrame);
 				myPayChooser = new PayChooser(payStrategy);
 				myPayChooser.createPanel(myOrder, payPanel);
 				currentJPanel.setVisible(false);
@@ -91,15 +91,15 @@ public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 	}
 
 	private PayMethodInterface getStrategy(String text) {
-		if(text.equals("Cash")){
-			Image cashImageBG = new ImageIcon(cashImagePath).getImage();
-			return new CashPayment(cashImageBG);
+		if(text.equals(cashText)){
+			payPanelImagePath=cashImagePath;
+			return new CashPayment();
 		}
-		else if(text.equals("Mobile Pay")){
-			Image mobileImageBG = new ImageIcon(mobileImagePath).getImage();
-			return new MobilePayMethod(mobileImageBG);
+		else if(text.equals(mobileText)){
+			payPanelImagePath=mobileImagePath;
+			return new MobilePayMethod();
 		}
-		Image bancomatImageBG = new ImageIcon(bancomatImagePath).getImage();
-		return new BancomatPayMethod(bancomatImageBG);
+		payPanelImagePath=bancomatImagePath;
+		return new BancomatPayMethod();
 	}
 }

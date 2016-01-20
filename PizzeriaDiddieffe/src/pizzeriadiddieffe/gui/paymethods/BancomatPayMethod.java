@@ -1,7 +1,6 @@
 package pizzeriadiddieffe.gui.paymethods;
 
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,10 +9,11 @@ import javax.swing.JLabel;
 
 import pizzeriadiddieffe.core.Order;
 import pizzeriadiddieffe.gui.creators.ComponentCreator;
+import pizzeriadiddieffe.gui.jpanel.JPanelWithBackBtn;
 import pizzeriadiddieffe.gui.jpanel.jpanelwithbackground.JPanelWithBackgroundImgAndBackBtn;
 
 @SuppressWarnings("serial")
-public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn implements PayMethodInterface {
+public class BancomatPayMethod extends JPanelWithBackBtn implements PayMethodInterface {
 	private double totPrice;
 	private JPanelWithBackgroundImgAndBackBtn myPanel;
 	private JButton payButton;
@@ -53,17 +53,18 @@ public class BancomatPayMethod extends JPanelWithBackgroundImgAndBackBtn impleme
 	private String buttonFontName = "Lucida Grande";
 	private String labelFontName = "Lucida Grande";
 
-	public BancomatPayMethod(Image img) {
-		super(img);
+	@SuppressWarnings("rawtypes")
+	public BancomatPayMethod() {
+		super();
+		myComponentCreator = new ComponentCreator();
 	}
 
-	@SuppressWarnings("rawtypes")
+	
 	@Override
 	public void payMethod(Order totPrice, JPanelWithBackgroundImgAndBackBtn myPanel) {
 		this.totPrice = totPrice.getPrice();
 		this.currentOrder = totPrice;
 		this.myPanel = myPanel;
-		myComponentCreator = new ComponentCreator();
 		createTotalLabel();
 		createButtons();
 	}
