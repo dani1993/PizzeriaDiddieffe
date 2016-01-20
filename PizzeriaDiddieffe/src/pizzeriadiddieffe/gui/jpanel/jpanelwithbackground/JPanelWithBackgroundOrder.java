@@ -61,10 +61,12 @@ public class JPanelWithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 
 	private static String menuBeverageImagePath = "res/DrinksOrdering.jpg";
 	private String beveragePackage = "beverage";
+	
+	private static String orderViewerBGImagePath = "res/OrderViewerBG.jpg";
 
 	private Order currentOrder;
 	private OrderViewer orderViewer;
-	private Image orderViewerImage = new ImageIcon(menuBeverageImagePath).getImage().getScaledInstance(550, 750, java.awt.Image.SCALE_SMOOTH);;
+	private Image orderViewerImage = new ImageIcon(orderViewerBGImagePath).getImage().getScaledInstance(550, 750, java.awt.Image.SCALE_SMOOTH);;
 	private OrderManager myOrderManager ;
 	private OrderingJPanel pizzaOrderingPanel;
 	private OrderingJPanel beverageOrderingPanel;

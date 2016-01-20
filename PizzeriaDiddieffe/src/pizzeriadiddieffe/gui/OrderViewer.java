@@ -120,6 +120,7 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn implements Or
 					String currentText = "";
 					for(int i = 0; i<itemsList.size(); i++){
 						if(i==currentEditItem-1){
+							editButton.setText("Next");
 							currentText = currentText+currentItem;
 						}else{
 							currentText = currentText+itemsList.get(i);
@@ -127,6 +128,8 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn implements Or
 					}
 					descriptionLabel.setText("<html>"+currentText+"<html>");
 				}else{
+					editButton.setText("Edit");
+
 					currentEditItem = 0;
 					removingItem = false;
 					descriptionLabel.setText(notEditingText);
