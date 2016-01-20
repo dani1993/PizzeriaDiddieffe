@@ -1,5 +1,6 @@
 package pizzeriadiddieffe.gui.jpanel;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,7 +29,8 @@ public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 	private int buttonsYSpace = buttonsHeight+space;
 	private int singleButtonX = singleButtonxSpace+buttonsXSpace/2;
 	private Order myOrder;
-
+	private Color colorText = Color.RED;
+	
 	private JButton cashPay;
 	private String cashText = "Cash";
 	private String cashImagePath = "res/CashMethod.jpg";
@@ -76,6 +78,7 @@ public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 
 	private void createPayButton(JButton payMode, int x, int y, String standardImage, String pressedImage, String mouseImage) {
 		payMode = new JButtonTextImage(x, y, buttonsWidth, buttonsHeight, buttonsFont, standardImage);
+		payMode.setForeground(colorText);
 		this.add(payMode);
 		final String currentText = payMode.getText();
 		payMode.addActionListener(new ActionListener() {
@@ -92,14 +95,14 @@ public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 
 	private PayMethodInterface getStrategy(String text) {
 		if(text.equals(cashText)){
-			payPanelImagePath=cashImagePath;
+			payPanelImagePath = cashImagePath;
 			return new CashPayment();
 		}
 		else if(text.equals(mobileText)){
-			payPanelImagePath=mobileImagePath;
+			payPanelImagePath = mobileImagePath;
 			return new MobilePayMethod();
 		}
-		payPanelImagePath=bancomatImagePath;
+		payPanelImagePath = bancomatImagePath;
 		return new BancomatPayMethod();
 	}
 }

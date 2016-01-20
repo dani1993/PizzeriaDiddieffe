@@ -21,7 +21,7 @@ public class BancomatPayMethod extends JPanelWithBackBtn implements PayMethodInt
 	private String baseTotalString = "Insert Code ";
 	private String totalString = baseTotalString;
 	private String code = "";
-	private String STAR = "*";
+	private static final String STAR = "*";
 
 	private int space = 20;
 	private int labelX = 30;
@@ -59,7 +59,7 @@ public class BancomatPayMethod extends JPanelWithBackBtn implements PayMethodInt
 		myComponentCreator = new ComponentCreator();
 	}
 
-	
+
 	@Override
 	public void payMethod(Order totPrice, JPanelWithBackgroundImgAndBackBtn myPanel) {
 		this.totPrice = totPrice.getPrice();
@@ -97,7 +97,7 @@ public class BancomatPayMethod extends JPanelWithBackBtn implements PayMethodInt
 			final String buttonText = setCoordinates(i);
 			final JButton currentButton = createFormattedButton(buttonText, buttonX, buttonY, buttonWidth, buttonHeight);
 			currentButton.addActionListener(new ActionListener() {
-			
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					code = code+STAR;

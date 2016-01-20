@@ -14,60 +14,54 @@ import pizzeriadiddieffe.gui.componentclasses.ComponentsGetter;
 import pizzeriadiddieffe.gui.jbutton.ClickableButtonWithImage;
 
 @SuppressWarnings("serial")
-public class JPanelWithBackBtn extends JPanel{
-	
+public class JPanelWithBackBtn extends JPanel{	
 	private ClickableButtonWithImage btnBackToInOutScreen;
 	private JPanel visiblePanel;
 	private JFrame myFrame;
 	private ComponentsGetter myComponentGetter;
-	private static int width=550;
-	private static int heigh=750;
-	
+	private static int width = 550;
+	private static int heigh = 750;
 
 	public JPanelWithBackBtn() {
-			Dimension size = new Dimension(width,heigh);
-			setPreferredSize(size);
-			setMinimumSize(size);
-			setMaximumSize(size);
-			setSize(size);
-			setLayout(null);
-			myComponentGetter = new ComponentsGetter();
-			paintBackButton();
-		}
+		Dimension size = new Dimension(width, heigh);
+		setPreferredSize(size);
+		setMinimumSize(size);
+		setMaximumSize(size);
+		setSize(size);
+		setLayout(null);
+		myComponentGetter = new ComponentsGetter();
+		paintBackButton();
+	}
 
-	
-		private void paintBackButton() {
-			btnBackToInOutScreen = new ClickableButtonWithImage(10, 10, 100, 50, 0, "Back");
-			btnBackToInOutScreen.setBorderPainted(false);
-			this.add(btnBackToInOutScreen);
-			btnBackToInOutScreen.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					setPanelsVisibility();
-				}
-			});
-		}
-
-		
-		private void setPanelsVisibility() {
-			List<Component> myComponents = new ArrayList<Component>();
-			myComponents = myComponentGetter.getComponents(myFrame);
-			for (Component comp : myComponents) {
-				if (comp.getClass().equals(visiblePanel) && !comp.equals(visiblePanel)) {
-					comp.setVisible(false);
-				}
+	private void paintBackButton() {
+		btnBackToInOutScreen = new ClickableButtonWithImage(10, 10, 100, 50, 0, "Back");
+		btnBackToInOutScreen.setBorderPainted(false);
+		this.add(btnBackToInOutScreen);
+		btnBackToInOutScreen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setPanelsVisibility();
 			}
-			this.setVisible(false);
-			visiblePanel.setVisible(true);
-		}
+		});
+	}
 
-		public void setVisiblePanel(JPanel visiblePanel, JFrame frame) {
-			this.visiblePanel = visiblePanel;
-			this.myFrame = frame;
+	private void setPanelsVisibility() {
+		List<Component> myComponents = new ArrayList<Component>();
+		myComponents = myComponentGetter.getComponents(myFrame);
+		for (Component comp : myComponents) {
+			if (comp.getClass().equals(visiblePanel) && !comp.equals(visiblePanel)) {
+				comp.setVisible(false);
+			}
 		}
+		this.setVisible(false);
+		visiblePanel.setVisible(true);
+	}
 
+	public void setVisiblePanel(JPanel visiblePanel, JFrame frame) {
+		this.visiblePanel = visiblePanel;
+		this.myFrame = frame;
+	}
 
-		public JFrame getFrame() {
-			return myFrame;
-		}
-	
+	public JFrame getFrame() {
+		return myFrame;
+	}	
 }

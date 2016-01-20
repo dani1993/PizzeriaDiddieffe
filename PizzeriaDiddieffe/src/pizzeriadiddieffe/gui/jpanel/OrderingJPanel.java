@@ -233,12 +233,12 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements
 
 	private void createChoseenBaseCase(String className) {
 		myItemCreator.createChoseenBaseCase(className);
-		currentItem=myItemCreator.getCurrentItem();
+		currentItem = myItemCreator.getCurrentItem();
 	}
 
 	private void createChoosenToppings( String currentPackage) {
 		myItemCreator.createChoosenToppings(currentPackage);
-		currentItem=myItemCreator.getCurrentItem();
+		currentItem = myItemCreator.getCurrentItem();
 	}
 
 	private JButton createFormattedButton(String text, int buttonX, int buttonY, int buttonWidth, int buttonHeight){
