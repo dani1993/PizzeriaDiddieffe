@@ -82,7 +82,7 @@ public class JPanelWithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 		myOrderingPanelCreator = new OrderingPanelCreator();
 		createOrderingPanels();
 		createOrderViewerPanel();
-		drawChoiseButtons();
+		drawChoiceButtons();
 	}
 
 	private void createOrderViewerPanel() {
@@ -111,7 +111,7 @@ public class JPanelWithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 		currentOrder = myOrderManager.checkOrder(id);
 	}
 
-	private void drawChoiseButtons(){
+	private void drawChoiceButtons(){
 		pizzaButton = drawSelectedButton(pizzaButton, startX, startY, "Pizza");
 		setActionListener(pizzaButton, pizzaOrderingPanel);
 

@@ -23,6 +23,12 @@ public class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 	private JPanel visiblePanel;// pannello visibile
 	private JFrame myFrame;
 	private ComponentsGetter myComponentGetter;
+	
+	//back button bounds
+	private int xBackButton = 10;
+	private int yBackButton = 10;
+	private int widthBackButton = 100;
+	private int heightBackButton = 50;
 
 	public JPanelWithBackgroundImgAndBackBtn(String img) {
 		this(new ImageIcon(img).getImage());
@@ -41,7 +47,7 @@ public class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 	}
 
 	private void paintBackButton() {
-		btnBackToInOutScreen = new ClickableButtonWithImage(10, 10, 100, 50, 0, "Back");
+		btnBackToInOutScreen = new ClickableButtonWithImage(xBackButton, yBackButton, widthBackButton, heightBackButton, 0, "Back");
 		btnBackToInOutScreen.setBorderPainted(false);
 		this.add(btnBackToInOutScreen);
 		btnBackToInOutScreen.addActionListener(new ActionListener() {

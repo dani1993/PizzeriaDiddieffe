@@ -48,3 +48,34 @@ Classe che estende PizzaDecorator,fa uso dei metodi "getInfo" e "getPrice" per d
 
 
 
+
+
+pizzeriadiddieffe.gui.jpanel.japanelwithbackground
+
+1-JPanelWithBackgroundImgAndBackBtn
+Classe che estende "JPanel” arricchendo il pannello con un immagine di  e il pulsante “Back” posizionato in alto a sinistra. L’immagine di sfondo viene passata tramite una String che ne indica l’indirizzo. La classe stessa cerca e crea l’immagine come Image, gli setta le dimensioni e la imposta come sfondo del pannello sovrascrivendo il metodo “paintComponent” disegnando l’immagine appena creata.
+Il metodo “paintBackButton()” aggiunge il pulsante “Back” in alto a sinistra di ogni pannello creando un “ClickableButtonWithImage”. Quando esso viene premuto viene reso visibile il pannello precedente tramite il metodo “setPanelVisibility()”.
+Quest’ultimo setta visibile il penultimo pannello visibile tramite la “ComponentsGetter()”.
+
+2-JPanelWithBackgroundOrder
+La classe estende “JPanelWithBackgroundImgAndBackBtn” inserendo nel mezzo del pannello 4 pulsanti di scelta per l’utente: -Beverage, -Pizza, -Focaccia, -Order tramite “drawChoiceButtons()”. In questa classe vengono passate tutte le informazioni per creare i pannelli successivi dove verranno creati gli ordini. 
+Quindi il metodo “createOrderViewerPanel()” viene chiamato se l’utente preme su -Order e viene creato un oggetto “OrderViewer” e poi reso visibile il pannello che fa visualizzare l’ordine del tavolo.
+Il metodo “createOrderingPanels()” viene invocato se l’utente preme uno dei tre -Pizza, -Focaccia, -Beverage e viene creato il pannello con tutte le scelte da ordinare in base a cosa viene passato come stringa. Queste stringhe conteranno la lista di tutte le componenti basi e topping dell’articolo scelto, compresi indirizzi delle immagini e nome delle classi ai quali appartengono.
+Il “createOrderingPanel()” crea il singolo pannello passando tutti i parametri stringhe di cui parlavo prima. 
+“setTableId()” setta l’id del tavolo per cercare l’ordine corrente.
+
+3-JPanelWithBackgroundTables
+Classe che estende “JPanelWithBackgroundImgAndBackBtn” inserendo il numero dei tavoli scelti all’inizio dell’applicazioni all’interno del pannello tramite il metodo “drawTables()”. Ogni tavolo sarà un pulsante e renderà visibile un altro pannello passandogli l’Id del tavolo. 
+Il metodo “getCoordinates()” è stato implementato per rendere la grandezza e la posizione dei tavoli più intelligente in base al numero dei tavoli scelti inizialmente. 
+
+
+
+
+
+
+
+
+
+
+
+
