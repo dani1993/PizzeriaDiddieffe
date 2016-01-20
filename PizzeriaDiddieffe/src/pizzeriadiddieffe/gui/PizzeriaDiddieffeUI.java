@@ -54,7 +54,6 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	private String buttonFont = "Lucida Grande";
 	private int buttonFontSize = 18;
 	private Color labelTextColor = Color.white;
-	private Color chooseButtonTextColor = Color.WHITE;
 	private Color buttonTextColor = Color.black;
 
 	@SuppressWarnings("rawtypes")
@@ -184,7 +183,6 @@ public class PizzeriaDiddieffeUI extends JPanel {
 
 		final JButtonTextImage btnInside = new JButtonTextImage(0, 0, 550, 375, 60, "Inside");
 		btnInside.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		btnInside.setForeground(chooseButtonTextColor);
 		btnInside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chooseInsideOutside.setVisible(false);
@@ -194,7 +192,6 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		chooseInsideOutside.add(btnInside);
 
 		final JButtonTextImage btnOutside = new JButtonTextImage(0, 0, 550, 375, 60, "Outside");
-		btnOutside.setForeground(chooseButtonTextColor);
 		btnOutside.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		btnOutside.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
