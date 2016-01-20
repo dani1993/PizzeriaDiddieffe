@@ -68,6 +68,21 @@ Il “createOrderingPanel()” crea il singolo pannello passando tutti i paramet
 Classe che estende “JPanelWithBackgroundImgAndBackBtn” inserendo il numero dei tavoli scelti all’inizio dell’applicazioni all’interno del pannello tramite il metodo “drawTables()”. Ogni tavolo sarà un pulsante e renderà visibile un altro pannello passandogli l’Id del tavolo. 
 Il metodo “getCoordinates()” è stato implementato per rendere la grandezza e la posizione dei tavoli più intelligente in base al numero dei tavoli scelti inizialmente. 
 
+4-JPanelWithImageOrderInterface
+Interfaccia contente il metodo “setTableId(String s)” che andrà a impostare l’Id per il tavolo corrente.
+
+5-JPanelWithImageInterface
+Interfaccia … 
+
+
+pizzeriadiddieffe.gui.jbutton
+
+1-ClickableButtonWithImage
+La classe estende JButton aggiungendo come sfondo un immagine che viene passata tramite String, oltre alle dimensioni  e alla posizione del button. Il pulsante ha le proprietà di cambiare immagine quando gli si passa sopra con il cursore e quando ci clicchiamo sopra. 
+
+2-JButtonTextImage
+Estende “ClickableButtonWithImage” e imposta il colore del testo del button in base al button creato in modo da rendere il testo più leggibile.
+
 
 
 
