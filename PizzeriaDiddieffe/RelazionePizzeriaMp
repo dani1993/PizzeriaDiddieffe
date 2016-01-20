@@ -1,0 +1,77 @@
+Punti da discutere 
+
+1-Struttura gerarchica del progetto(uml)
+2-scelte di design per risolvere i vari problemi(decorator,strategy,etc..)
+3-funzionamento del programma a runtime(descrizione di un'esecuzione tipo)
+
+
+2-Nel progetto abbiamo deciso di utilizzare il design pattern Decorator,al fine di risolvere il problema pricipale, ossia poter agire su un oggetto in modo da aggiungere informazioni di vario tipo.Infatti, tramite il pattern menzionato,e' possibile arricchire alcuni casi base("BasicWhitePizza",caso base della pizza) con delle informazioni contenute in altre classi, definite come toppings("Anchovy",arricchimento per tutte le classi che estendono "Pizza").
+Nei seguenti esempi verra' considerato soltanto il decorator utilizzato per gli oggetti di tipo pizza,dato che il funzionamento risulta essere il medesimo per beverage e focaccia.
+Abbiamo creato una classe astratta "Pizza" che viene estesa dalla classe, anch'essa astratta, "PizzaDecorator" e dai tre casi base "BasicBrownPizza","BasicDoubleWhitePizza" e "BasicWhitePizza". Quindi abbiamo fatto uso della classe "PizzaDecorator" , estendendola in tutte le classi di "tipo" topping, in modo da poter implementare i metodi astratti "getInfo" e "getPrice".Questi ultimi restituiscono, rispettivamente , la descrizione del caso base attualmente considerato, arricchita con l'informazione del topping scelto ed il suo prezzo.
+
+2a-Abbiamo deciso di utilizzare il design pattern Strategy, per poter distinguere fra loro le varie modalita' di pagamento:"Cash";"Bancomat";"Mobile payment".Vengono utilizzate tre strategie, appunto, ognuna per un diverso metodo di pagamento.A seconda della strategia scelta, vengono aggiunti ad un pannello specifico, diversi componenti.Ad esempio,nel pagamento con contanti si visualizza un tastierino numerico, anziche' due menu' a tendina per scegliere l'operatore che effettua il pagamento da smartphone("Mobile payment").
+Per attuare il pattern si utilizza l'interfaccia "PayMethodInterface",che specifica il metodo "payMethod",che verra' sviluppato in modi differenti all'interno delle varie classi che la implementano.La strategia scelta viene impostata tramite la classe "PayChooser",di cui viene istanziato un oggetto al momento del pagamento.In seguito verra' quindi richiamato il metodo "payMethod" della strategia impostata nella classe "PayChooser", in modo da creare i dovuti componenti necessari alla tipologia di pagamento scelta.
+
+
+
+
+3-Esecuzione tipo del programma 
+Nella classe Pizzeriadiddieffe vengono creati:
+
+-il frame che ospitera' tutti i pannelli dell'applicazione(metodo "initialize");
+
+-il pannello che ospitera' la prima schermata, "chooseNumberOfTables".Tale pannello viene quindi impostato come principale all'interno della finestra "frame".
+
+-le quattro etichette e i quattro pulsanti,utili per impostare il numero di tavoli interni ed esterni.Per fare questo vengono usati i metodi "createFormattedButton" e "createFormattedLabel",che utilizzano l'oggetto "myComponentCreator" per creare ed impostare le proprieta' desiderate del componente in questione.
+
+-Infine vengono creati i tre pannelli, che rispettivamente, si riferiscono: alla scelta dell'azione da compiere "orderPanel"(l'utente puo' scegliere se ordinare dei cibi,modificare l'ordine o pagare il conto);ai due pannelli che ospitano i tavoli,interni ed esterni.Il primo e' un'istanza della classe "JPanelWithBackgroundOrder", in grado di gestire l'ordine considerato in un dato momento.Gli ultimi due invece sono oggetti della classe "JPanelWithBackgroundTables",utilizzata per rappresentare i vari tavoli nei luoghi "interno" ed "esterno".
+
+-Quindi vengono impostati i pannelli ai quali i tasti "back", delle rispettive schermate, si riferiscono.A tale scopo viene richiamato il metodo (ereditato) "setVisiblePanel" della classe "JPanelWithBackgroundTabels", in grado di impostare un determinato pannello,come punto di "ritorno" del tasto "back" presente nel pannello considerato.
+
+
+Una volta impostato il numero di tavoli, e' sufficente premere il tasto "Done", per accedere al pannello di scelta, che visualizza due pulsanti.Il primo di essi permette di accedere al pannello che mostra i tavoli interni, il secondo quelli esterni.
+Cliccando quindi,per esempio, sul pulsante "inside", verra' mostrato una schermata contenente il numero di tavoli scelto in precedenza.Ogni tavolo e' instanza della classe "Table", ed e' caratterizzato da un "id" univoco.Quest'ultimo viene utilizzato per associare ad ogni tavolo un diverso ordine. 
+Cliccando quindi su un "tavolo", si accede alla prossima schermata.
+
+Il pannello attuale, che riporta in alto il titolo "Order Manager", e' in realta', un oggetto di tipo "JPanelWithBackgroundOrder"(creato precedentemente,nella classe pizzeriadiddieffe,con il nome di "orderPanel").
+Al suo interno sono presenti quattro pulsanti, ognuno dei quali permette una diversa azione.Inoltre ognuno di essi e' istanza della classe "JButtonTextImage",utilizzata per creare dei pulsanti con un'immagine di sfondo e del testo al centro.
+Ogni ordine e' instanza della classe "Order" e viene creato, oppure restituito dall'oggetto "myOrderManager"(istanza dell'omonima classe).Tale oggetto si occupa infatti,tramite l'"id" del tavolo cliccato in precedenza, di impostare nei pannelli successivi l'ordine relativo a quest'ultimo.
+Durante l'inizializzazione del pannello vengono creati anche le quattro schermate relative ai medesimi pulsanti.Queste schermate sono:"pizzaOrderingJPanel","beveraOrderingJPanel","focacciaOrderingJPanel","OrderViewer".Nell'ultimo caso viene creato un oggetto di tipo "OrderViewer",che si occupa di permettere all'utente di modificare l'ordine considerato.Mentre nei primi tre casi, vengono creati dei pannelli di tipo "OrderingJPanel".Questo tramite l'oggetto "myOrderingPanelCreator", che facilita la creazione del pannello per l'ordinazione da creare.A tale scopo e' necessario impostare vari parametri.
+Infatti un oggetto di tipo "OrderingJPanel" necessita di 3 array di stringhe:il primo specifica il nome dei casi base del decorator;il secondo il nome dei toppings;il terzo il nome di tutte le classi prese in considerazione all'interno del pannello.Inoltre deve essere specificato il percorso dell'immagine di sfondo e la tipologia di decorator che si sta attualmente trattando("pizza","focaccia" o "beverage").
+
+A questo punto, cliccando sul pulsante "pizza", verra' reso visibile il pannello di ordinazione relativo alle pizze.All'interno del quale e' possibile, cliccando sugli appositi pulsanti , selezionare la pizza che si desidera.Il pannello si presenta come l'insieme dei tre casi base e dei toppings(relativi, ovviamente, al cibo scelto).Ognuno di essi e' un pulsante "JButtonTextImage", al quale viene modificato il colore del bordo una volta selezionato.Nel momento in cui si e' scelto la propria pizza e si preme su tasto "Add To Order",saranno creati gli oggetti delle classi scelte.Quest'ultimo passaggio e' reso possibile dall'oggetto myItemCreator,che attraverso specifici metodi, crea il caso base del decorator selezionato, per poi arricchirlo con i toppings scelti in precendenza.
+
+Una volta ordinato un piatto e' possibile modificare o semplicemente, visionare, il proprio ordine.Questo attraverso il pannello "OrderViewer", raggiungibile tramite il pulsante "Order" nella schermata "OrderManger".All'interno del pannello, sono presenti tre pulsanti (fatta eccezione per il tasto "back"):"Edit" utilizzato insieme a "Remove" per rimuovere un piatto dal proprio ordine;"Pay Order" che rimanda alla schermata di pagamento.Inoltre e' presente un oggetto "scrollPane" di tipo "OrderScrollPane", che serve a visualizzare tutti i dettagli dell'ordine corrente,man mano che viene aggiornato.Anche in questa classe, come nelle precendenti, i pulsanti e le etichette vengono creati tramite un oggetto "myComponentCreator" di tipo ComponentCreator,tale oggetto viene utilizzato, dopo aver impostato il componente che si intende creare e formattare,attraverso il metodo apposito.
+Viene inoltre utilizzato l'oggetto "myHtmlFormatter",che contiene varie formattazioni per il testo in html.Tali formattazioni sono utilizzate per modificare l'etichetta nella quale appaiono i dettagli dell'ordine corrente. 
+
+Una volta cliccato sul pulsante relativo al pagamento, viene visualizzato il pannello dove sara' possibile scegliere il metodo desiderato.Al suo interno sono presenti tre pulsanti,anch'essi istanze della classe "JButtonTextImage".Ognuno dei quali, una volta premuto, crea un oggetto adeguato, per eseguire il pagamento tramite il metodo corrispondente.Il tutto utilizza il design pattern Strategy, i tre metodi di pagamento infatti, implementano l'interfaccia "PayMethodInterface", e conseguentemente il suo metodo "payMethod".A seconda del quale ogni classe ("CashPayment","BancomatPayMethod","MobilePayMethod") aggiunge determinati componenti grafici ad un pannello comune,al fine di consentire l'operazione.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
