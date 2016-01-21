@@ -1,119 +1,174 @@
 @@@@@@@@@@Ruolo delle classi
 
--pacchetto pizzeriadiddieffe.core
+pizzeriadiddieffe.core
 
--1 CreateObjectByName:
-Classe che implementa l'interfaccia "ItemsCreatorInterface",viene utilizzata per creare i vari oggetti che andranno a comporre un singolo item.Tale elemento puo' essere di tipo pizza,beverage o focaccia.
-E' composta da due metodi principali: "createObjectByName",in grado di creare tramite le informazioni contenute nei parametri un oggetto che rappresenta un "caso base" del pattern Decorator;"createToppingByName",la cui funzione e' praticamenta la stessa di "createObjectByName",ad eccezione per√≤,che in questo caso vengono istanziati e restituiti degli oggetti rappresentati i topping del patter Decorator.
+1- CreateObjectByName:
+	Classe che implementa l'interfaccia "ItemsCreatorInterface", viene utilizzata per creare i vari oggetti che andranno a comporre un singolo item. Tale elemento puo' essere di tipo pizza, beverage o focaccia.
+	E' composta da due metodi principali: "createObjectByName", in grado di creare tramite le informazioni contenute nei parametri un oggetto che rappresenta un "caso base" del pattern Decorator; "createToppingByName", la cui funzione e' praticamenta la stessa di "createObjectByName", ad eccezione pero',che in questo caso vengono istanziati e restituiti degli oggetti rappresentati i topping del patter Decorator.
 
-2-Item:
-Interfaccia che viene implementata da diverse classi del programma,specifica i vari metodi che dovranno essere implementati nelle sottoclassi.Quali "getInfo","getPrice","add","remove".
+2- Item:
+	Interfaccia che viene implementata da diverse classi del programma, specifica i vari metodi che dovranno essere implementati nelle sottoclassi. Quali "getInfo", "getPrice", "add", "remove".
 
-3-ItemCreatorInterface
-Interfaccia che viene implementata dalla classe "CreateObjectByName",specifica i metodi principali che la classe dovra' implementare.Quali "createObjectByName" e "createToppingByName".
+3- ItemCreatorInterface
+	Interfaccia che viene implementata dalla classe "CreateObjectByName", specifica i metodi principali che la classe dovra' implementare. Quali "createObjectByName" e "createToppingByName".
 
+4- Order
+	Classe che implementa l'interfaccia "Item", implementa quindi tutti i metodi descritti in quest'ultima. Al suo interno dichiara inoltre vari campi: "id", che viene utilizzato per differenziare i vari ordini uno dall'altro; "myOrder", una LinkedList utilizzata per immagazzinare tutti gli item che andranno a compore l'ordine considerato. La classe specifica inoltre dei metodi getters e setters per il campo "id", oltre che a due metodi "deleteAll" e "deleteIndex" che, rispettivamente, eliminano dalla LinkedList "myOrder" tutti gli item contenuti, oppure l'item che si trova in una certa posizione(che sara' inserita come parametro del metodo).
 
-4-Order
-Classe che implementa l'interfaccia "Item",implementa quindi tutti i metodi descritti in quest'ultima.Al suo interno dichiara inoltre vari campi:"id",che viene utilizzato per differenziare i vari ordini uno dall'altro;"myOrder",una LinkedList utilizzata per immagazzinare tutti gli item che andranno a compore l'ordine considerato.La classe specifica inoltre dei metodi getters e setters per il campo "id",oltre che a due metodi "deleteAll" e "deleteIndex",che rispettivamente,eliminano dalla LinkedList "myOrder" tutti gli item contenuti, oppure l'item che si trova in una certa posizione(che sara' inserita come parametro del metodo).
+5- OrderManager
+	Classe che implementa l'interfaccia "OrderManagerInterface". Utilizza una LinkedList "myOrderList" per gestire i vari ordini che vengono creati a runtime. E' in grado di cercare un ordine all'interno della propria lista o di crearlo in caso di fallimento, tramite il metodo "createOrder".
 
-5-OrderManager
-Classe che implementa l'interfaccia "OrderManagerInterface".Utilizza una LinkedList "myOrderList" per gestire i vari ordini che vengono creati a runtime.E' in grado di cercare un ordine all'interno della propria lista o di crearlo in caso di fallimento,tramite il metodo "createOrder".
- 
+6- Sound
+	Classe che implementa l'interfaccia "SoundPlayerInterface". Viene utilizzata per creare e riprodurre suoni relativi alla pressione di pulsanti. Dichiara quindi un campo "soundName", che puo' essere impostato piu' volte tramite il metodo "setSound".
 
-6-Sound
-Classe che implementa l'interfaccia "SoundPlayerInterface".Viene utilizzata per creare e riprodurre suoni relativi alla pressione di pulsanti.Dichiara quindi un campo "soundName",che puo' essere impostato piu' volte tramite il metodo "setSound".
+7- SoundPlayerInterface
+	Interfaccia implementata dalla classe "Sound", dichiara due metodi: "setSound", utilizzato per impostare il nome del file audio che verra' riprodotto; "playSound", metodo utilizzato per riprodurre il file precedentemente impostato.
 
-7-SoundPlayerInterface
-Interfaccia implementata dalla classe "Sound",dichiara due metodi:"setSound",utilizzato per impostare il nome del file audio che verra' riprodotto;"playSound",metodo utilizzato per riprodurre il file precedentemente impostato.
 
 pizzeriadiddieffe.core.pizza/beverage/focaccia
 
-1-Pizza
-Classe astratta che viene estesa dalle classi "PizzaDecorator" e da tutti i casi base del pattern("BasicBrownPizza","BasicDoubleWhitePizza","BasicWhitePizza").Implementa l'interfaccia "Item" e dichiara due metodi astratti "getInfo" e "getPrice". 
+1- Pizza
+	Classe astratta che viene estesa dalle classi "PizzaDecorator" e da tutti i casi base del pattern("BasicBrownPizza", "BasicDoubleWhitePizza", "BasicWhitePizza"). Implementa l'interfaccia "Item" e dichiara due metodi astratti "getInfo" e "getPrice". 
 
-2-PizzaDecorator
-Classe astratta che estende la classe "Pizza",dichiara due metodi astratti "getPrice" e "getInfo",che dovranno quindi essere implementati dalle sottoclassi,inoltre implementa i metodi "add" e "remove" del'interfaccia "Item".
+2- PizzaDecorator
+	Classe astratta che estende la classe "Pizza", dichiara due metodi astratti "getPrice" e "getInfo", che dovranno quindi essere implementati dalle sottoclassi, inoltre implementa i metodi "add" e "remove" del'interfaccia "Item".
 
+3- BasicWhitePizza
+	Classe che estende la classe astratta "Pizza", implementando i metodi "getPrice" e "getInfo". Utilizza due campi PRICE e INFO, che specificano rispettivamente il prezzo dell'oggetto corrente e la sua descrizione.
+	Vengono inoltre implementati i metodi "add" e "remove" dell'interfaccia "Item". Viene considerato come il caso base del pattern Decorator, potra' quindi essere decorato dai vari topping presenti nel pacchetto ".topping" .
 
-3-BasicWhitePizza
-Classe che estende la classe astratta "Pizza",implementando i metodi "getPrice" e "getInfo".Utilizza due campi PRICE e INFO, che specificano rispettivamente il prezzo dell'oggetto corrente e la sua descrizione.
-Vengono inoltre implementati i metodi "add" e "remove" dell'interfaccia "Item".Viene considerato come il caso base del pattern Decorator,potra' quindi essere decorato dai vari topping presenti nel pacchetto ".topping" .
 
 pizzadiddieffe.core.pizza.topping
 
-1-Anchovy
-Classe che estende PizzaDecorator,fa uso dei metodi "getInfo" e "getPrice" per decorare l'oggetto tempPizza.Quest'ultimo viene passato come parametro al costruttore della classe.Viene utilizzato come topping del pattern Decorator,e' quindi sufficente impostare come "tempPizza" una qualunque classe che estende la classe astratta "Pizza",al fine di arricchirla con le informazioni della classe Anchovy.
-
-
-
+1- Anchovy
+	Classe che estende PizzaDecorator, fa uso dei metodi "getInfo" e "getPrice" per decorare l'oggetto tempPizza. Quest'ultimo viene passato come parametro al costruttore della classe. Viene utilizzato come topping del pattern Decorator, e' quindi sufficente impostare come "tempPizza" una qualunque classe che estende la classe astratta "Pizza", al fine di arricchirla con le informazioni della classe Anchovy.
 
 
 
 
 pizzeriadiddieffe.gui.jpanel.japanelwithbackground
 
-1-JPanelWithBackgroundImgAndBackBtn
-Classe che estende "JPanel‚Äù arricchendo il pannello con un immagine di  e il pulsante ‚ÄúBack‚Äù posizionato in alto a sinistra. L‚Äôimmagine di sfondo viene passata tramite una String che ne indica l‚Äôindirizzo. La classe stessa cerca e crea l‚Äôimmagine come Image, gli setta le dimensioni e la imposta come sfondo del pannello sovrascrivendo il metodo ‚ÄúpaintComponent‚Äù disegnando l‚Äôimmagine appena creata.
-Il metodo ‚ÄúpaintBackButton()‚Äù aggiunge il pulsante ‚ÄúBack‚Äù in alto a sinistra di ogni pannello creando un ‚ÄúClickableButtonWithImage‚Äù. Quando esso viene premuto viene reso visibile il pannello precedente tramite il metodo ‚ÄúsetPanelVisibility()‚Äù.
-Quest‚Äôultimo setta visibile il penultimo pannello visibile tramite la ‚ÄúComponentsGetter()‚Äù.
+1- JPanelWithBackgroundImgAndBackBtn
+	Classe che estende "JPanel" arricchendo il pannello con un immagine di e il pulsante "Back" posizionato in alto a sinistra. L'immagine di sfondo viene passata tramite una String che ne indica l'indirizzo. La classe stessa cerca e crea l'immagine come Image, gli setta le dimensioni e la imposta come sfondo del pannello sovrascrivendo il metodo "paintComponent" disegnando l'immagine appena creata.
+	Il metodo "paintBackButton()" aggiunge il pulsante "Back" in alto a sinistra di ogni pannello creando un "ClickableButtonWithImage". Quando esso viene premuto viene reso visibile il pannello precedente tramite il metodo "setPanelVisibility()".
+	Quest'ultimo setta visibile il penultimo pannello visibile tramite la "ComponentsGetter()".
 
-2-JPanelWithBackgroundOrder
-La classe estende ‚ÄúJPanelWithBackgroundImgAndBackBtn‚Äù inserendo nel mezzo del pannello 4 pulsanti di scelta per l‚Äôutente: -Beverage, -Pizza, -Focaccia, -Order tramite ‚ÄúdrawChoiceButtons()‚Äù. In questa classe vengono passate tutte le informazioni per creare i pannelli successivi dove verranno creati gli ordini. 
-Quindi il metodo ‚ÄúcreateOrderViewerPanel()‚Äù viene chiamato se l‚Äôutente preme su -Order e viene creato un oggetto ‚ÄúOrderViewer‚Äù e poi reso visibile il pannello che fa visualizzare l‚Äôordine del tavolo.
-Il metodo ‚ÄúcreateOrderingPanels()‚Äù viene invocato se l‚Äôutente preme uno dei tre -Pizza, -Focaccia, -Beverage e viene creato il pannello con tutte le scelte da ordinare in base a cosa viene passato come stringa. Queste stringhe conteranno la lista di tutte le componenti basi e topping dell‚Äôarticolo scelto, compresi indirizzi delle immagini e nome delle classi ai quali appartengono.
-Il ‚ÄúcreateOrderingPanel()‚Äù crea il singolo pannello passando tutti i parametri stringhe di cui parlavo prima. 
-‚ÄúsetTableId()‚Äù setta l‚Äôid del tavolo per cercare l‚Äôordine corrente.
+2- JPanelWithBackgroundOrder
+	La classe estende "JPanelWithBackgroundImgAndBackBtn" inserendo nel mezzo del pannello 4 pulsanti di scelta per l'utente: -Beverage, -Pizza, -Focaccia, -Order tramite "drawChoiceButtons()". In questa classe vengono passate tutte le informazioni per creare i pannelli successivi dove verranno creati gli ordini.
+	Quindi il metodo "createOrderViewerPanel()" viene chiamato se l'utente preme su -Order e viene creato un oggetto "OrderViewer" e poi reso visibile il pannello che fa visualizzare l'ordine del tavolo.
+	Il metodo "createOrderingPanels()" viene invocato se l'utente preme uno dei tre -Pizza, -Focaccia, -Beverage e viene creato il pannello con tutte le scelte da ordinare in base a cosa viene passato come stringa. Queste stringhe conteranno la lista di tutte le componenti basi e topping dell'articolo scelto, compresi indirizzi delle immagini e nome delle classi ai quali appartengono.
+	Il "createOrderingPanel()" crea il singolo pannello passando tutti i parametri stringhe di cui parlavo prima. 
+	"setTableId()" setta l'id del tavolo per cercare l'ordine corrente.
 
-3-JPanelWithBackgroundTables
-Classe che estende ‚ÄúJPanelWithBackgroundImgAndBackBtn‚Äù inserendo il numero dei tavoli scelti all‚Äôinizio dell‚Äôapplicazioni all‚Äôinterno del pannello tramite il metodo ‚ÄúdrawTables()‚Äù. Ogni tavolo sar√† un pulsante e render√† visibile un altro pannello passandogli l‚ÄôId del tavolo. 
-Il metodo ‚ÄúgetCoordinates()‚Äù √® stato implementato per rendere la grandezza e la posizione dei tavoli pi√π intelligente in base al numero dei tavoli scelti inizialmente. 
+3- JPanelWithBackgroundTables
+	Classe che estende "JPanelWithBackgroundImgAndBackBtn" inserendo il numero dei tavoli scelti all'inizio dell'applicazione all'interno del pannello tramite il metodo "drawTables()". Ogni tavolo sara' un pulsante e rendera' visibile un altro pannello passandogli l'Id del tavolo. 
+	Il metodo "getCoordinates()" e' stato implementato per rendere la grandezza e la posizione dei tavoli piu' intelligente in base al numero dei tavoli scelti inizialmente. 
 
-4-JPanelWithImageOrderInterface
-Interfaccia contente il metodo ‚ÄúsetTableId(String s)‚Äù che andr√† a impostare l‚ÄôId per il tavolo corrente.
+4- JPanelWithImageOrderInterface
+	Interfaccia contente il metodo "setTableId(String s)" che andra' a impostare l'Id per il tavolo corrente.
 
-5-JPanelWithImageInterface
-Interfaccia ‚Ä¶ 
+5- JPanelWithImageInterface
+	Interfaccia. 
 
 
 pizzeriadiddieffe.gui.jbutton
 
-1-ClickableButtonWithImage
-La classe estende JButton aggiungendo come sfondo un immagine che viene passata tramite String, oltre alle dimensioni  e alla posizione del button. Il pulsante ha le propriet√† di cambiare immagine quando gli si passa sopra con il cursore e quando ci clicchiamo sopra. 
+1- ClickableButtonWithImage
+	La classe estende JButton aggiungendo come sfondo un immagine che viene passata tramite String, oltre alle dimensioni e alla posizione del button. Il pulsante ha le proprieta' di cambiare immagine quando gli si passa sopra con il cursore e quando ci clicchiamo sopra. 
 
-2-JButtonTextImage
-Estende ‚ÄúClickableButtonWithImage‚Äù e imposta il colore del testo del button in base al button creato in modo da rendere il testo pi√π leggibile.
-
+2- JButtonTextImage
+	Estende "ClickableButtonWithImage" e imposta il colore del testo del button in base al button creato in modo da rendere il testo piu' leggibile.
 
 
 pizzeriadiddieffe.gui.jpanel
 
-1-JPanelWithBackBtn
-La classe estende JPanel arricchendo il pannello con il pulsante ‚ÄúBack‚Äù in alto a sinistra. Questo viene implementato tramite il metodo ‚ÄúpaintBackBtn()‚Äù che aggiunge il button. Il metodo ‚ÄúsetPanelVisibility()‚Äù fa in modo che una volta premuto il pulsante ‚ÄúBack‚Äù esse ritorni al penultimo pannello visibile.
+1- JPanelWithBackBtn
+	La classe estende JPanel arricchendo il pannello con il pulsante "Back" in alto a sinistra. Questo viene implementato tramite il metodo "paintBackBtn()" che aggiunge il button. Il metodo "setPanelVisibility()" fa in modo che una volta premuto il pulsante "Back" esse ritorni al penultimo pannello visibile.
 
-2-OrderingJPanel
-La classe estende JPanelWithBackgroundImgAndBackBtn quindi oltre ad essere un pannello con sfondo e pulsante ‚ÄúBack‚Äù esso crea tutti i componenti per comporre l‚Äôordine. 
-Riceve in ingresso le stringhe con i componenti da visualizzare (nomi casi base, nomi toppings, e relativi nomi delle classi). 
-Il metodo ‚ÄúcreateBaseItems()‚Äù crea i button dei casi base aggiungendo all‚ÄôActionListener anche la possibilit√† di cambiare colore del bordo di ogni pulsante in modo che se si trova selezionato avr√† un colore se invece non √® selezionato avr√† un colore diverso.
-Il metodo ‚ÄúcreateToppingsItems()‚Äù fa la stessa cosa del metodo appena descritto ma per i Toppings che verranno resi attivi solo se viene selezionato un caso base.
-‚ÄúaddOrderButton()‚Äù fa visualizzare il pulsante per completare l‚Äôordine e fa emettere un suono a ordine completato. Aggiunge anche un pulsante ‚ÄúClear‚Äù che serve per deselezionare tutti i componenti selezionati per l‚Äôordine in corso richiamando ‚ÄúresetSelection()‚Äù.
+2- OrderingJPanel
+	La classe estende JPanelWithBackgroundImgAndBackBtn quindi oltre ad essere un pannello con sfondo e pulsante "Back" esso crea tutti i componenti per comporre l'ordine. 
+	Riceve in ingresso le stringhe con i componenti da visualizzare (nomi casi base, nomi toppings, e relativi nomi delle classi). 
+	Il metodo "createBaseItems()" crea i button dei casi base aggiungendo all'ActionListener anche la possibilita' di cambiare colore del bordo di ogni pulsante in modo che se si trova selezionato avra' un colore se invece non e' selezionato avra' un colore diverso.
+	Il metodo "createToppingsItems()" fa la stessa cosa del metodo appena descritto ma per i Toppings che verranno resi attivi solo se viene selezionato un caso base.
+	"addOrderButton()" fa visualizzare il pulsante per completare l'ordine e fa emettere un suono a ordine completato. Aggiunge anche un pulsante "Clear" che serve per deselezionare tutti i componenti selezionati per l'ordine in corso richiamando "resetSelection()".
 
-3-OrderScrollPane
-La classe estende JScrollPane che non √® altro che un pannello con la possibilit√† di scorrerlo qualora non entrassero tutti i suoi componenti. Viene usato nell‚ÄôOrderingJpanel in modo che se vengono aggiunti un giorno tanti elementi non visibili nel pannello questo si abilita e fa scorrere il panel e nell‚ÄôOrderViewer per visualizzare tutti gli ordini effettuati nel tavolo. 
+3- OrderScrollPane
+	La classe estende JScrollPane che non e' altro che un pannello con la possibilita' di scorrerlo qualora non entrassero tutti i suoi componenti. Viene usato nell'OrderingJpanel in modo che se vengono aggiunti un giorno tanti elementi non visibili nel pannello questo si abilita e fa scorrere il panel e nell'OrderViewer per visualizzare tutti gli ordini effettuati nel tavolo. 
 
-4-PayOrderJPanel
-Estende JPanelWithBackgroundImgAndBackBtn inserendo all‚Äôinterno del pannello la scelta per il metodo di pagamento (Cash, Bancomat, Mobile). 
-‚ÄúPayOrderJPanel()‚Äù setta le dimensione e la posizione dei pulsanti che poi vengono creati da ‚ÄúcreatePayButton()‚Äù. ‚ÄúcreatePayPanel()‚Äù crea il pannello in base al tipo di pagamento selezionato tramite ‚ÄúgetStrategy()‚Äù.
+4- PayOrderJPanel
+	Estende JPanelWithBackgroundImgAndBackBtn inserendo all'interno del pannello la scelta per il metodo di pagamento (Cash, Bancomat, Mobile).
+	"PayOrderJPanel()" setta le dimensione e la posizione dei pulsanti che poi vengono creati da "createPayButton()". "createPayPanel()" crea il pannello in base al tipo di pagamento selezionato tramite "getStrategy()".
 
-5-ScrollPaneInterface
-Interfaccia per la classe OrderingJPanel.
-
-
+5- ScrollPaneInterface
+	Interfaccia per la classe OrderingJPanel.
 
 
+pizzeriadiddieffe.gui.formattedelements
+
+1- ButtonBorderManager
+	Classe che implementa ìButtonBorderManagerInterfaceî.
+	Il metodo ìgetBorderColor(JButtonTextImage currentItemButton)î restituisce il colore del bordo del JButtonTextImage passato al metodo.	
+	Il metodo ìchangeBorderColor(JButtonTextImage currentItemButton)î assegna al bordo del JButtonTextImage passato al metodo il colore desiderato.
+	Il metodo ìresetBorderColor(JButton currentButton)î resetta il colore del bordo del JButton passato al metodo al colore di default.
+	Il metodo ìsetOthersButtons(boolean enable, LinkedList<JButton> list, JButton myButton)î data una lista di JButton, un singolo JButton e un valore booleano, agisce sui JButton della lista attivandoli. 
+	Il metodo ìgetButtonListIterator(LinkedList<JButton> list)î restituisce l'iteratore della lista passata al metodo.
+	Il metodo ìresetButtons(LinkedList<JButton> baseCasesButtonsList, LinkedList<JButton> toppingButtonList)î resetta le liste di JButton passate al metodo.
+	Il metodo ìresetListButtons(Iterator<JButton> iterator)î resetta il colore del bordo dei JButton della lista passata al metodo.
+
+2- ButtonBorderManagerInterface
+	Interfaccia contenete i metodi ìgetBorderColor(JButtonTextImage currentItemButton)î, che restituisce il colore del bordo del JButtonTextImage passato al metodo, ìchangeBorderColor(JButtonTextImage currentItemButton)î, che setta il colore del bordo del JButtonTextImage passato,
+	ìsetOthersButtons(boolean enable, LinkedList<JButton> list, JButton myButton)î, che data una lista di JButton, un singolo JButton e un valore booleano, agisce sui JButton della lista attivandoli, e ìresetButtons(LinkedList<JButton> baseCasesButtonList, LinkedList<JButton> toppingButtonList)î, che resetta le liste di JButton passate al metodo.
+
+3- FormattedButton
+	Classe che implementa ìComponentFormatterInterfaceî.
+	Il metodo ìsetComponentProp(int x, int y, int width, int height)î setta le impostazioni del JButton assegnato alla variabile nella classe.
+	Il metodo ìsetComponentTextProp(String text, String font, int fontSize, Color textColor)î setta le impostazioni del testo del JButton assegnato alla variabile nella classe.
+	Il metodo ìcreateNewComponent()î crea un JButton e lo assegna alla variabile della classe.
+	Il metodo ìgetFormattedComponent()î restituisce il JButton creato nella classe.
+
+4- FormattedComboBox
+	Classe che implementa ìComponentFormatterInterfaceî.
+	Il metodo ìsetComponentProp(int x, int y, int width, int height)î setta le impostazioni del JComboBox assegnato alla variabile nella classe.
+	Il metodo ìsetComponentTextProp(String text, String font, int fontSize, Color textColor)î setta le impostazioni del testo del JComboBox assegnato alla variabile nella classe.
+	Il metodo ìcreateNewComponent()î crea un JComboBox e lo assegna alla variabile della classe.
+	Il metodo ìgetFormattedComponent()î restituisce il JComboBox creato nella classe.
+
+5- FormattedLabel
+	Classe che implementa ìComponentFormatterInterfaceî.
+	Il metodo ìsetComponentProp(int x, int y, int width, int height)î setta le impostazioni del JLabel assegnato alla variabile nella classe.
+	Il metodo ìsetComponentTextProp(String text, String font, int fontSize, Color textColor)î setta le impostazioni del testo del JLabel assegnato alla variabile nella classe.
+	Il metodo ìcreateNewComponent()î crea un JLabel e lo assegna alla variabile della classe.
+	Il metodo ìgetFormattedComponent()î restituisce il JLabel creato nella classe.
+
+6- HtmlFormatter
+	Classe che implementa ìHtmlFormatterInterfaceî ed ogni metodo restituisce l'elemento di formattazione in HTML assegnati alle variabili corrispondenti.
+
+7- HtmlFormatterInterface
+	Interfaccia contenente i metodi ìgetBullet()î, ìgetComma()î, ìgetTabSpace()î, ìgetEndItalic()î, ìgetNewLine()î, ìgetStartBold()î, ìgetEndBold()î, ìgetPrice()î, ìgetHighligh()î e ìgetEndhighligh()î, che restituiscono elementi di formattazione del testo in HTML.
 
 
+pizzeriadiddieffe.gui.paymethods
 
+1- BancomatPayMethod
+	Classe che estende ìJpanelWithBackBtnî ed implementa ìpayMethodInterfaceî.
+	Il metodo ìcreateTotalLabel()î crea una JLabel, nella quale c'e' una stringa di testo predefinita ìAmount to Payî piu' l'importo totale dell'ordine.
+	Inoltre il metodo crea un JButton ìPayî al quale viene aggiunto un ActionListener per cui, se il codice inserito dall'utente e' minore di 5 cifre alla pressione il testo del JButton viene settato a ìInsert Codeî, altrimenti viene settato a ìPayed!î e l'ordine viene svuotato.
+	Il metodo ìcreateButtons()î crea invece una JLabel che ha come stringa ìInsert Code î, crea poi 10 JButton(numeri da 0 a 10), che vengono disposti richiamando il metodo ìsetCordinates(int i)î, ai quali viene aggiunto un ActionListener per cui alla pressione di uno di questi JButton viene inserito un asterisco nella JLabel.
+	Viene infine creato un JButton ìCî che, se premuto, azzera il codice inserito.
 
+2- CashPayment
+	Classe che estende ìJpanelWithBackBtnî ed implementa ìpayMethodInterfaceî.
+	Il metodo ìcreateTotalLabel()î crea una JLabel, nella quale c'e' una stringa di testo predefinita ìAmount to Payî piu' l'importo totale dell'ordine.
+	Inoltre il metodo crea un JButton ìPayî al quale viene aggiunto un ActionListener per cui, se quando viene premuto il resto(cioe' la differenza tra l'importo totale dell'ordine e quello inserito dall'utente) e' maggore di 0 o il testo del JButton e' uguale a ìPayî setta il testo del JButton a ìChange: î piu' il resto, altrimenti setta il test del JButton a ìPayed!î e svuota l'ordine.
+	Il metodo ìcreateButtons()î crea invece una JLabel che ha come stringa ìAmount Paid î, crea poi 10 JButton(numeri da 0 a 10), che vengono disposti richiamando il metodo ìsetCordinates(int i)î, ai quali viene aggiunto un ActionListener per cui alla pressione di uno di questi JButton viene inserito nella JLabel l'intero corrispondente al testo del JButton premuto ricavato attraverso il ìparseInt(String text)î.
+	Vengono infine creati due JButton ìCî e ì.î che, se premuti, rispettivamente azzerano la parte di JLabel inserita dall'utente e inseriscono un ì.î nella JLabel.
 
+3- MobilePayMethod
+	Classe che estende ìJpanelWithBackBtnî ed implementa ìpayMethodInterfaceî.
+	Il metodo ìcreateBox()î crea due JComboBox inizialmente vuote, alla prima vengono aggiunte le scelte ìContact Lessî e ìCode Insertionî richiamando il metodo ìcreateMenuItems(JComboBox<String> currentMenu, String[] itemsName)î, alla seconda vengono invece aggiunte le scelte "Apple Pay", "Android Pay" e "Generic Operator" richiamando il metodo ìcreateMenuItemsî.
+	Il metodo ìcreateTotalLabel()î crea una JLabel, nella quale c'e' una stringa di testo predefinita ìAmount to Payî piu' l'importo totale dell'ordine.
+	Crea poi altre due JLabel: la prima, ìChoose Autentication Methodî, posizionata sopra la prima JComboBox; la seconda, ìChoose Operatorî, posiziona sopra la seconda JComboBox.
+	Infine il metodo crea un JButton ìPayî al quale viene aggiunto un ActionListener per cui, se quando viene premuto il testo del JButton e' uguale a ìPayî setta il testo del JButton a ìAutenticationî e disabilita le due JComboBox, mentre se il testo del JButton e' uguale ad ìAutenticationî setta il test del JButton a ìPayed!î, disabilita il JButton e svuota l'ordine.
 
-
+4- PayMethodInterface
+	Interfaccia contenente il metodo ìpayMethod(Order totPrice, JPanelWithBackgroundImgAndBackBtn myPanel)î, che setta l'ordine ed il pannello correnti.

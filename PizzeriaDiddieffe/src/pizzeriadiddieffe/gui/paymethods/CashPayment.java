@@ -84,7 +84,7 @@ public class CashPayment extends JPanelWithBackBtn implements PayMethodInterface
 					double resto = totValue-totPrice;
 
 					if(currentText=="Pay" && resto>0){
-						payButton.setText("Change : "+(float)resto);
+						payButton.setText("Change: "+(float)resto);
 					}else if(currentText!="Pay" || resto==0){
 						currentOrder.deleteAll();
 						payButton.setText("Payed!");
