@@ -21,6 +21,10 @@ public class JPanelWithBackBtn extends JPanel{
 	private ComponentsGetter myComponentGetter;
 	private static int width = 550;
 	private static int heigh = 750;
+	private int xBackBtn = 10;
+	private int yBackBtn = 10;
+	private int widthBackBtn = 100;
+	private int heightBackBtn = 50;
 
 	public JPanelWithBackBtn() {
 		Dimension size = new Dimension(width, heigh);
@@ -34,7 +38,7 @@ public class JPanelWithBackBtn extends JPanel{
 	}
 
 	private void paintBackButton() {
-		btnBackToInOutScreen = new ClickableButtonWithImage(10, 10, 100, 50, 0, "Back");
+		btnBackToInOutScreen = new ClickableButtonWithImage(xBackBtn, yBackBtn, widthBackBtn, heightBackBtn, 0, "Back");
 		btnBackToInOutScreen.setBorderPainted(false);
 		this.add(btnBackToInOutScreen);
 		btnBackToInOutScreen.addActionListener(new ActionListener() {

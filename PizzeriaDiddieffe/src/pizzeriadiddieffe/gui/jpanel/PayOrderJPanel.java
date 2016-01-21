@@ -52,13 +52,13 @@ public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 		super(img);
 		int x = 15;
 		int y = 200;
-		createPayButton(cashPay, x, y, cashText, cashText, cashText);
+		createPayButton(cashPay, x, y, cashText);
 		x = x+buttonsXSpace;
 		y = 200;
-		createPayButton(BancomatPay, x, y, bancomatText, bancomatText, bancomatText);
+		createPayButton(BancomatPay, x, y, bancomatText);
 		x = singleButtonX;
 		y = y+buttonsYSpace;
-		createPayButton(mobilePay, x, y, mobileText, mobileText, mobileText);
+		createPayButton(mobilePay, x, y, mobileText);
 		this.myFrame = myFrame;
 	}
 
@@ -74,7 +74,7 @@ public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 		myOrder = price;
 	}
 
-	private void createPayButton(JButton payMode, int x, int y, String standardImage, String pressedImage, String mouseImage) {
+	private void createPayButton(JButton payMode, int x, int y, String standardImage) {
 		payMode = new JButtonTextImage(x, y, buttonsWidth, buttonsHeight, buttonsFont, standardImage);
 		this.add(payMode);
 		final String currentText = payMode.getText();

@@ -85,6 +85,29 @@ Estende “ClickableButtonWithImage” e imposta il colore del testo del button 
 
 
 
+pizzeriadiddieffe.gui.jpanel
+
+1-JPanelWithBackBtn
+La classe estende JPanel arricchendo il pannello con il pulsante “Back” in alto a sinistra. Questo viene implementato tramite il metodo “paintBackBtn()” che aggiunge il button. Il metodo “setPanelVisibility()” fa in modo che una volta premuto il pulsante “Back” esse ritorni al penultimo pannello visibile.
+
+2-OrderingJPanel
+La classe estende JPanelWithBackgroundImgAndBackBtn quindi oltre ad essere un pannello con sfondo e pulsante “Back” esso crea tutti i componenti per comporre l’ordine. 
+Riceve in ingresso le stringhe con i componenti da visualizzare (nomi casi base, nomi toppings, e relativi nomi delle classi). 
+Il metodo “createBaseItems()” crea i button dei casi base aggiungendo all’ActionListener anche la possibilità di cambiare colore del bordo di ogni pulsante in modo che se si trova selezionato avrà un colore se invece non è selezionato avrà un colore diverso.
+Il metodo “createToppingsItems()” fa la stessa cosa del metodo appena descritto ma per i Toppings che verranno resi attivi solo se viene selezionato un caso base.
+“addOrderButton()” fa visualizzare il pulsante per completare l’ordine e fa emettere un suono a ordine completato. Aggiunge anche un pulsante “Clear” che serve per deselezionare tutti i componenti selezionati per l’ordine in corso richiamando “resetSelection()”.
+
+3-OrderScrollPane
+La classe estende JScrollPane che non è altro che un pannello con la possibilità di scorrerlo qualora non entrassero tutti i suoi componenti. Viene usato nell’OrderingJpanel in modo che se vengono aggiunti un giorno tanti elementi non visibili nel pannello questo si abilita e fa scorrere il panel e nell’OrderViewer per visualizzare tutti gli ordini effettuati nel tavolo. 
+
+4-PayOrderJPanel
+Estende JPanelWithBackgroundImgAndBackBtn inserendo all’interno del pannello la scelta per il metodo di pagamento (Cash, Bancomat, Mobile). 
+“PayOrderJPanel()” setta le dimensione e la posizione dei pulsanti che poi vengono creati da “createPayButton()”. “createPayPanel()” crea il pannello in base al tipo di pagamento selezionato tramite “getStrategy()”.
+
+5-ScrollPaneInterface
+Interfaccia per la classe OrderingJPanel.
+
+
 
 
 
