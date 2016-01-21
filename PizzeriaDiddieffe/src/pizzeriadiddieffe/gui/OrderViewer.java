@@ -141,7 +141,7 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn implements Or
 		removeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(removingItem==true){
+				if(removingItem==true && currentEditItem!=0){
 					try {
 						myOrder.deleteIndex(currentEditItem-1);
 					} catch (Exception e1) {
@@ -149,6 +149,7 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn implements Or
 					}
 					currentEditItem = 0;
 					drawOrder();
+					editButton.setText("Edit");
 				}
 			}
 		});
