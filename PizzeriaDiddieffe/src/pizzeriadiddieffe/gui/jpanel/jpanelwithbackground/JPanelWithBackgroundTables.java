@@ -39,7 +39,6 @@ public class JPanelWithBackgroundTables extends JPanelWithBackgroundImgAndBackBt
 		int y = 60;
 		imgHeight = 140;
 		imgYToMove = 170;
-		//ritorna un array con "[x dove partire] [numero di tavoli per riga] [width] [x da muovere a destra]"
 		int[] coordinates = getCoordinates(numbers);
 
 		xToStart = coordinates[0];

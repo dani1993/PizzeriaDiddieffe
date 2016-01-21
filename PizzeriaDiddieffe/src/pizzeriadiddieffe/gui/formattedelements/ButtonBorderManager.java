@@ -41,12 +41,12 @@ public class ButtonBorderManager implements ButtonBorderManagerInterface{
 	}
 
 	@Override
-	public void setOthersButtons(boolean enable, LinkedList<JButton> list, JButton myButton) {
+	public void setOthersButtons(boolean enable, LinkedList<JButton> list, JButton mybutton) {
 		Iterator<JButton> iteratore = getButtonListIterator(list);
 		while(iteratore.hasNext()){
 			JButton currentButton = iteratore.next();
 			currentButton.setEnabled(enable);
-			if(enable==false && myButton.equals(currentButton)){
+			if(enable==false && mybutton.equals(currentButton)){
 				currentButton.setEnabled(true);
 			}
 		}

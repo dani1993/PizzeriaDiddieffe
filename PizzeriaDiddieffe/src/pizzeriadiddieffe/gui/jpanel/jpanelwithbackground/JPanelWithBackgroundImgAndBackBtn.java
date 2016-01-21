@@ -17,14 +17,14 @@ import pizzeriadiddieffe.gui.componentclasses.ComponentsGetter;
 import pizzeriadiddieffe.gui.jbutton.ClickableButtonWithImage;
 
 @SuppressWarnings("serial")
-public class JPanelWithBackgroundImgAndBackBtn extends JPanel{
+public class JPanelWithBackgroundImgAndBackBtn extends JPanel implements  JPanelWithImageInterface{
 	private Image img;
 	private ClickableButtonWithImage btnBackToInOutScreen;
-	private JPanel visiblePanel;// pannello visibile
+	private JPanel visiblePanel;
 	private JFrame myFrame;
 	private ComponentsGetter myComponentGetter;
 	
-	//back button bounds
+
 	private int xBackButton = 10;
 	private int yBackButton = 10;
 	private int widthBackButton = 100;
@@ -57,9 +57,7 @@ public class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 		});
 	}
 
-	private void setPanelsVisibility() {// setto tutti i componenti del frame
-		// invisibili,tranne il pannello
-		// visible_panel
+	private void setPanelsVisibility() {
 		List<Component> myComponents = new ArrayList<Component>();
 		myComponents = myComponentGetter.getComponents(myFrame);
 		for (Component comp : myComponents) {
@@ -67,11 +65,10 @@ public class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 				comp.setVisible(false);
 			}
 		}
-		this.setVisible(false);// senza questa problema di visibilita nel
-		// jpanel...order
+		this.setVisible(false);
 		visiblePanel.setVisible(true);
 	}
-
+	@Override
 	public void setVisiblePanel(JPanel visiblePanel, JFrame frame) {
 		this.visiblePanel = visiblePanel;
 		this.myFrame = frame;
@@ -80,10 +77,9 @@ public class JPanelWithBackgroundImgAndBackBtn extends JPanel{
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		// draw background image
 		g.drawImage(img, 0, 0, null);
 	}
-
+	@Override
 	public JFrame getFrame() {
 		return myFrame;
 	}
