@@ -8,16 +8,15 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 
-public class Sound implements SoundPlayerInterface{
+public class Sound implements SoundPlayerInterface {
 	private String soundName;
 
-	@Override
-	public void setSound(String soundName){
+	public void setSound(String soundName) {
 		this.soundName = soundName;
 	}
 
 	@Override
-	public void playSound() throws Exception{
+	public void playSound() throws Exception {
 		File file = new File(soundName);
 		AudioInputStream stream;
 		AudioFormat format;

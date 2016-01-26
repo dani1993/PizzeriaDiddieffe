@@ -157,10 +157,11 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements
 	}
 
 	private void addOrderButton() {
-		AddToOrderButton=createFormattedButton("Add To Order", addButtonx, addButtony, addButtonWidth, addButtonHeight);
+		AddToOrderButton = createFormattedButton("Add To Order", addButtonx, addButtony, addButtonWidth, addButtonHeight);
 		AddToOrderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buttonSound.setSound(clearSound);
+				
 				if (currentCaseBase!=null) {
 					try {
 						createChoseenBaseCase(currentCaseBase);
@@ -201,6 +202,7 @@ public class OrderingJPanel extends JPanelWithBackgroundImgAndBackBtn implements
 			}
 		});
 	}
+
 
 	private void resetSelection(){
 		resetAllButtons();

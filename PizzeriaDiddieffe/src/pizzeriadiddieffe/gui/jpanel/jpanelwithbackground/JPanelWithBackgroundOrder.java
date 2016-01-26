@@ -3,6 +3,7 @@ package pizzeriadiddieffe.gui.jpanel.jpanelwithbackground;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -41,7 +42,7 @@ public class JPanelWithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 	private String[] pizzaToppingImages = {"Tomato Sauce", "Mozzarella", "Anchovy", "Bufala", "Ham", "Onions", "Olives", "Mushrooms", "Pepperoni",
 			"Porcini", "Tuna", "Sausages", "Cream", "Artichokes", "Shrimps"};
 
-	private static String menuPizzaImagePath = "res/pizzaOrdering.jpg";
+	private static String menuPizzaImagePath = "pizzaOrdering.jpg";
 	private String pizzaPackage = "pizza";
 
 	private String[] focacciaClasses = {"BasicWhiteFocaccia", "BasicBrownFocaccia", "Basic5CerealsFocaccia", "Mortadella", "CookedHam", "FreshBufalaMozzarella",
@@ -51,7 +52,7 @@ public class JPanelWithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 	private String[] focacciaToppingList = {"Mortadella", "Cooked Ham", "Bufala", "Mozzarella", "Tomatoes", "Lettuce", "Nutella", "Olives",
 			"Pecorino", "Raw Ham", "Rosemary", "Sausages", "Stracchino"};
 
-	private static String menuFocacciaImagePath = "res/FocacciaOrdering.jpg";
+	private static String menuFocacciaImagePath = "FocacciaOrdering.jpg";
 	private String focacciaPackage = "focaccia";
 
 	private String[] beverageClasses = {"EmptyLittleGlass", "EmptyMediumGlass", "EmptyLargeGlass", "Water", "FizzyWater", "CocaCola", "Fanta", "Beer"};
@@ -59,20 +60,20 @@ public class JPanelWithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 	private String[] beverageList = {"Small", "Medium", "Large"};
 	private String[] beverageToppingList = {"Water", "Fizzy Water", "Coke", "Fanta", "Beer"};
 
-	private static String menuBeverageImagePath = "res/DrinksOrdering.jpg";
+	private static String menuBeverageImagePath = "DrinksOrdering.jpg";
 	private String beveragePackage = "beverage";
 	
-	private static String orderViewerBGImagePath = "res/OrderViewerBG.jpg";
+	private static String orderViewerBGImagePath = "OrderViewerBG.jpg";
 
 	private Order currentOrder;
 	private OrderViewer orderViewer;
-	private Image orderViewerImage = new ImageIcon(orderViewerBGImagePath).getImage().getScaledInstance(550, 750, java.awt.Image.SCALE_SMOOTH);;
 	private OrderManager myOrderManager ;
 	private OrderingJPanel pizzaOrderingPanel;
 	private OrderingJPanel beverageOrderingPanel;
 	private OrderingJPanel focacciaOrderingPanel;
 	private OrderingPanelCreator myOrderingPanelCreator;
-
+	private URL imageURL;
+	
 	private JFrame myFrame;
 
 	public JPanelWithBackgroundOrder(Image image, JFrame frame) {
@@ -86,19 +87,23 @@ public class JPanelWithBackgroundOrder extends JPanelWithBackgroundImgAndBackBtn
 	}
 
 	private void createOrderViewerPanel() {
-		orderViewer = new OrderViewer(orderViewerImage, myFrame, currentJPanel);
+		imageURL = JPanelWithBackgroundOrder.class.getResource(orderViewerBGImagePath);
+		orderViewer = new OrderViewer(new ImageIcon(imageURL).getImage(), myFrame, currentJPanel);
 		orderViewer.setVisiblePanel(currentJPanel, myFrame);
 		orderViewer.setVisible(false);
 		myFrame.add(orderViewer);
 	}
 
 	private void createOrderingPanels() {
-		pizzaOrderingPanel = createOrderingPanel(menuPizzaImagePath, pizzaPackage, pizzaBasicClasses, pizzaToppingImages, pizzaClasses);
-		beverageOrderingPanel = createOrderingPanel(menuBeverageImagePath, beveragePackage, beverageList, beverageToppingList, beverageClasses);
-		focacciaOrderingPanel = createOrderingPanel(menuFocacciaImagePath, focacciaPackage, focacciaList, focacciaToppingList, focacciaClasses);
+		imageURL = JPanelWithBackgroundOrder.class.getResource(menuPizzaImagePath);
+		pizzaOrderingPanel = createOrderingPanel(new ImageIcon(imageURL).getImage(), pizzaPackage, pizzaBasicClasses, pizzaToppingImages, pizzaClasses);
+		imageURL = JPanelWithBackgroundOrder.class.getResource(menuBeverageImagePath);
+		beverageOrderingPanel = createOrderingPanel(new ImageIcon(imageURL).getImage(), beveragePackage, beverageList, beverageToppingList, beverageClasses);
+		imageURL = JPanelWithBackgroundOrder.class.getResource(menuFocacciaImagePath);
+		focacciaOrderingPanel = createOrderingPanel(new ImageIcon(imageURL).getImage(), focacciaPackage, focacciaList, focacciaToppingList, focacciaClasses);
 	}
 
-	private OrderingJPanel createOrderingPanel(String ImagePath, String basePackage, String[] baseCases, String[] toppings, String[] classes){
+	private OrderingJPanel createOrderingPanel(Image ImagePath, String basePackage, String[] baseCases, String[] toppings, String[] classes){
 		myOrderingPanelCreator.setParameters(ImagePath, width, height);
 		myOrderingPanelCreator.createPanel(basePackage, baseCases, toppings, classes);
 		myOrderingPanelCreator.setOrderingBackButton(currentJPanel, myFrame);

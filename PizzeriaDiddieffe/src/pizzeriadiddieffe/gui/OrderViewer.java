@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -49,7 +50,7 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn implements Or
 	private int payButtonY = 650;
 	private int payButtonHeight = 50;
 	private int payButtonWight = 160;
-	private String payOrderImagePath = "res/PaymentMethodBG.jpg";
+	private String payOrderImagePath = "PaymentMethodBG.jpg";
 	private Item currentItem;
 
 	private Color scrollPaneColors = Color.white;
@@ -72,6 +73,7 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn implements Or
 	private int buttonFontSize = 22;
 	private Color buttonTextColor = Color.BLACK;
 	private LinkedList<String> itemsList;
+	private URL imageURL;
 
 	public OrderViewer(Image img, JFrame myFrame, JPanelWithBackgroundImgAndBackBtn payOrderVisiblePanel) {
 		super(img);
@@ -91,7 +93,8 @@ public class OrderViewer extends JPanelWithBackgroundImgAndBackBtn implements Or
 		scrollPane.setColors(scrollPaneColors, scrollPaneColors);
 		currentJPanel.add(scrollPane.getScrollPane());
 
-		Image payOrderImage = new ImageIcon(payOrderImagePath).getImage();
+		imageURL = OrderViewer.class.getResource(payOrderImagePath);
+		Image payOrderImage = new ImageIcon(imageURL).getImage();
 		myPayJPanel = new PayOrderJPanel(payOrderImage, myFrame);
 		myPayJPanel.setVisiblePanel(payOrderVisiblePanel, myFrame);
 		myPayJPanel.setVisible(false);

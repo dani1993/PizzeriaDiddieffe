@@ -3,6 +3,7 @@ package pizzeriadiddieffe.gui.jpanel;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -31,22 +32,23 @@ public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 
 	private JButton cashPay;
 	private String cashText = "Cash";
-	private String cashImagePath = "res/CashMethod.jpg";
+	private String cashImagePath = "CashMethod.jpg";
 
 	private JButton BancomatPay;
 	private String bancomatText = "Bancomat";
-	private String bancomatImagePath = "res/BancomatMethod.jpg";
+	private String bancomatImagePath = "BancomatMethod.jpg";
 
 	private JButton mobilePay;
 	private String mobileText = "Mobile Pay";
-	private String mobileImagePath = "res/MobileMethod.jpg";
+	private String mobileImagePath = "MobileMethod.jpg";
 
 	private PayMethodInterface payStrategy; 
 	private PayChooser myPayChooser;
 	private JPanelWithBackgroundImgAndBackBtn payPanel;
-	private String payPanelImagePath = "";
+	private URL payPanelImagePath;
 	private JPanelWithBackgroundImgAndBackBtn currentJPanel = this;
 	private JFrame myFrame;
+	private URL imageURL;
 
 	public PayOrderJPanel(Image img, JFrame myFrame) {
 		super(img);
@@ -92,14 +94,17 @@ public class PayOrderJPanel extends JPanelWithBackgroundImgAndBackBtn{
 
 	private PayMethodInterface getStrategy(String text) {
 		if(text.equals(cashText)){
-			payPanelImagePath = cashImagePath;
+			imageURL = PayOrderJPanel.class.getResource(cashImagePath);
+			payPanelImagePath = imageURL;
 			return new CashPayment();
 		}
 		else if(text.equals(mobileText)){
-			payPanelImagePath = mobileImagePath;
+			imageURL = PayOrderJPanel.class.getResource(mobileImagePath);
+			payPanelImagePath = imageURL;
 			return new MobilePayMethod();
 		}
-		payPanelImagePath = bancomatImagePath;
+		imageURL = PayOrderJPanel.class.getResource(bancomatImagePath);
+		payPanelImagePath = imageURL;
 		return new BancomatPayMethod();
 	}
 }

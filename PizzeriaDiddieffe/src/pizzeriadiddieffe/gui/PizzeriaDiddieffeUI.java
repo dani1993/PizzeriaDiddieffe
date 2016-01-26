@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import java.awt.CardLayout;
 import java.awt.Graphics;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -55,6 +56,7 @@ public class PizzeriaDiddieffeUI extends JPanel {
 	private int buttonFontSize = 18;
 	private Color labelTextColor = Color.white;
 	private Color buttonTextColor = Color.black;
+	private URL imageURL;
 
 	@SuppressWarnings("rawtypes")
 	private ComponentCreator myComponentCreator = new ComponentCreator<>();
@@ -113,7 +115,8 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 
-		chooseNumberOfTables = new PizzeriaDiddieffeUI("res/mainBG.jpg");
+		imageURL = PizzeriaDiddieffeUI.class.getResource("mainBG.jpg");
+		chooseNumberOfTables = new PizzeriaDiddieffeUI(new ImageIcon(imageURL).getImage());
 		frame.getContentPane().add(chooseNumberOfTables, "name_1230783104452");
 		chooseNumberOfTables.setLayout(null);
 
@@ -222,16 +225,19 @@ public class PizzeriaDiddieffeUI extends JPanel {
 		}
 		chooseInsideOutside.setVisible(true);
 
-		Image orderOutsideBg = new ImageIcon("res/OrderManager.jpg").getImage();//creo pannello per ordini interni 
+		imageURL = PizzeriaDiddieffeUI.class.getResource("OrderManager.jpg");
+		Image orderOutsideBg = new ImageIcon(imageURL).getImage();//creo pannello per ordini interni 
 		orderPanel = new JPanelWithBackgroundOrder(orderOutsideBg, frame);
 		frame.getContentPane().add(orderPanel);
 
-		Image insideBg = new ImageIcon ("res/parquetBG.jpg").getImage();
+		imageURL = PizzeriaDiddieffeUI.class.getResource("parquetBG.jpg");
+		Image insideBg = new ImageIcon (imageURL).getImage();
 		insidePanel = new JPanelWithBackgroundTables(insideBg, insideTables, "inside", orderPanel);
 		insidePanel.setLayout(null);
 		frame.getContentPane().add(insidePanel);
 
-		Image outsideBg = new ImageIcon ("res/outsideBG.jpg").getImage();
+		imageURL = PizzeriaDiddieffeUI.class.getResource("outsideBG.jpg");
+		Image outsideBg = new ImageIcon (imageURL).getImage();
 		outsidePanel = new JPanelWithBackgroundTables(outsideBg, outsideTables, "outside", orderPanel);
 		frame.getContentPane().add(outsidePanel);
 		setBackButtons();

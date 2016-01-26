@@ -13,7 +13,7 @@ public class OrderingPanelCreator implements PanelCreator{
 	private Image tempOrderingImage;
 
 	@Override
-	public void setParameters(String OrderingImagePath, int width, int height){
+	public void setParameters(Image OrderingImagePath, int width, int height){
 		tempOrderingImage = new ImageIcon(OrderingImagePath).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
 	}
 
